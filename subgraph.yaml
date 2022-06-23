@@ -1,0 +1,41 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: undefined
+    network: rinkeby
+    source:
+      address: "0x0f772981614688707Ec5727C80e0BEED8b11dEAa"
+      abi: BondFixedTermTeller
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ApprovalForAll
+        - AuthorityUpdated
+        - Bonded
+        - ERC1155BondTokenCreated
+        - OwnerUpdated
+        - TransferBatch
+        - TransferSingle
+      abis:
+        - name: BondFixedTermTeller
+          file: ./abis/BondFixedTermTeller.json
+      eventHandlers:
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: Bonded(indexed uint256,indexed address,uint256,uint256)
+          handler: handleBonded
+        - event: ERC1155BondTokenCreated(uint256,indexed address,indexed uint48)
+          handler: handleERC1155BondTokenCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+          handler: handleTransferSingle
+      file: ./src/bond-fixed-term-teller.ts
