@@ -1,6 +1,41 @@
-type ExampleEntity @entity {
-  id: ID!
-  count: BigInt!
+type BondTokenOwner @entity {
+  id: String!
+  tokenId: BigInt!
   owner: Bytes! # address
-  operator: Bytes! # address
+  balance: BigInt!
+}
+
+type BondPurchase @entity {
+    id: Bytes!
+    tokenId: BigInt!
+    amount: BigInt
+    payout: BigInt
+    referrer: String!
+}
+
+type Token @entity {
+    id: String! # address
+    decimals: BigInt!
+    symbol: String!
+    name: String!
+    lpPair: Pair
+}
+
+type Market @entity {
+  id: String!
+  networkId: String!
+  auctioneer: Bytes! # address
+  marketId: BigInt!
+  owner: Bytes! # address
+  payoutToken: Token!
+  quoteToken: Token!
+  vesting: BigInt!
+  isLive: Boolean!
+  isInstantSwap: Boolean!
+}
+
+type Pair @entity {
+    id: String! # address
+    token0: Token!
+    token1: Token!
 }

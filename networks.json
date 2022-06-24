@@ -1,7 +1,38 @@
 {
   "rinkeby": {
-    "undefined": {
-      "address": "0x0f772981614688707Ec5727C80e0BEED8b11dEAa"
+    "BondFixedTermTeller": {
+      "address": "0x0f772981614688707Ec5727C80e0BEED8b11dEAa",
+      "startBlock": 10865419
+    },
+    "BondFixedTermCDA": {
+      "address": "0x657dac97C24CfCABa73cD947878Bb3404aD37486",
+      "startBlock": 10865419
+    },
+    "BondFixedExpTeller": {
+      "address": "0x6ed2A38eD7d5A5a13C4683B07d6f35f30037f2ED",
+      "startBlock": 10865419
+    },
+    "BondFixedExpCDA": {
+      "address": "0xe279AA2313513d03525Ef93ef2d04d99B0680f07",
+      "startBlock": 10865419
+    }
+  },
+  "goerli": {
+    "BondFixedTermTeller": {
+      "address": "0x1B26662c1200CB98193f32227DE872B1b9b80f0b",
+      "startBlock": 7072454
+    },
+    "BondFixedTermCDA": {
+      "address": "0x130a364655c5889D665caBa74FbD3bFa1448b99B",
+      "startBlock": 7072454
+    },
+    "BondFixedExpTeller": {
+      "address": "0x6C34e24df5c4A48909Dd10a2DEbdDDA0a8C73e19",
+      "startBlock": 7072454
+    },
+    "BondFixedExpCDA": {
+      "address": "0x064D8087a793a026216D2e053dE1DDC64a9b2d60",
+      "startBlock": 7072454
     }
   }
 }

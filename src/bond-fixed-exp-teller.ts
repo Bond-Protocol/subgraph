@@ -1,16 +1,10 @@
 import {
-  ApprovalForAll,
   AuthorityUpdated,
   Bonded,
-  ERC1155BondTokenCreated,
+  ERC20BondTokenCreated,
   OwnerUpdated,
-  TransferBatch,
-  TransferSingle
-} from "../generated/BondFixedTermTeller/BondFixedTermTeller"
+} from "../generated/BondFixedExpTeller/BondFixedExpTeller"
 import {BondPurchase} from "../generated/schema";
-
-export function handleApprovalForAll(event: ApprovalForAll): void {
-}
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -30,14 +24,8 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.save();
 }
 
-export function handleERC1155BondTokenCreated(event: ERC1155BondTokenCreated): void {
+export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void {
 }
 
 export function handleOwnerUpdated(event: OwnerUpdated): void {
-}
-
-export function handleTransferBatch(event: TransferBatch): void {
-}
-
-export function handleTransferSingle(event: TransferSingle): void {
 }

@@ -1,13 +1,14 @@
-specVersion: 0.0.1
+specVersion: 0.0.5
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: undefined
-    network: rinkeby
+    name: BondFixedTermTeller
+    network: goerli
     source:
-      address: "0x0f772981614688707Ec5727C80e0BEED8b11dEAa"
       abi: BondFixedTermTeller
+      address: "0x1B26662c1200CB98193f32227DE872B1b9b80f0b"
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -34,8 +35,164 @@ dataSources:
           handler: handleERC1155BondTokenCreated
         - event: OwnerUpdated(indexed address,indexed address)
           handler: handleOwnerUpdated
-        - event: TransferBatch(indexed address,indexed address,indexed address,uint256[],uint256[])
+        - event: TransferBatch(indexed address,indexed address,indexed
+            address,uint256[],uint256[])
           handler: handleTransferBatch
-        - event: TransferSingle(indexed address,indexed address,indexed address,uint256,uint256)
+        - event: TransferSingle(indexed address,indexed address,indexed
+            address,uint256,uint256)
           handler: handleTransferSingle
       file: ./src/bond-fixed-term-teller.ts
+  - kind: ethereum
+    name: BondFixedTermCDA
+    network: goerli
+    source:
+      abi: BondFixedTermCDA
+      address: "0x130a364655c5889D665caBa74FbD3bFa1448b99B"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedTermCDA
+          file: ./abis/BondFixedTermCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-cda.ts
+  - kind: ethereum
+    name: BondFixedExpTeller
+    network: goerli
+    source:
+      abi: BondFixedExpTeller
+      address: "0x6C34e24df5c4A48909Dd10a2DEbdDDA0a8C73e19"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - ERC20BondTokenCreated
+        - OwnerUpdated
+      abis:
+        - name: BondFixedExpTeller
+          file: ./abis/BondFixedExpTeller.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: Bonded(indexed uint256,indexed address,uint256,uint256)
+          handler: handleBonded
+        - event: ERC20BondTokenCreated(address,indexed address,indexed uint48)
+          handler: handleERC20BondTokenCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+      file: ./src/bond-fixed-exp-teller.ts
+  - kind: ethereum
+    name: BondFixedExpCDA
+    network: goerli
+    source:
+      abi: BondFixedExpCDA
+      address: "0x064D8087a793a026216D2e053dE1DDC64a9b2d60"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedExpCDA
+          file: ./abis/BondFixedExpCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-cda.ts
+templates:
+  - kind: ethereum/contract
+    name: ERC20
+    network: goerli
+    source:
+      abi: ERC20
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Account
+        - Token
+        - TokenApproval
+        - TokenBalance
+      abis:
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/erc20.ts
+  - kind: ethereum/contract
+    name: SLP
+    network: goerli
+    source:
+      abi: SLP
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
+        - event: Burn(indexed address,uint256,uint256,indexed address)
+          handler: handleBurn
+        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleSwap
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Sync(uint112,uint112)
+          handler: handleSync
+      file: ./src/slp.ts
