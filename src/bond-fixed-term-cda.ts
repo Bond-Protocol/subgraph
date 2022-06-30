@@ -85,7 +85,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   }
 
   let contract = BondFixedTermCDA.bind(event.address)
-  market.id = dataSource.network() + id;
+  market.id = dataSource.network() + "_" + id;
   market.networkId = dataSource.network();
   market.auctioneer = event.address;
   market.marketId = event.params.id;
