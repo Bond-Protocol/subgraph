@@ -23,7 +23,8 @@ type Token @entity {
 }
 
 type Market @entity {
-  id: String! # id_address
+  id: String! # chain name_contract name_market id
+  name: String!
   networkId: String!
   auctioneer: Bytes! # address
   marketId: BigInt!
