@@ -18,14 +18,15 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const payoutTokenId = event.params.payoutToken.toHexString();
-  const quoteTokenId = event.params.quoteToken.toHexString();
+  const payoutTokenId = dataSource.network() + "_" + event.params.payoutToken.toHexString();
+  const quoteTokenId = dataSource.network() + "_" + event.params.quoteToken.toHexString();
   let payoutToken = Token.load(payoutTokenId);
   let quoteToken = Token.load(quoteTokenId);
 
   if (!payoutToken) {
     let payoutTokenContract = ERC20.bind(event.params.payoutToken);
     payoutToken = new Token(payoutTokenId);
+    payoutToken.address = event.params.payoutToken.toHexString();
     payoutToken.decimals = payoutTokenContract.decimals();
     payoutToken.symbol = payoutTokenContract.symbol();
     payoutToken.name = payoutTokenContract.name();
@@ -35,6 +36,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   if (!quoteToken) {
     let quoteTokenContract = ERC20.bind(event.params.quoteToken);
     quoteToken = new Token(quoteTokenId);
+    quoteToken.address = event.params.quoteToken.toHexString();
     quoteToken.decimals = quoteTokenContract.decimals();
     quoteToken.symbol = quoteTokenContract.symbol();
     quoteToken.name = quoteTokenContract.name();
@@ -43,8 +45,8 @@ export function handleMarketCreated(event: MarketCreated): void {
       let pairContract = SLP.bind(event.params.quoteToken);
       let pair = new Pair(event.params.quoteToken.toHexString());
 
-      let token0Id = pairContract.token0().toHexString();
-      let token1Id = pairContract.token1().toHexString()
+      let token0Id = dataSource.network() + "_" + pairContract.token0().toHexString();
+      let token1Id = dataSource.network() + "_" + pairContract.token1().toHexString();
 
       let token0 = Token.load(token0Id);
       let token1 = Token.load(token1Id);
@@ -52,6 +54,7 @@ export function handleMarketCreated(event: MarketCreated): void {
       if (!token0) {
         let token0Contract = ERC20.bind(pairContract.token0());
         token0 = new Token(token0Id);
+        token0.address = pairContract.token0().toHexString();
         token0.decimals = token0Contract.decimals();
         token0.symbol = token0Contract.symbol();
         token0.name = token0Contract.name();
@@ -61,6 +64,7 @@ export function handleMarketCreated(event: MarketCreated): void {
       if (!token1) {
         let token1Contract = ERC20.bind(pairContract.token1());
         token1 = new Token(token1Id);
+        token1.address = pairContract.token1().toHexString();
         token1.decimals = token1Contract.decimals();
         token1.symbol = token1Contract.symbol();
         token1.name = token1Contract.name();

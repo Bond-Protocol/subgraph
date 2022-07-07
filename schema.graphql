@@ -14,7 +14,8 @@ type BondPurchase @entity {
 }
 
 type Token @entity {
-    id: String! # address
+    id: String! # chain name_address
+    address: String! # address
     decimals: BigInt!
     symbol: String!
     name: String!
@@ -22,7 +23,7 @@ type Token @entity {
 }
 
 type Market @entity {
-  id: String!
+  id: String! # id_address
   networkId: String!
   auctioneer: Bytes! # address
   marketId: BigInt!
