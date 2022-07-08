@@ -26,6 +26,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   if (!payoutToken) {
     let payoutTokenContract = ERC20.bind(event.params.payoutToken);
     payoutToken = new Token(payoutTokenId);
+    payoutToken.network = dataSource.network();
     payoutToken.address = event.params.payoutToken.toHexString();
     payoutToken.decimals = payoutTokenContract.decimals();
     payoutToken.symbol = payoutTokenContract.symbol();
@@ -36,6 +37,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   if (!quoteToken) {
     let quoteTokenContract = ERC20.bind(event.params.quoteToken);
     quoteToken = new Token(quoteTokenId);
+    quoteToken.network = dataSource.network();
     quoteToken.address = event.params.quoteToken.toHexString();
     quoteToken.decimals = quoteTokenContract.decimals();
     quoteToken.symbol = quoteTokenContract.symbol();
@@ -54,6 +56,7 @@ export function handleMarketCreated(event: MarketCreated): void {
       if (!token0) {
         let token0Contract = ERC20.bind(pairContract.token0());
         token0 = new Token(token0Id);
+        token0.network = dataSource.network();
         token0.address = pairContract.token0().toHexString();
         token0.decimals = token0Contract.decimals();
         token0.symbol = token0Contract.symbol();
@@ -64,6 +67,7 @@ export function handleMarketCreated(event: MarketCreated): void {
       if (!token1) {
         let token1Contract = ERC20.bind(pairContract.token1());
         token1 = new Token(token1Id);
+        token1.network = dataSource.network();
         token1.address = pairContract.token1().toHexString();
         token1.decimals = token1Contract.decimals();
         token1.symbol = token1Contract.symbol();
@@ -91,7 +95,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   let contract = BondFixedTermCDA.bind(event.address)
   market.id = dataSource.network() + "_" + contract._name + "_" + id;
   market.name = contract._name;
-  market.networkId = dataSource.network();
+  market.network = dataSource.network();
   market.auctioneer = event.address;
   market.marketId = event.params.id;
   market.owner = contract.markets(event.params.id).value0;

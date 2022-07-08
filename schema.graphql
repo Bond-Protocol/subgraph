@@ -1,8 +1,8 @@
 type BondTokenOwner @entity {
-  id: String!
-  tokenId: BigInt!
-  owner: Bytes! # address
-  balance: BigInt!
+    id: String!
+    tokenId: BigInt!
+    owner: Bytes! # address
+    balance: BigInt!
 }
 
 type BondPurchase @entity {
@@ -15,6 +15,7 @@ type BondPurchase @entity {
 
 type Token @entity {
     id: String! # chain name_address
+    network: String!
     address: String! # address
     decimals: BigInt!
     symbol: String!
@@ -23,17 +24,17 @@ type Token @entity {
 }
 
 type Market @entity {
-  id: String! # chain name_contract name_market id
-  name: String!
-  networkId: String!
-  auctioneer: Bytes! # address
-  marketId: BigInt!
-  owner: Bytes! # address
-  payoutToken: Token!
-  quoteToken: Token!
-  vesting: BigInt!
-  isLive: Boolean!
-  isInstantSwap: Boolean!
+    id: String! # chain name_contract name_market id
+    name: String!
+    network: String!
+    auctioneer: Bytes! # address
+    marketId: BigInt!
+    owner: Bytes! # address
+    payoutToken: Token!
+    quoteToken: Token!
+    vesting: BigInt!
+    isLive: Boolean!
+    isInstantSwap: Boolean!
 }
 
 type Pair @entity {
