@@ -18,8 +18,8 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const payoutTokenId = dataSource.network() + "_" + event.params.payoutToken.toHexString();
-  const quoteTokenId = dataSource.network() + "_" + event.params.quoteToken.toHexString();
+  const payoutTokenId = dataSource.network() + "_" + event.params.payoutToken.toHexString().toLowerCase();
+  const quoteTokenId = dataSource.network() + "_" + event.params.quoteToken.toHexString().toLowerCase();
   let payoutToken = Token.load(payoutTokenId);
   let quoteToken = Token.load(quoteTokenId);
 
@@ -27,7 +27,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     let payoutTokenContract = ERC20.bind(event.params.payoutToken);
     payoutToken = new Token(payoutTokenId);
     payoutToken.network = dataSource.network();
-    payoutToken.address = event.params.payoutToken.toHexString();
+    payoutToken.address = event.params.payoutToken.toHexString().toLowerCase();
     payoutToken.decimals = payoutTokenContract.decimals();
     payoutToken.symbol = payoutTokenContract.symbol();
     payoutToken.name = payoutTokenContract.name();
@@ -38,14 +38,14 @@ export function handleMarketCreated(event: MarketCreated): void {
     let quoteTokenContract = ERC20.bind(event.params.quoteToken);
     quoteToken = new Token(quoteTokenId);
     quoteToken.network = dataSource.network();
-    quoteToken.address = event.params.quoteToken.toHexString();
+    quoteToken.address = event.params.quoteToken.toHexString().toLowerCase();
     quoteToken.decimals = quoteTokenContract.decimals();
     quoteToken.symbol = quoteTokenContract.symbol();
     quoteToken.name = quoteTokenContract.name();
 
     if (quoteTokenContract.symbol() == "UNI-V2") {
       let pairContract = SLP.bind(event.params.quoteToken);
-      let pair = new Pair(event.params.quoteToken.toHexString());
+      let pair = new Pair(event.params.quoteToken.toHexString().toLowerCase());
 
       let token0Id = dataSource.network() + "_" + pairContract.token0().toHexString();
       let token1Id = dataSource.network() + "_" + pairContract.token1().toHexString();
