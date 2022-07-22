@@ -74,11 +74,9 @@ dataSources:
         - event: MarketCreated(indexed uint256,indexed address,indexed
             address,uint48,uint256)
           handler: handleMarketCreated
-        - event: OwnerUpdated(indexed address,indexed address)
-          handler: handleOwnerUpdated
         - event: Tuned(indexed uint256,uint256,uint256)
           handler: handleTuned
-      file: ./src/bond-fixed-exp-cda.ts
+      file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedExpTeller
     network: goerli
@@ -140,8 +138,6 @@ dataSources:
         - event: MarketCreated(indexed uint256,indexed address,indexed
             address,uint48,uint256)
           handler: handleMarketCreated
-        - event: OwnerUpdated(indexed address,indexed address)
-          handler: handleOwnerUpdated
         - event: Tuned(indexed uint256,uint256,uint256)
           handler: handleTuned
       file: ./src/bond-fixed-exp-cda.ts

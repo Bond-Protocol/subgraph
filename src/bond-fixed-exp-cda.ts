@@ -1,11 +1,10 @@
 import {
   AuthorityUpdated,
-  BondFixedTermCDA,
+  BondFixedExpCDA,
   MarketClosed,
   MarketCreated,
-  OwnerUpdated,
   Tuned
-} from "../generated/BondFixedTermCDA/BondFixedTermCDA"
+} from "../generated/BondFixedExpCDA/BondFixedExpCDA";
 import {Market, Pair, Token} from "../generated/schema";
 import {ERC20} from "../generated/templates/ERC20/ERC20";
 import {SLP} from "../generated/templates/SLP/SLP";
@@ -130,7 +129,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     market = new Market(id);
   }
 
-  let contract = BondFixedTermCDA.bind(event.address)
+  let contract = BondFixedExpCDA.bind(event.address)
   market.id = dataSource.network() + "_" + contract._name + "_" + id;
   market.name = contract._name;
   market.network = dataSource.network();
@@ -144,10 +143,11 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.isInstantSwap = contract.isInstantSwap(event.params.id);
 
   market.save();
-}
 
-export function handleOwnerUpdated(event: OwnerUpdated): void {
 }
 
 export function handleTuned(event: Tuned): void {
+}
+
+export function handleChooned(event: Tuned): void {
 }

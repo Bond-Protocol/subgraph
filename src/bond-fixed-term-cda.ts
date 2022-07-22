@@ -3,7 +3,6 @@ import {
   BondFixedTermCDA,
   MarketClosed,
   MarketCreated,
-  OwnerUpdated,
   Tuned
 } from "../generated/BondFixedTermCDA/BondFixedTermCDA"
 import {Market, Pair, Token} from "../generated/schema";
@@ -106,9 +105,6 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.isInstantSwap = contract.isInstantSwap(event.params.id);
 
   market.save();
-}
-
-export function handleOwnerUpdated(event: OwnerUpdated): void {
 }
 
 export function handleTuned(event: Tuned): void {
