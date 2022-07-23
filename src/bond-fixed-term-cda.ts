@@ -101,6 +101,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.payoutToken = payoutTokenId;
   market.quoteToken = quoteTokenId;
   market.vesting = event.params.vesting;
+  market.vestingType = "fixed-term";
   market.isLive = contract.isLive(event.params.id);
   market.isInstantSwap = contract.isInstantSwap(event.params.id);
 

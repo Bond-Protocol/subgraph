@@ -33,6 +33,7 @@ type Market @entity {
     payoutToken: Token!
     quoteToken: Token!
     vesting: BigInt!
+    vestingType: String!
     isLive: Boolean!
     isInstantSwap: Boolean!
 }
