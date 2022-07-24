@@ -28,6 +28,7 @@ type Market @entity {
     name: String!
     network: String!
     auctioneer: Bytes! # address
+    teller: Bytes! # address
     marketId: BigInt!
     owner: Bytes! # address
     payoutToken: Token!

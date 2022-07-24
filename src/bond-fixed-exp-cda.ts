@@ -134,6 +134,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.name = contract._name;
   market.network = dataSource.network();
   market.auctioneer = event.address;
+  market.teller = contract.getTeller();
   market.marketId = event.params.id;
   market.owner = contract.markets(event.params.id).value0;
   market.payoutToken = payoutTokenId;
