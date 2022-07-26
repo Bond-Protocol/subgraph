@@ -1,16 +1,31 @@
-type BondTokenOwner @entity {
-    id: String!
+type Erc20BondToken @entity {
+    id: Bytes!
+    bondToken: Bytes!
+    underlying: Bytes!
+    expiry: BigInt!
+    owner: Bytes!
+    teller: Bytes
+    network: String!
+}
+
+type Erc1155BondToken @entity {
+    id: Bytes!
     tokenId: BigInt!
-    owner: Bytes! # address
-    balance: BigInt!
+    underlying: Bytes!
+    expiry: BigInt!
+    owner: Bytes!
+    teller: Bytes
+    network: String!
 }
 
 type BondPurchase @entity {
     id: Bytes!
-    tokenId: BigInt!
+    marketId: BigInt!
     amount: BigInt
     payout: BigInt
-    referrer: String!
+    recipient: Bytes!
+    referrer: Bytes!
+    timestamp: BigInt!
 }
 
 type Token @entity {
