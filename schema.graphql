@@ -42,7 +42,7 @@ type Market @entity {
     auctioneer: Bytes! # address
     teller: Bytes! # address
     marketId: BigInt!
-    owner: Bytes! # address
+    owner: String! # address
     payoutToken: Token!
     quoteToken: Token!
     vesting: BigInt!

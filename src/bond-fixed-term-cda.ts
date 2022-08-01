@@ -14,6 +14,15 @@ export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
 
 export function handleMarketClosed(event: MarketClosed): void {
+  const id = event.params.id.toString();
+
+  let contract = BondFixedTermCDA.bind(event.address)
+  let market = Market.load(dataSource.network() + "_" + contract._name + "_" + id);
+
+  if (!market) return;
+
+  market.isLive = false;
+  market.save();
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
@@ -98,7 +107,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.auctioneer = event.address;
   market.teller = contract.getTeller();
   market.marketId = event.params.id;
-  market.owner = contract.markets(event.params.id).value0;
+  market.owner = contract.markets(event.params.id).value0.toHexString();
   market.payoutToken = payoutTokenId;
   market.quoteToken = quoteTokenId;
   market.vesting = event.params.vesting;
