@@ -23,7 +23,7 @@ export function handleBonded(event: Bonded): void {
     bondPurchase = new BondPurchase(event.transaction.hash);
   }
 
-  bondPurchase.marketId = event.params.id;
+  bondPurchase.marketId = dataSource.network() + "_BondFixedTermCDA_" + event.params.id.toString();
   bondPurchase.amount = event.params.amount;
   bondPurchase.payout = event.params.payout;
   bondPurchase.recipient = event.transaction.from.toHexString();

@@ -17,7 +17,7 @@ type BondToken @entity {
 
 type BondPurchase @entity {
     id: Bytes!
-    marketId: BigInt!
+    marketId: String!
     amount: BigInt
     payout: BigInt
     recipient: String!
