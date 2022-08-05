@@ -8,7 +8,7 @@ import {
 import {Market, Pair, Token} from "../generated/schema";
 import {ERC20} from "../generated/templates/ERC20/ERC20";
 import {SLP} from "../generated/templates/SLP/SLP";
-import {dataSource} from '@graphprotocol/graph-ts'
+import {BigDecimal, dataSource} from '@graphprotocol/graph-ts'
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -114,6 +114,8 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.vestingType = "fixed-term";
   market.isLive = contract.isLive(event.params.id);
   market.isInstantSwap = contract.isInstantSwap(event.params.id);
+  market.totalBondedAmount = BigDecimal.fromString("0");
+  market.totalPayoutAmount = BigDecimal.fromString("0");
 
   market.save();
 }

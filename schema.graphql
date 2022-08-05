@@ -3,6 +3,7 @@ type OwnerBalance @entity {
     tokenId: BigInt!
     owner: String!
     balance: BigInt!
+    network: String!
     bondToken: BondToken
 }
 
@@ -18,8 +19,8 @@ type BondToken @entity {
 type BondPurchase @entity {
     id: Bytes!
     marketId: String!
-    amount: BigInt
-    payout: BigInt
+    amount: BigDecimal!
+    payout: BigDecimal!
     recipient: String!
     referrer: String!
     timestamp: BigInt!
@@ -49,6 +50,8 @@ type Market @entity {
     vestingType: String!
     isLive: Boolean!
     isInstantSwap: Boolean!
+    totalBondedAmount: BigDecimal!
+    totalPayoutAmount: BigDecimal!
 }
 
 type Pair @entity {

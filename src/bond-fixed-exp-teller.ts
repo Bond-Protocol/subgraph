@@ -4,8 +4,8 @@ import {
   ERC20BondTokenCreated,
   OwnerUpdated,
 } from "../generated/BondFixedExpTeller/BondFixedExpTeller"
-import {BondPurchase, BondToken} from "../generated/schema";
-import {dataSource} from "@graphprotocol/graph-ts";
+import {BondPurchase, BondToken, Market, Token} from "../generated/schema";
+import {BigDecimal, dataSource} from "@graphprotocol/graph-ts";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -16,15 +16,27 @@ export function handleBonded(event: Bonded): void {
   if (!bondPurchase) {
     bondPurchase = new BondPurchase(event.transaction.hash);
   }
+  const marketId = dataSource.network() + "_BondFixedExpCDA_" + event.params.id.toString();
+  const market = Market.load(marketId);
+  if (!market) return;
+  const quoteToken = Token.load(market.quoteToken);
+  if (!quoteToken) return;
+  const payoutToken = Token.load(market.payoutToken);
+  if (!payoutToken) return;
 
-  bondPurchase.marketId = dataSource.network() + "_BondFixedExpCDA_" + event.params.id.toString();
-  bondPurchase.amount = event.params.amount;
-  bondPurchase.payout = event.params.payout;
+  bondPurchase.marketId = marketId;
+  bondPurchase.amount = BigDecimal.fromString((parseInt(event.params.amount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString());
+  bondPurchase.payout = BigDecimal.fromString((parseInt(event.params.payout.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
   bondPurchase.recipient = event.transaction.from.toHexString();
   bondPurchase.referrer = event.params.referrer.toHexString();
   bondPurchase.timestamp = event.block.timestamp;
 
   bondPurchase.save();
+
+  market.totalBondedAmount = market.totalBondedAmount.plus(bondPurchase.amount);
+  market.totalPayoutAmount = market.totalPayoutAmount.plus(bondPurchase.payout);
+
+  market.save();
 }
 
 export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void {
