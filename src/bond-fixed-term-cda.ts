@@ -9,6 +9,7 @@ import {Market, Pair, Token} from "../generated/schema";
 import {ERC20} from "../generated/templates/ERC20/ERC20";
 import {SLP} from "../generated/templates/SLP/SLP";
 import {BigDecimal, dataSource} from '@graphprotocol/graph-ts'
+import {LP_PAIR_TYPES} from "./lp-pair-types";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -51,12 +52,12 @@ export function handleMarketCreated(event: MarketCreated): void {
     quoteToken.symbol = quoteTokenContract.symbol();
     quoteToken.name = quoteTokenContract.name();
 
-    if (quoteTokenContract.symbol() == "UNI-V2") {
+    if (LP_PAIR_TYPES.includes(quoteTokenContract.symbol())) {
       let pairContract = SLP.bind(event.params.quoteToken);
       let pair = new Pair(event.params.quoteToken.toHexString().toLowerCase());
 
-      let token0Id = dataSource.network() + "_" + pairContract.token0().toHexString();
-      let token1Id = dataSource.network() + "_" + pairContract.token1().toHexString();
+      let token0Id = dataSource.network() + "_" + pairContract.token0().toHexString().toLowerCase();
+      let token1Id = dataSource.network() + "_" + pairContract.token1().toHexString().toLowerCase();
 
       let token0 = Token.load(token0Id);
       let token1 = Token.load(token1Id);
