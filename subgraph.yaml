@@ -7,7 +7,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedTermTeller
-      address: "0x1B26662c1200CB98193f32227DE872B1b9b80f0b"
+      address: "0x36211a11f2DaC433Ae34Be898b173942b334dBD5"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
@@ -47,7 +47,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedTermCDA
-      address: "0x130a364655c5889D665caBa74FbD3bFa1448b99B"
+      address: "0xaE73A94b94F6E7aca37f4c79C4b865F1AF06A68b"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
@@ -82,7 +82,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedExpTeller
-      address: "0x6C34e24df5c4A48909Dd10a2DEbdDDA0a8C73e19"
+      address: "0xC70f840f8722D5C8C766B62b998eb8cAc7081537"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
@@ -111,7 +111,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedExpCDA
-      address: "0x064D8087a793a026216D2e053dE1DDC64a9b2d60"
+      address: "0xeB24846C7565901B8a8e2ccd6B93832A676DDd91"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
