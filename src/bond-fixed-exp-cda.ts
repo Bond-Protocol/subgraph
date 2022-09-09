@@ -155,6 +155,7 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.isInstantSwap = contract.isInstantSwap(event.params.id);
   market.totalBondedAmount = BigDecimal.fromString("0");
   market.totalPayoutAmount = BigDecimal.fromString("0");
+  market.scaleAdjustment = contract.marketScale(event.params.id);
 
   market.save();
 

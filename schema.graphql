@@ -52,6 +52,7 @@ type Market @entity {
     isInstantSwap: Boolean!
     totalBondedAmount: BigDecimal!
     totalPayoutAmount: BigDecimal!
+    scaleAdjustment: BigInt!
 }
 
 type Pair @entity {
