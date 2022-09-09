@@ -53,6 +53,7 @@ type Market @entity {
     totalBondedAmount: BigDecimal!
     totalPayoutAmount: BigDecimal!
     scaleAdjustment: BigInt!
+    creationBlockTimestamp: BigInt!
 }
 
 type Pair @entity {
