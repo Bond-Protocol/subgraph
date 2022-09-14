@@ -1,37 +1,19 @@
 {
-  "rinkeby": {
-    "BondFixedTermTeller": {
-      "address": "0x40dB883E2421cf7c944A572169B84d1255074b55",
-      "startBlock": 10865419
-    },
-    "BondFixedTermCDA": {
-      "address": "0x79C5ffc8dCbE1b3055A236391712170a76b85dbF",
-      "startBlock": 10865419
-    },
-    "BondFixedExpTeller": {
-      "address": "0x195e0F800184735261d30096D7feC137e82Cccdf",
-      "startBlock": 10865419
-    },
-    "BondFixedExpCDA": {
-      "address": "0xA7E7570D7437382Ae4d281e48dEBBb2F8298aB92",
-      "startBlock": 10865419
-    }
-  },
   "goerli": {
     "BondFixedTermTeller": {
-      "address": "0x36211a11f2DaC433Ae34Be898b173942b334dBD5",
+      "address": "0x007F77B53ed0F058616335bc040cD326E125daE0",
       "startBlock": 7072454
     },
     "BondFixedTermCDA": {
-      "address": "0xaE73A94b94F6E7aca37f4c79C4b865F1AF06A68b",
+      "address": "0x007F7A58103a31109F848Df1A14F7020E1F1b28A",
       "startBlock": 7072454
     },
     "BondFixedExpTeller": {
-      "address": "0xC70f840f8722D5C8C766B62b998eb8cAc7081537",
+      "address": "0x007FE7c498A2Cf30971ad8f2cbC36bd14Ac51156",
       "startBlock": 7072454
     },
     "BondFixedExpCDA": {
-      "address": "0xeB24846C7565901B8a8e2ccd6B93832A676DDd91",
+      "address": "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43",
       "startBlock": 7072454
     }
   }

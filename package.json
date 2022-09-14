@@ -3,12 +3,10 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
-    "build-rinkeby": "graph build --network rinkeby",
     "build-goerli": "graph build --network goerli",
-    "deploy-studio": "yarn build-rinkeby && graph deploy --node https://api.studio.thegraph.com/deploy/ bond-labs",
-    "deploy-rinkeby": "yarn build-rinkeby && graph deploy --product hosted-service bond-labs/bond-labs-rinkeby",
+    "deploy-studio": "yarn build-goerli && graph deploy --node https://api.studio.thegraph.com/deploy/ bond-labs",
     "deploy-goerli": "yarn build-goerli && graph deploy --product hosted-service bond-labs/bond-labs-goerli",
-    "deploy-hosted": "yarn deploy-rinkeby && yarn deploy-goerli",
+    "deploy-hosted": "yarn deploy-goerli",
     "create-local": "graph create --node http://localhost:8020/ bond-labs",
     "remove-local": "graph remove --node http://localhost:8020/ bond-labs",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 bond-labs"
