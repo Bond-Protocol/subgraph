@@ -1,15 +1,18 @@
 {
-  "name": "bond-labs",
+  "name": "bond-protocol",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
+    "build-mainnet": "graph build --network mainnet",
     "build-goerli": "graph build --network goerli",
-    "deploy-studio": "yarn build-goerli && graph deploy --node https://api.studio.thegraph.com/deploy/ bond-labs",
-    "deploy-goerli": "yarn build-goerli && graph deploy --product hosted-service bond-labs/bond-labs-goerli",
-    "deploy-hosted": "yarn deploy-goerli",
-    "create-local": "graph create --node http://localhost:8020/ bond-labs",
-    "remove-local": "graph remove --node http://localhost:8020/ bond-labs",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 bond-labs"
+    "deploy-studio": "yarn build-goerli && graph deploy --node https://api.studio.thegraph.com/deploy/ bond-protocol",
+    "deploy-mainnet": "yarn build-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol",
+    "deploy-goerli": "yarn build-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-goerli",
+    "deploy-hosted-mainnet": "yarn deploy-mainnet",
+    "deploy-hosted-goerli": "yarn deploy-goerli",
+    "create-local": "graph create --node http://localhost:8020/ bond-protocol",
+    "remove-local": "graph remove --node http://localhost:8020/ bond-protocol",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 bond-protocol"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.30.0",
