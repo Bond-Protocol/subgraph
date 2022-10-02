@@ -4,7 +4,7 @@ import {
   ERC20BondTokenCreated,
   OwnerUpdated,
 } from "../generated/BondFixedExpTeller/BondFixedExpTeller"
-import {BondPurchase, BondToken, Market, Token} from "../generated/schema";
+import {BondPurchase, BondToken, Market, Token, UniqueBonder} from "../generated/schema";
 import {BigDecimal, dataSource} from "@graphprotocol/graph-ts";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
@@ -37,6 +37,26 @@ export function handleBonded(event: Bonded): void {
   market.totalPayoutAmount = market.totalPayoutAmount.plus(bondPurchase.payout);
 
   market.save();
+
+  let uniqueBonder = UniqueBonder.load(
+    dataSource.network() +
+    "_" +
+    market.owner.toString() +
+    "__" +
+    event.transaction.from.toHexString()
+  );
+
+  if (!uniqueBonder) {
+    uniqueBonder = new UniqueBonder(
+      dataSource.network() +
+      "_" +
+      market.owner.toString() +
+      "__" +
+      event.transaction.from.toHexString()
+    );
+  }
+
+  uniqueBonder.save();
 }
 
 export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void {

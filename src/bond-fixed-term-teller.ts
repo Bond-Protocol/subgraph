@@ -7,7 +7,7 @@ import {
   TransferBatch,
   TransferSingle
 } from "../generated/BondFixedTermTeller/BondFixedTermTeller"
-import {BondPurchase, BondToken, Market, OwnerBalance, Token} from "../generated/schema";
+import {BondPurchase, BondToken, Market, OwnerBalance, Token, UniqueBonder} from "../generated/schema";
 import {BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 
 export function handleApprovalForAll(event: ApprovalForAll): void {
@@ -43,6 +43,26 @@ export function handleBonded(event: Bonded): void {
   market.totalPayoutAmount = market.totalPayoutAmount.plus(bondPurchase.payout);
 
   market.save();
+
+  let uniqueBonder = UniqueBonder.load(
+    dataSource.network() +
+    "_" +
+    market.owner.toString() +
+    "__" +
+    event.transaction.from.toHexString()
+  );
+
+  if (!uniqueBonder) {
+    uniqueBonder = new UniqueBonder(
+      dataSource.network() +
+      "_" +
+      market.owner.toString() +
+      "__" +
+      event.transaction.from.toHexString()
+    );
+  }
+
+  uniqueBonder.save();
 }
 
 export function handleERC1155BondTokenCreated(event: ERC1155BondTokenCreated): void {

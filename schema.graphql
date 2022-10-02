@@ -7,6 +7,10 @@ type OwnerBalance @entity {
     bondToken: BondToken
 }
 
+type UniqueBonder @entity {
+    id: String!
+}
+
 type BondToken @entity {
     id: String!
     underlying: Token!

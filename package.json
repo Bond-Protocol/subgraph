@@ -6,7 +6,7 @@
     "build-mainnet": "graph build --network mainnet",
     "build-goerli": "graph build --network goerli",
     "deploy-studio": "yarn build-goerli && graph deploy --node https://api.studio.thegraph.com/deploy/ bond-protocol",
-    "deploy-mainnet": "yarn build-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol",
+    "deploy-mainnet": "yarn build-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-mainnet",
     "deploy-goerli": "yarn build-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-goerli",
     "deploy-hosted-mainnet": "yarn deploy-mainnet",
     "deploy-hosted-goerli": "yarn deploy-goerli",
