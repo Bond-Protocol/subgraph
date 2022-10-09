@@ -31,11 +31,14 @@ export function handleBonded(event: Bonded): void {
   if (!payoutToken) return;
 
   bondPurchase.marketId = marketId;
+  bondPurchase.owner = market.owner;
   bondPurchase.amount = BigDecimal.fromString((parseInt(event.params.amount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString());
   bondPurchase.payout = BigDecimal.fromString((parseInt(event.params.payout.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
   bondPurchase.recipient = event.transaction.from.toHexString();
   bondPurchase.referrer = event.params.referrer.toHexString();
   bondPurchase.timestamp = event.block.timestamp;
+  bondPurchase.teller = market.teller.toHexString();
+  bondPurchase.auctioneer = market.auctioneer.toHexString();
 
   bondPurchase.save();
 
