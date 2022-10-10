@@ -31,6 +31,8 @@ type BondPurchase @entity {
     timestamp: BigInt!
     teller: String!
     auctioneer: String!
+    payoutToken: Token!
+    quoteToken: Token!
 }
 
 type Token @entity {

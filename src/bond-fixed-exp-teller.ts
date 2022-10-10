@@ -33,6 +33,8 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.timestamp = event.block.timestamp;
   bondPurchase.teller = market.teller.toHexString();
   bondPurchase.auctioneer = market.auctioneer.toHexString();
+  bondPurchase.payoutToken = payoutToken.id;
+  bondPurchase.quoteToken = quoteToken.id;
 
   bondPurchase.save();
 
