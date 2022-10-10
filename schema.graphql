@@ -33,6 +33,7 @@ type BondPurchase @entity {
     auctioneer: String!
     payoutToken: Token!
     quoteToken: Token!
+    network: String!
 }
 
 type Token @entity {

@@ -41,6 +41,7 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.auctioneer = market.auctioneer.toHexString();
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
+  bondPurchase.network = dataSource.network();
 
   bondPurchase.save();
 
