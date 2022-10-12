@@ -78,6 +78,41 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
+    name: BondFixedTermCDA2
+    network: goerli
+    source:
+      abi: BondFixedTermCDA
+      address: "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedTermCDA
+          file: ./abis/BondFixedTermCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-term-cda.ts
+  - kind: ethereum
     name: BondFixedExpTeller
     network: goerli
     source:
@@ -112,6 +147,41 @@ dataSources:
     source:
       abi: BondFixedExpCDA
       address: "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedExpCDA
+          file: ./abis/BondFixedExpCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-cda.ts
+  - kind: ethereum
+    name: BondFixedExpCDA2
+    network: goerli
+    source:
+      abi: BondFixedExpCDA
+      address: "0x007FEA2a31644F20b0fE18f69643890b6F878AA6"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
