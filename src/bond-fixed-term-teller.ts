@@ -7,7 +7,7 @@ import {
   TransferBatch,
   TransferSingle
 } from "../generated/BondFixedTermTeller/BondFixedTermTeller"
-import {BondPurchase, BondToken, Market, OwnerBalance, Token, UniqueBonder} from "../generated/schema";
+import {BondPurchase, BondToken, Market, OwnerBalance, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
 import {BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 
 export function handleApprovalForAll(event: ApprovalForAll): void {
@@ -30,9 +30,32 @@ export function handleBonded(event: Bonded): void {
   const payoutToken = Token.load(market.payoutToken);
   if (!payoutToken) return;
 
+  const ownerTokenTbvId =
+    dataSource.network() +
+    "_" +
+    market.owner.toString() +
+    "_" +
+    market.quoteToken.toString();
+
+  let ownerTokenTbv = OwnerTokenTbv.load(ownerTokenTbvId);
+
+  if (!ownerTokenTbv) {
+    ownerTokenTbv = new OwnerTokenTbv(ownerTokenTbvId);
+    ownerTokenTbv.tbv = BigDecimal.zero();
+  }
+
+  const amount = BigDecimal.fromString((parseInt(event.params.amount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString()).toString();
+
+  ownerTokenTbv.owner = market.owner.toString();
+  ownerTokenTbv.token = market.quoteToken.toString();
+  ownerTokenTbv.tbv = ownerTokenTbv.tbv.plus(BigDecimal.fromString(amount));
+  ownerTokenTbv.network = dataSource.network();
+
+  ownerTokenTbv.save();
+
   bondPurchase.marketId = marketId;
   bondPurchase.owner = market.owner;
-  bondPurchase.amount = BigDecimal.fromString((parseInt(event.params.amount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString());
+  bondPurchase.amount = BigDecimal.fromString(amount);
   bondPurchase.payout = BigDecimal.fromString((parseInt(event.params.payout.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
   bondPurchase.recipient = event.transaction.from.toHexString();
   bondPurchase.referrer = event.params.referrer.toHexString();
@@ -42,6 +65,7 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = dataSource.network();
+  bondPurchase.ownerTokenTbv = ownerTokenTbvId;
 
   bondPurchase.save();
 

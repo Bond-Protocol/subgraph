@@ -20,6 +20,15 @@ type BondToken @entity {
     type: String!
 }
 
+type OwnerTokenTbv @entity {
+    id: String!
+    owner: String!
+    token: String!
+    network: String!
+    tbv: BigDecimal!
+    bondPurchases: [BondPurchase!] @derivedFrom(field: "ownerTokenTbv")
+}
+
 type BondPurchase @entity {
     id: Bytes!
     marketId: String!
@@ -34,6 +43,7 @@ type BondPurchase @entity {
     payoutToken: Token!
     quoteToken: Token!
     network: String!
+    ownerTokenTbv: OwnerTokenTbv
 }
 
 type Token @entity {
