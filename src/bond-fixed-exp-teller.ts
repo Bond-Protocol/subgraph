@@ -6,6 +6,7 @@ import {
 } from "../generated/BondFixedExpTeller/BondFixedExpTeller"
 import {BondPurchase, BondToken, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
 import {BigDecimal, dataSource} from "@graphprotocol/graph-ts";
+import {ERC20} from "../generated/templates/ERC20/ERC20";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -91,7 +92,10 @@ export function handleBonded(event: Bonded): void {
 
 export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void {
   let bondToken = new BondToken(event.params.bondToken.toHexString());
+  let bondTokenContract = ERC20.bind(event.params.bondToken);
 
+  bondToken.decimals = bondTokenContract.decimals();
+  bondToken.symbol = bondTokenContract.symbol();
   bondToken.underlying = dataSource.network() + "_" + event.params.underlying.toHexString();
   bondToken.expiry = event.params.expiry;
   bondToken.teller = event.address;

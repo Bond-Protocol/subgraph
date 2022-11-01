@@ -13,6 +13,8 @@ type UniqueBonder @entity {
 
 type BondToken @entity {
     id: String!
+    decimals: BigInt
+    symbol: String
     underlying: Token!
     expiry: BigInt!
     teller: Bytes
