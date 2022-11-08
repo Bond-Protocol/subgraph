@@ -8,7 +8,8 @@ import {
   TransferSingle
 } from "../generated/BondFixedTermTeller/BondFixedTermTeller"
 import {BondPurchase, BondToken, Market, OwnerBalance, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
-import {BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
+import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
+import {BondFixedTermCDA} from "../generated/BondFixedTermCDA/BondFixedTermCDA";
 
 export function handleApprovalForAll(event: ApprovalForAll): void {
 }
@@ -25,6 +26,9 @@ export function handleBonded(event: Bonded): void {
   const marketId = dataSource.network() + "_BondFixedTermCDA_" + event.params.id.toString();
   const market = Market.load(marketId);
   if (!market) return;
+
+  const auctioneer = BondFixedTermCDA.bind(Address.fromBytes(market.auctioneer));
+
   const quoteToken = Token.load(market.quoteToken);
   if (!quoteToken) return;
   const payoutToken = Token.load(market.payoutToken);
@@ -46,6 +50,18 @@ export function handleBonded(event: Bonded): void {
 
   const amount = BigDecimal.fromString((parseInt(event.params.amount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString()).toString();
 
+  const payoutDecimals: u8 = payoutToken.decimals.toI32() as u8;
+  const quoteDecimals: u8 = quoteToken.decimals.toI32() as u8;
+
+  const baseScale = BigInt.fromI32(10).pow(
+    36 + payoutDecimals - quoteDecimals
+  );
+  const marketScale = auctioneer.marketScale(market.marketId);
+  const shift = BigDecimal.fromString(baseScale.div(marketScale).toString());
+  const marketPrice: BigDecimal = BigDecimal.fromString(auctioneer.marketPrice(market.marketId).toString());
+  const price = marketPrice.times(shift);
+  const postPurchasePrice = price.div(BigDecimal.fromString(Math.pow(10, 36).toString()));
+
   ownerTokenTbv.owner = market.owner.toString();
   ownerTokenTbv.token = market.quoteToken.toString();
   ownerTokenTbv.tbv = ownerTokenTbv.tbv.plus(BigDecimal.fromString(amount));
@@ -65,6 +81,7 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = dataSource.network();
+  bondPurchase.postPurchasePrice = postPurchasePrice;
   bondPurchase.ownerTokenTbv = ownerTokenTbvId;
 
   bondPurchase.save();

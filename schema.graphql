@@ -45,6 +45,7 @@ type BondPurchase @entity {
     payoutToken: Token!
     quoteToken: Token!
     network: String!
+    postPurchasePrice: BigDecimal!
     ownerTokenTbv: OwnerTokenTbv
 }
 
