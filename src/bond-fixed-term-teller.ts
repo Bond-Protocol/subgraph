@@ -117,7 +117,7 @@ export function handleERC1155BondTokenCreated(event: ERC1155BondTokenCreated): v
 
   bondToken.underlying = dataSource.network() + "_" + event.params.payoutToken.toHexString();
   bondToken.expiry = event.params.expiry;
-  bondToken.teller = event.address;
+  bondToken.teller = event.address.toHexString();
   bondToken.network = dataSource.network();
   bondToken.type = "fixed-term";
 

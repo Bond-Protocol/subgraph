@@ -114,7 +114,7 @@ export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void 
   bondToken.symbol = bondTokenContract.symbol();
   bondToken.underlying = dataSource.network() + "_" + event.params.underlying.toHexString();
   bondToken.expiry = event.params.expiry;
-  bondToken.teller = event.address;
+  bondToken.teller = event.address.toHexString();
   bondToken.network = dataSource.network();
   bondToken.type = "fixed-expiration";
 

@@ -17,7 +17,7 @@ type BondToken @entity {
     symbol: String
     underlying: Token!
     expiry: BigInt!
-    teller: Bytes
+    teller: String!
     network: String!
     type: String!
 }
