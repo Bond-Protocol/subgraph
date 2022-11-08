@@ -81,6 +81,8 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = dataSource.network();
+  bondPurchase.purchasePrice = bondPurchase.amount.gt(BigDecimal.fromString("0")) ?
+    bondPurchase.payout.div(bondPurchase.amount) : BigDecimal.fromString("0");
   bondPurchase.postPurchasePrice = postPurchasePrice;
   bondPurchase.ownerTokenTbv = ownerTokenTbvId;
 
