@@ -76,8 +76,8 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = dataSource.network();
   bondPurchase.postPurchasePrice = postPurchasePrice;
-  bondPurchase.purchasePrice = bondPurchase.amount.gt(BigDecimal.fromString("0")) ?
-    bondPurchase.payout.div(bondPurchase.amount) : BigDecimal.fromString("0");
+  bondPurchase.purchasePrice = bondPurchase.payout.gt(BigDecimal.fromString("0")) ?
+    bondPurchase.amount.div(bondPurchase.payout) : BigDecimal.fromString("0");
   bondPurchase.ownerTokenTbv = ownerTokenTbvId;
 
   bondPurchase.save();

@@ -80,9 +80,9 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.auctioneer = market.auctioneer.toHexString();
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
-  bondPurchase.network = dataSource.network();
-  bondPurchase.purchasePrice = bondPurchase.amount.gt(BigDecimal.fromString("0")) ?
-    bondPurchase.payout.div(bondPurchase.amount) : BigDecimal.fromString("0");
+  bondPurchase.network = dataSource.network()
+  bondPurchase.purchasePrice = bondPurchase.payout.gt(BigDecimal.fromString("0")) ?
+    bondPurchase.amount.div(bondPurchase.payout) : BigDecimal.fromString("0");
   bondPurchase.postPurchasePrice = postPurchasePrice;
   bondPurchase.ownerTokenTbv = ownerTokenTbvId;
 
