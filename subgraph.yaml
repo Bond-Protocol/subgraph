@@ -4,11 +4,53 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTeller
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedTermTeller
       address: "0x007F77B53ed0F058616335bc040cD326E125daE0"
-      startBlock: 15546730
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - ApprovalForAll
+        - AuthorityUpdated
+        - Bonded
+        - ERC1155BondTokenCreated
+        - OwnerUpdated
+        - TransferBatch
+        - TransferSingle
+      abis:
+        - name: BondFixedTermTeller
+          file: ./abis/BondFixedTermTeller.json
+        - name: BondFixedTermCDA
+          file: ./abis/BondFixedTermCDA.json
+      eventHandlers:
+        - event: ApprovalForAll(indexed address,indexed address,bool)
+          handler: handleApprovalForAll
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: Bonded(indexed uint256,indexed address,uint256,uint256)
+          handler: handleBonded
+        - event: ERC1155BondTokenCreated(uint256,indexed address,indexed uint48)
+          handler: handleERC1155BondTokenCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+        - event: TransferBatch(indexed address,indexed address,indexed
+            address,uint256[],uint256[])
+          handler: handleTransferBatch
+        - event: TransferSingle(indexed address,indexed address,indexed
+            address,uint256,uint256)
+          handler: handleTransferSingle
+      file: ./src/bond-fixed-term-teller.ts
+  - kind: ethereum
+    name: BondFixedTermTeller2
+    network: goerli
+    source:
+      abi: BondFixedTermTeller
+      address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -46,11 +88,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDA
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedTermCDA
       address: "0x007F7A58103a31109F848Df1A14F7020E1F1b28A"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -81,11 +123,46 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermCDA2
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedTermCDA
       address: "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128"
-      startBlock: 15546730
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedTermCDA
+          file: ./abis/BondFixedTermCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-term-cda.ts
+  - kind: ethereum
+    name: BondFixedTermCDA3
+    network: goerli
+    source:
+      abi: BondFixedTermCDA
+      address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -116,11 +193,44 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedExpTeller
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedExpTeller
       address: "0x007FE7c498A2Cf30971ad8f2cbC36bd14Ac51156"
-      startBlock: 15546730
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - ERC20BondTokenCreated
+        - OwnerUpdated
+      abis:
+        - name: BondFixedExpTeller
+          file: ./abis/BondFixedExpTeller.json
+        - name: BondFixedExpCDA
+          file: ./abis/BondFixedExpCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: Bonded(indexed uint256,indexed address,uint256,uint256)
+          handler: handleBonded
+        - event: ERC20BondTokenCreated(address,indexed address,indexed uint48)
+          handler: handleERC20BondTokenCreated
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+      file: ./src/bond-fixed-exp-teller.ts
+  - kind: ethereum
+    name: BondFixedExpTeller2
+    network: goerli
+    source:
+      abi: BondFixedExpTeller
+      address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -149,11 +259,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDA
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedExpCDA
       address: "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -184,11 +294,46 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpCDA2
-    network: mainnet
+    network: goerli
     source:
       abi: BondFixedExpCDA
       address: "0x007FEA2a31644F20b0fE18f69643890b6F878AA6"
-      startBlock: 15546730
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedExpCDA
+          file: ./abis/BondFixedExpCDA.json
+        - name: ERC20
+          file: ./abis/ERC20.json
+        - name: SLP
+          file: ./abis/SLP.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-cda.ts
+  - kind: ethereum
+    name: BondFixedExpCDA3
+    network: goerli
+    source:
+      abi: BondFixedExpCDA
+      address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -220,7 +365,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20
-    network: mainnet
+    network: goerli
     source:
       abi: ERC20
     mapping:
@@ -243,7 +388,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: SLP
-    network: mainnet
+    network: goerli
     source:
       abi: SLP
     mapping:
