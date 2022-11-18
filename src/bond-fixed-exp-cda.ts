@@ -143,8 +143,8 @@ export function handleMarketCreated(event: MarketCreated): void {
   market.id = dataSource.network() + "_" + contract._name + "_" + id;
   market.name = contract._name;
   market.network = dataSource.network();
-  market.auctioneer = event.address;
-  market.teller = contract.getTeller();
+  market.auctioneer = event.address.toHexString();
+  market.teller = contract.getTeller().toHexString();
   market.marketId = event.params.id;
   market.owner = contract.markets(event.params.id).value0.toHexString();
   market.payoutToken = payoutTokenId;

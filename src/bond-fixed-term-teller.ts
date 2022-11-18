@@ -18,16 +18,16 @@ export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
 
 export function handleBonded(event: Bonded): void {
-  let bondPurchase = BondPurchase.load(event.transaction.hash);
+  let bondPurchase = BondPurchase.load(event.transaction.hash.toHexString());
 
   if (!bondPurchase) {
-    bondPurchase = new BondPurchase(event.transaction.hash);
+    bondPurchase = new BondPurchase(event.transaction.hash.toHexString());
   }
   const marketId = dataSource.network() + "_BondFixedTermCDA_" + event.params.id.toString();
   const market = Market.load(marketId);
   if (!market) return;
 
-  const auctioneer = BondFixedTermCDA.bind(Address.fromBytes(market.auctioneer));
+  const auctioneer = BondFixedTermCDA.bind(Address.fromString(market.auctioneer));
 
   const quoteToken = Token.load(market.quoteToken);
   if (!quoteToken) return;
@@ -76,8 +76,8 @@ export function handleBonded(event: Bonded): void {
   bondPurchase.recipient = event.transaction.from.toHexString();
   bondPurchase.referrer = event.params.referrer.toHexString();
   bondPurchase.timestamp = event.block.timestamp;
-  bondPurchase.teller = market.teller.toHexString();
-  bondPurchase.auctioneer = market.auctioneer.toHexString();
+  bondPurchase.teller = market.teller;
+  bondPurchase.auctioneer = market.auctioneer;
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = dataSource.network()

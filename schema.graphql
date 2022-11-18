@@ -32,7 +32,7 @@ type OwnerTokenTbv @entity {
 }
 
 type BondPurchase @entity {
-    id: Bytes!
+    id: String!
     marketId: String!
     owner: String!
     amount: BigDecimal!
@@ -64,8 +64,8 @@ type Market @entity {
     id: String! # chain name_contract name_market id
     name: String!
     network: String!
-    auctioneer: Bytes! # address
-    teller: Bytes! # address
+    auctioneer: String! # address
+    teller: String! # address
     marketId: BigInt!
     owner: String! # address
     payoutToken: Token!
