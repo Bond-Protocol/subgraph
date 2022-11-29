@@ -82,5 +82,47 @@
       "address": "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD",
       "startBlock": 7072454
     }
+  },
+  "arbitrum-goerli": {
+    "BondFixedTermTeller": {
+      "address": "0x007F77B53ed0F058616335bc040cD326E125daE0",
+      "startBlock": 1931076
+    },
+    "BondFixedTermTeller2": {
+      "address": "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6",
+      "startBlock": 1931076
+    },
+    "BondFixedTermCDA": {
+      "address": "0x007F7A58103a31109F848Df1A14F7020E1F1b28A",
+      "startBlock": 1931076
+    },
+    "BondFixedTermCDA2": {
+      "address": "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128",
+      "startBlock": 1931076
+    },
+    "BondFixedTermCDA3": {
+      "address": "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222",
+      "startBlock": 1931076
+    },
+    "BondFixedExpTeller": {
+      "address": "0x007FE7c498A2Cf30971ad8f2cbC36bd14Ac51156",
+      "startBlock": 1931076
+    },
+    "BondFixedExpTeller2": {
+      "address": "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95",
+      "startBlock": 1931076
+    },
+    "BondFixedExpCDA": {
+      "address": "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43",
+      "startBlock": 1931076
+    },
+    "BondFixedExpCDA2": {
+      "address": "0x007FEA2a31644F20b0fE18f69643890b6F878AA6",
+      "startBlock": 1931076
+    },
+    "BondFixedExpCDA3": {
+      "address": "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD",
+      "startBlock": 1931076
+    }
   }
 }
