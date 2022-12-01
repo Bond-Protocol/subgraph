@@ -56,8 +56,11 @@ export function handleBonded(event: Bonded): void {
   const baseScale = BigInt.fromI32(10).pow(
     36 + payoutDecimals - quoteDecimals
   );
+  const baseScaleDecimal = BigDecimal.fromString(baseScale.toString());
+
   const marketScale = auctioneer.marketScale(market.marketId);
-  const shift = BigDecimal.fromString(baseScale.div(marketScale).toString());
+  const marketScaleDecimal = BigDecimal.fromString(marketScale.toString());
+  const shift: BigDecimal = baseScaleDecimal.div(marketScaleDecimal);
   const marketPrice: BigDecimal = BigDecimal.fromString(auctioneer.marketPrice(market.marketId).toString());
   const price = marketPrice.times(shift);
   const postPurchasePrice = price.div(BigDecimal.fromString(Math.pow(10, 36).toString()));
