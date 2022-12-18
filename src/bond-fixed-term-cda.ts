@@ -5,16 +5,15 @@ import {
   MarketCreated,
   Tuned
 } from "../generated/BondFixedTermCDA/BondFixedTermCDA"
-import {BalancerPool, Market, Pair, Token} from "../generated/schema";
-import {ERC20} from "../generated/templates/ERC20/ERC20";
+import {BalancerPool, Market, Pair} from "../generated/schema";
 import {SLP} from "../generated/templates/SLP/SLP";
-import {Address, BigDecimal, dataSource} from '@graphprotocol/graph-ts'
-import {LP_PAIR_TYPES} from "./lp-pair-types";
+import {dataSource} from '@graphprotocol/graph-ts'
 import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
 import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
 import {isBalancerPool} from "./balancer-pool";
 import {loadOrAddERC20Token} from "./erc20";
 import {isLpToken} from "./slp";
+import {createMarket} from "./auctioneer-common";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -78,34 +77,18 @@ export function handleMarketCreated(event: MarketCreated): void {
   }
   quoteToken.save();
 
-  const id = event.params.id.toString();
-
-  let market = Market.load(id);
-
-  if (!market) {
-    market = new Market(id);
-  }
-
-  let contract = BondFixedTermCDA.bind(event.address)
-  market.id = dataSource.network() + "_" + contract._name + "_" + id;
-  market.name = contract._name;
-  market.network = dataSource.network();
-  market.auctioneer = event.address.toHexString();
-  market.teller = contract.getTeller().toHexString();
-  market.marketId = event.params.id;
-  market.owner = contract.markets(event.params.id).value0.toHexString();
-  market.payoutToken = payoutToken.id;
-  market.quoteToken = quoteToken.id;
-  market.vesting = event.params.vesting;
-  market.vestingType = "fixed-term";
-  market.isLive = contract.isLive(event.params.id);
-  market.isInstantSwap = contract.isInstantSwap(event.params.id);
-  market.totalBondedAmount = BigDecimal.fromString("0");
-  market.totalPayoutAmount = BigDecimal.fromString("0");
-  market.scaleAdjustment = contract.marketScale(event.params.id);
-  market.creationBlockTimestamp = event.block.timestamp;
-
-  market.save();
+  createMarket(
+    event.params.id,
+    event.params.vesting,
+    event.address,
+    event.block.timestamp,
+    "BondFixedTermCDA",
+    dataSource.network(),
+    event.address,
+    payoutToken,
+    quoteToken,
+    "fixed-term"
+  );
 }
 
 export function handleTuned(event: Tuned): void {

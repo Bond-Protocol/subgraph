@@ -5,14 +5,15 @@ import {
   MarketCreated,
   Tuned
 } from "../generated/BondFixedExpCDA/BondFixedExpCDA";
-import {Market, Pair, BalancerPool} from "../generated/schema";
+import {BalancerPool, Market, Pair} from "../generated/schema";
 import {SLP} from "../generated/templates/SLP/SLP";
 import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
 import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
-import {BigDecimal, dataSource} from '@graphprotocol/graph-ts'
+import {dataSource} from '@graphprotocol/graph-ts'
 import {isBalancerPool} from "./balancer-pool";
 import {loadOrAddERC20Token} from "./erc20";
 import {isLpToken} from "./slp";
+import {createMarket} from "./auctioneer-common";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -77,35 +78,18 @@ export function handleMarketCreated(event: MarketCreated): void {
 
   quoteToken.save();
 
-  const id = event.params.id.toString();
-
-  let market = Market.load(id);
-
-  if (!market) {
-    market = new Market(id);
-  }
-
-  let contract = BondFixedExpCDA.bind(event.address)
-  market.id = dataSource.network() + "_" + contract._name + "_" + id;
-  market.name = contract._name;
-  market.network = dataSource.network();
-  market.auctioneer = event.address.toHexString();
-  market.teller = contract.getTeller().toHexString();
-  market.marketId = event.params.id;
-  market.owner = contract.markets(event.params.id).value0.toHexString();
-  market.payoutToken = payoutToken.id;
-  market.quoteToken = quoteToken.id;
-  market.vesting = event.params.vesting;
-  market.vestingType = "fixed-expiration";
-  market.isLive = contract.isLive(event.params.id);
-  market.isInstantSwap = contract.isInstantSwap(event.params.id);
-  market.totalBondedAmount = BigDecimal.fromString("0");
-  market.totalPayoutAmount = BigDecimal.fromString("0");
-  market.scaleAdjustment = contract.marketScale(event.params.id);
-  market.creationBlockTimestamp = event.block.timestamp;
-
-  market.save();
-
+  createMarket(
+    event.params.id,
+    event.params.vesting,
+    event.address,
+    event.block.timestamp,
+    "BondFixedExpCDA",
+    dataSource.network(),
+    event.address,
+    payoutToken,
+    quoteToken,
+    "fixed-expiration"
+  );
 }
 
 export function handleTuned(event: Tuned): void {

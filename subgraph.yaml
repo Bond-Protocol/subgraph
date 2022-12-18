@@ -507,3 +507,32 @@ templates:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/balancer-pool.ts
+  - kind: ethereum
+    name: Auctioneer
+    network: goerli
+    source:
+      abi: Auctioneer
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: Auctioneer
+          file: ./abis/Auctioneer.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/common.ts
