@@ -1,10 +1,8 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {BalancerPool, Market, Pair} from "../generated/schema";
+import {Market, Pair} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
-import {isBalancerPool} from "./balancer-pool";
-import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
-import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
+import {erc20ToBalancerPoolToken, isBalancerPool} from "./balancer-pool";
 import {isLpToken} from "./slp";
 import {SLP} from "../generated/templates/SLP/SLP";
 
@@ -24,32 +22,7 @@ export function createMarket(
   let quoteToken = loadOrAddERC20Token(network, quoteTokenAddress);
 
   if (isBalancerPool(quoteTokenAddress)) {
-    let balancerPool = BalancerPool.load(dataSource.network() + "_" + quoteTokenAddress.toHexString().toLowerCase());
-
-    if (!balancerPool) {
-      balancerPool = new BalancerPool(dataSource.network() + "_" + quoteTokenAddress.toHexString().toLowerCase());
-
-      let poolContract = BalancerWeightedPool.bind(quoteTokenAddress);
-      let vaultAddress = poolContract.getVault();
-      let poolId = poolContract.getPoolId();
-
-      let vaultContract = BalancerVault.bind(vaultAddress);
-      let tokens = vaultContract.getPoolTokens(poolId);
-
-      let constituentTokens: string[] = [];
-      for (let i = 0; i < tokens.getTokens().length; i++) {
-        let token = loadOrAddERC20Token(dataSource.network(), tokens.getTokens().at(i));
-        constituentTokens.push(token.id.toString());
-      }
-
-      quoteToken.typeName = poolContract._name;
-      balancerPool.poolId = poolId.toHexString().toLowerCase();
-      balancerPool.vaultAddress = vaultAddress.toHexString().toLowerCase();
-      balancerPool.constituentTokens = constituentTokens;
-      balancerPool.save();
-
-      quoteToken.balancerPool = balancerPool.id;
-    }
+    erc20ToBalancerPoolToken(quoteToken);
   } else if (isLpToken(quoteTokenAddress)) {
     let pairContract = SLP.bind(quoteTokenAddress);
     let pair = new Pair(quoteTokenAddress.toHexString().toLowerCase());
