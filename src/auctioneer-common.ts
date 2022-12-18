@@ -42,3 +42,17 @@ export function createMarket(
 
   return market;
 }
+
+export function closeMarket(
+  id: BigInt,
+  auctioneerName: string,
+  network: string,
+): void {
+  const marketId = network + "_" + auctioneerName + "_" + id.toString();
+  const market = Market.load(marketId);
+
+  if (!market) return;
+
+  market.isLive = false;
+  market.save();
+}

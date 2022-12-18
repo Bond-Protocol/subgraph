@@ -5,7 +5,7 @@ import {
   MarketCreated,
   Tuned
 } from "../generated/BondFixedTermCDA/BondFixedTermCDA"
-import {BalancerPool, Market, Pair} from "../generated/schema";
+import {BalancerPool, Pair} from "../generated/schema";
 import {SLP} from "../generated/templates/SLP/SLP";
 import {dataSource} from '@graphprotocol/graph-ts'
 import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
@@ -13,21 +13,17 @@ import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault"
 import {isBalancerPool} from "./balancer-pool";
 import {loadOrAddERC20Token} from "./erc20";
 import {isLpToken} from "./slp";
-import {createMarket} from "./auctioneer-common";
+import {closeMarket, createMarket} from "./auctioneer-common";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
 
 export function handleMarketClosed(event: MarketClosed): void {
-  const id = event.params.id.toString();
-
-  let contract = BondFixedTermCDA.bind(event.address)
-  let market = Market.load(dataSource.network() + "_" + contract._name + "_" + id);
-
-  if (!market) return;
-
-  market.isLive = false;
-  market.save();
+  closeMarket(
+    event.params.id,
+    "BondFixedTermCDA",
+    dataSource.network()
+  );
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
