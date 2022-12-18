@@ -1,10 +1,9 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {Market, Pair} from "../generated/schema";
+import {Market} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
 import {erc20ToBalancerPoolToken, isBalancerPool} from "./balancer-pool";
-import {isLpToken} from "./slp";
-import {SLP} from "../generated/templates/SLP/SLP";
+import {erc20ToSlpPair, isLpToken} from "./slp";
 
 export function createMarket(
   id: BigInt,
@@ -24,18 +23,7 @@ export function createMarket(
   if (isBalancerPool(quoteTokenAddress)) {
     erc20ToBalancerPoolToken(quoteToken);
   } else if (isLpToken(quoteTokenAddress)) {
-    let pairContract = SLP.bind(quoteTokenAddress);
-    let pair = new Pair(quoteTokenAddress.toHexString().toLowerCase());
-
-    let token0 = loadOrAddERC20Token(dataSource.network(), pairContract.token0());
-    let token1 = loadOrAddERC20Token(dataSource.network(), pairContract.token1());
-
-    pair.token0 = token0.id;
-    pair.token1 = token1.id;
-    pair.save();
-
-    quoteToken.typeName = pairContract._name;
-    quoteToken.lpPair = pair.id;
+    erc20ToSlpPair(quoteToken);
   }
   quoteToken.save();
 
