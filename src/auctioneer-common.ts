@@ -19,7 +19,7 @@ export function createMarket(
 
   if (!market) {
     market = new Market(id.toString());
-    market.id = dataSource.network() + "_" + contract._name + "_" + id.toString();
+    market.id = dataSource.network() + "_" + auctioneerName + "_" + id.toString();
     market.name = auctioneerName;
     market.network = dataSource.network();
     market.auctioneer = address.toHexString();
