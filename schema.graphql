@@ -57,7 +57,9 @@ type Token @entity {
     decimals: BigInt!
     symbol: String!
     name: String!
+    typeName: String!
     lpPair: Pair
+    balancerPool: BalancerPool
 }
 
 type Market @entity {
@@ -84,4 +86,11 @@ type Pair @entity {
     id: String! # address
     token0: Token!
     token1: Token!
+}
+
+type BalancerPool @entity {
+    id: String! # pool address
+    vaultAddress: String!
+    poolId: String!
+    constituentTokens: [Token!]!
 }

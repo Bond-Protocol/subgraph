@@ -5,11 +5,14 @@ import {
   MarketCreated,
   Tuned
 } from "../generated/BondFixedTermCDA/BondFixedTermCDA"
-import {Market, Pair, Token} from "../generated/schema";
+import {BalancerPool, Market, Pair, Token} from "../generated/schema";
 import {ERC20} from "../generated/templates/ERC20/ERC20";
 import {SLP} from "../generated/templates/SLP/SLP";
-import {BigDecimal, dataSource} from '@graphprotocol/graph-ts'
+import {Address, BigDecimal, dataSource} from '@graphprotocol/graph-ts'
 import {LP_PAIR_TYPES} from "./lp-pair-types";
+import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
+import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
+import {isBalancerPool} from "./balancer-pool";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -40,6 +43,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     payoutToken.decimals = payoutTokenContract.decimals();
     payoutToken.symbol = payoutTokenContract.symbol();
     payoutToken.name = payoutTokenContract.name();
+    payoutToken.typeName = payoutTokenContract._name;
     payoutToken.save();
   }
 
@@ -51,8 +55,47 @@ export function handleMarketCreated(event: MarketCreated): void {
     quoteToken.decimals = quoteTokenContract.decimals();
     quoteToken.symbol = quoteTokenContract.symbol();
     quoteToken.name = quoteTokenContract.name();
+    quoteToken.typeName = quoteTokenContract._name;
 
-    if (LP_PAIR_TYPES.includes(quoteTokenContract.symbol())) {
+    if (isBalancerPool(event.params.quoteToken)) {
+      let balancerPool = BalancerPool.load(dataSource.network() + "_" + event.params.quoteToken.toHexString().toLowerCase());
+
+      if (!balancerPool) {
+        balancerPool = new BalancerPool(dataSource.network() + "_" + event.params.quoteToken.toHexString().toLowerCase());
+
+        let poolContract = BalancerWeightedPool.bind(event.params.quoteToken);
+        let vaultAddress = poolContract.getVault();
+        let poolId = poolContract.getPoolId();
+
+        let vaultContract = BalancerVault.bind(vaultAddress);
+        let tokens = vaultContract.getPoolTokens(poolId);
+
+        let constituentTokens: string[] = [];
+        for (let i = 0; i < tokens.getTokens().length; i++) {
+          let token = Token.load(dataSource.network() + "_" + tokens.getTokens().at(i).toHexString().toLowerCase());
+          if (!token) {
+            let tokenContract = ERC20.bind(tokens.getTokens().at(i));
+            token = new Token(dataSource.network() + "_" + tokens.getTokens().at(i).toHexString().toLowerCase());
+            token.network = dataSource.network();
+            token.address = tokens.getTokens().at(i).toHexString().toLowerCase();
+            token.decimals = tokenContract.decimals();
+            token.symbol = tokenContract.symbol();
+            token.name = tokenContract.name();
+            token.typeName = tokenContract._name;
+            token.save();
+          }
+          constituentTokens.push(token.id.toString());
+        }
+
+        quoteToken.typeName = poolContract._name;
+        balancerPool.poolId = poolId.toHexString().toLowerCase();
+        balancerPool.vaultAddress = vaultAddress.toHexString().toLowerCase();
+        balancerPool.constituentTokens = constituentTokens;
+        balancerPool.save();
+
+        quoteToken.balancerPool = balancerPool.id;
+      }
+    } else if (LP_PAIR_TYPES.includes(quoteTokenContract.symbol())) {
       let pairContract = SLP.bind(event.params.quoteToken);
       let pair = new Pair(event.params.quoteToken.toHexString().toLowerCase());
 
@@ -70,6 +113,7 @@ export function handleMarketCreated(event: MarketCreated): void {
         token0.decimals = token0Contract.decimals();
         token0.symbol = token0Contract.symbol();
         token0.name = token0Contract.name();
+        token0.typeName = token0Contract._name;
         token0.save();
       }
 
@@ -81,6 +125,7 @@ export function handleMarketCreated(event: MarketCreated): void {
         token1.decimals = token1Contract.decimals();
         token1.symbol = token1Contract.symbol();
         token1.name = token1Contract.name();
+        token1.typeName = token1Contract._name;
         token1.save();
       }
 
@@ -88,6 +133,7 @@ export function handleMarketCreated(event: MarketCreated): void {
       pair.token1 = token1.id;
       pair.save();
 
+      quoteToken.typeName = pairContract._name;
       quoteToken.lpPair = pair.id;
     }
     quoteToken.save();
