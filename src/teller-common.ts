@@ -1,4 +1,4 @@
-import {BondPurchase, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
+import {BondPurchase, BondToken, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
 import {Address, BigDecimal, BigInt, Bytes} from "@graphprotocol/graph-ts";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 
@@ -104,4 +104,27 @@ export function createBondPurchase(
   }
 
   uniqueBonder.save();
+}
+
+export function createBondToken(
+  bondToken: string,
+  underlying: Address,
+  expiry: BigInt,
+  teller: Address,
+  network: string,
+  type: string,
+  decimals: BigInt = BigInt.zero(),
+  symbol: string = ""
+): void {
+  const token = new BondToken(bondToken);
+
+  token.underlying = network + "_" + underlying.toHexString();
+  token.expiry = expiry;
+  token.teller = teller.toHexString();
+  token.network = network;
+  token.type = type;
+  token.decimals = decimals.gt(BigInt.zero()) ? decimals : null;
+  token.symbol = symbol.length > 0 ? symbol : null;
+
+  token.save();
 }

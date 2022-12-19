@@ -7,10 +7,10 @@ import {
   TransferBatch,
   TransferSingle
 } from "../generated/BondFixedTermTeller/BondFixedTermTeller"
-import {BondToken, OwnerBalance} from "../generated/schema";
+import {OwnerBalance} from "../generated/schema";
 import {BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {BondFixedTermCDA} from "../generated/BondFixedTermCDA/BondFixedTermCDA";
-import {createBondPurchase} from "./teller-common";
+import {createBondPurchase, createBondToken} from "./teller-common";
 
 export function handleApprovalForAll(event: ApprovalForAll): void {
 }
@@ -33,15 +33,14 @@ export function handleBonded(event: Bonded): void {
 }
 
 export function handleERC1155BondTokenCreated(event: ERC1155BondTokenCreated): void {
-  const bondToken = new BondToken(event.params.tokenId.toString());
-
-  bondToken.underlying = dataSource.network() + "_" + event.params.payoutToken.toHexString();
-  bondToken.expiry = event.params.expiry;
-  bondToken.teller = event.address.toHexString();
-  bondToken.network = dataSource.network();
-  bondToken.type = "fixed-term";
-
-  bondToken.save();
+  createBondToken(
+    event.params.tokenId.toString(),
+    event.params.payoutToken,
+    event.params.expiry,
+    event.address,
+    dataSource.network(),
+    "fixed-term",
+  );
 }
 
 export function handleOwnerUpdated(event: OwnerUpdated): void {
