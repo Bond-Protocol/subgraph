@@ -26,6 +26,8 @@ dataSources:
           file: ./abis/BondFixedTermTeller.json
         - name: BondFixedTermCDA
           file: ./abis/BondFixedTermCDA.json
+        - name: Auctioneer
+          file: ./abis/Auctioneer.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
@@ -68,6 +70,8 @@ dataSources:
           file: ./abis/BondFixedTermTeller.json
         - name: BondFixedTermCDA
           file: ./abis/BondFixedTermCDA.json
+        - name: Auctioneer
+          file: ./abis/Auctioneer.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
@@ -232,6 +236,8 @@ dataSources:
           file: ./abis/BondFixedExpCDA.json
         - name: ERC20
           file: ./abis/ERC20.json
+        - name: Auctioneer
+          file: ./abis/Auctioneer.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -265,6 +271,8 @@ dataSources:
           file: ./abis/BondFixedExpCDA.json
         - name: ERC20
           file: ./abis/ERC20.json
+        - name: Auctioneer
+          file: ./abis/Auctioneer.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
