@@ -25,7 +25,6 @@ export function createMarket(
   } else if (isLpToken(quoteTokenAddress)) {
     erc20ToSlpPair(quoteToken);
   }
-  quoteToken.save();
 
   const contract = Auctioneer.bind(address);
   let market = Market.load(id.toString());
