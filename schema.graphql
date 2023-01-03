@@ -66,6 +66,7 @@ type Market @entity {
     id: String! # chain name_contract name_market id
     name: String!
     network: String!
+    chainId: BigInt!
     auctioneer: String! # address
     teller: String! # address
     marketId: BigInt!
@@ -80,6 +81,11 @@ type Market @entity {
     totalPayoutAmount: BigDecimal!
     scaleAdjustment: BigInt!
     creationBlockTimestamp: BigInt!
+    callbackAddress: String! # address
+    capacity: BigInt!
+    capacityInQuote: Boolean!
+    minPrice: BigInt!
+    scale: BigInt!
 }
 
 type Pair @entity {
