@@ -11,6 +11,7 @@ import {OwnerBalance} from "../generated/schema";
 import {BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {BondFixedTermCDA} from "../generated/BondFixedTermCDA/BondFixedTermCDA";
 import {createBondPurchase, createBondToken} from "./teller-common";
+import {CHAIN_IDS} from "./chain-ids";
 
 export function handleApprovalForAll(event: ApprovalForAll): void {
 }
@@ -22,7 +23,6 @@ export function handleBonded(event: Bonded): void {
   createBondPurchase(
     event.params.id,
     event.transaction.hash,
-    dataSource.network(),
     "BondFixedTermCDA",
     event.params.amount,
     event.params.payout,
@@ -38,7 +38,6 @@ export function handleERC1155BondTokenCreated(event: ERC1155BondTokenCreated): v
     event.params.payoutToken,
     event.params.expiry,
     event.address,
-    dataSource.network(),
     "fixed-term",
   );
 }
@@ -62,6 +61,7 @@ export function handleTransferSingle(event: TransferSingle): void {
   ownerBalance.owner = event.params.to.toHexString();
   ownerBalance.balance = ownerBalance.balance.plus(event.params.amount);
   ownerBalance.network = dataSource.network();
+  ownerBalance.chainId = BigInt.fromI32(CHAIN_IDS.get(dataSource.network()));
   ownerBalance.bondToken = event.params.id.toString();
 
   ownerBalance.save();

@@ -1,4 +1,4 @@
-import {Address, dataSource} from "@graphprotocol/graph-ts";
+import {Address} from "@graphprotocol/graph-ts";
 import {BalancerWeightedPool} from "../generated/templates/BalancerWeightedPool/BalancerWeightedPool";
 import {BalancerPool, Token} from "../generated/schema";
 import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
@@ -25,7 +25,7 @@ export function erc20ToBalancerPoolToken(parentToken: Token): BalancerPool {
 
     let constituentTokens: string[] = [];
     for (let i = 0; i < tokens.getTokens().length; i++) {
-      let token = loadOrAddERC20Token(dataSource.network(), tokens.getTokens().at(i));
+      let token = loadOrAddERC20Token(tokens.getTokens().at(i));
       constituentTokens.push(token.id.toString());
     }
 

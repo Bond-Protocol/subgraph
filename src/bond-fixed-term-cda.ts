@@ -5,7 +5,6 @@ import {
   MarketCreated,
   Tuned
 } from "../generated/BondFixedTermCDA/BondFixedTermCDA"
-import {dataSource} from '@graphprotocol/graph-ts'
 import {closeMarket, createMarket} from "./auctioneer-common";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
@@ -14,8 +13,7 @@ export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 export function handleMarketClosed(event: MarketClosed): void {
   closeMarket(
     event.params.id,
-    "BondFixedTermCDA",
-    dataSource.network()
+    "BondFixedTermCDA"
   );
 }
 
@@ -26,7 +24,6 @@ export function handleMarketCreated(event: MarketCreated): void {
     event.address,
     event.block.timestamp,
     "BondFixedTermCDA",
-    dataSource.network(),
     event.address,
     event.params.payoutToken,
     event.params.quoteToken,

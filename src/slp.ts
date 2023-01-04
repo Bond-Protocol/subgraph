@@ -17,8 +17,8 @@ export function erc20ToSlpPair(parentToken: Token): Pair {
 
     let pairContract = SLP.bind(Address.fromString(parentToken.address));
 
-    let token0 = loadOrAddERC20Token(parentToken.network, pairContract.token0());
-    let token1 = loadOrAddERC20Token(parentToken.network, pairContract.token1());
+    let token0 = loadOrAddERC20Token(pairContract.token0());
+    let token1 = loadOrAddERC20Token(pairContract.token1());
 
     pair.token0 = token0.id;
     pair.token1 = token1.id;
