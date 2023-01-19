@@ -15,7 +15,7 @@
     "deploy-goerli": "yarn build-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-goerli",
     "deploy-arbitrum": "yarn build-arbitrum && graph deploy --product hosted-service bond-protocol/bond-protocol-arbitrum-mainnet",
     "deploy-arbitrum-testing": "yarn build-arbitrum && graph deploy --product hosted-service spaceturtleship/bp-arbitrum-testing",
-    "deploy-arbitrum-goerli": "yarn build-arbitrum-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-goerli-arbitrum",
+    "deploy-arbitrum-goerli": "yarn build-arbitrum-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-arbitrum-goerli",
     "deploy-optimism-goerli": "yarn build-optimism-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-optimism-goerli",
     "deploy-polygon-mumbai": "yarn build-polygon-mumbai && graph deploy --product hosted-service bond-protocol/bond-protocol-polygon-mumbai",
     "deploy-hosted-mainnet": "yarn deploy-mainnet",
