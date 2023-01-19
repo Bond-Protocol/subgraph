@@ -4,6 +4,7 @@ type OwnerBalance @entity {
     owner: String!
     balance: BigInt!
     network: String!
+    chainId: BigInt!
     bondToken: BondToken
 }
 
@@ -19,6 +20,7 @@ type BondToken @entity {
     expiry: BigInt!
     teller: String!
     network: String!
+    chainId: BigInt!
     type: String!
 }
 
@@ -27,6 +29,7 @@ type OwnerTokenTbv @entity {
     owner: String!
     token: String!
     network: String!
+    chainId: BigInt!
     tbv: BigDecimal!
     bondPurchases: [BondPurchase!] @derivedFrom(field: "ownerTokenTbv")
 }
@@ -45,6 +48,7 @@ type BondPurchase @entity {
     payoutToken: Token!
     quoteToken: Token!
     network: String!
+    chainId: BigInt!
     purchasePrice: BigDecimal!
     postPurchasePrice: BigDecimal!
     ownerTokenTbv: OwnerTokenTbv
@@ -53,6 +57,7 @@ type BondPurchase @entity {
 type Token @entity {
     id: String! # chain name_address
     network: String!
+    chainId: BigInt!
     address: String! # address
     decimals: BigInt!
     symbol: String!

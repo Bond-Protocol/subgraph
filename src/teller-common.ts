@@ -1,11 +1,11 @@
 import {BondPurchase, BondToken, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
-import {Address, BigDecimal, BigInt, Bytes} from "@graphprotocol/graph-ts";
+import {Address, BigDecimal, BigInt, Bytes, dataSource} from "@graphprotocol/graph-ts";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
+import {CHAIN_IDS} from "./chain-ids";
 
 export function createBondPurchase(
   id: BigInt,
   txHash: Bytes,
-  network: string,
   auctioneerName: string,
   purchaseAmount: BigInt,
   payoutAmount: BigInt,
@@ -18,7 +18,10 @@ export function createBondPurchase(
     bondPurchase = new BondPurchase(txHash.toHexString());
   }
 
-  const marketId = network + "_" + auctioneerName + "_" + id.toString();
+  const network = dataSource.network();
+  const chainId = CHAIN_IDS.get(network).toString();
+
+  const marketId = chainId + "_" + auctioneerName + "_" + id.toString();
   const market = Market.load(marketId);
   if (!market) return;
 
@@ -29,7 +32,7 @@ export function createBondPurchase(
   const payoutToken = Token.load(market.payoutToken);
   if (!payoutToken) return;
 
-  const ownerTokenTbvId = network + "_" + market.owner.toString() + "_" + market.quoteToken.toString();
+  const ownerTokenTbvId = chainId + "_" + market.owner.toString() + "_" + market.quoteToken.toString();
   let ownerTokenTbv = OwnerTokenTbv.load(ownerTokenTbvId);
   if (!ownerTokenTbv) {
     ownerTokenTbv = new OwnerTokenTbv(ownerTokenTbvId);
@@ -57,6 +60,7 @@ export function createBondPurchase(
   ownerTokenTbv.token = market.quoteToken.toString();
   ownerTokenTbv.tbv = ownerTokenTbv.tbv.plus(BigDecimal.fromString(purchaseAmt));
   ownerTokenTbv.network = network;
+  ownerTokenTbv.chainId = BigInt.fromString(chainId);
 
   ownerTokenTbv.save();
 
@@ -72,6 +76,7 @@ export function createBondPurchase(
   bondPurchase.payoutToken = payoutToken.id;
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = network;
+  bondPurchase.chainId = BigInt.fromString(chainId);
   bondPurchase.purchasePrice = bondPurchase.payout.gt(BigDecimal.fromString("0"))
     ? bondPurchase.amount.div(bondPurchase.payout)
     : BigDecimal.fromString("0");
@@ -86,7 +91,7 @@ export function createBondPurchase(
   market.save();
 
   let uniqueBonder = UniqueBonder.load(
-    network +
+    chainId +
     "_" +
     market.owner.toString() +
     "__" +
@@ -95,7 +100,7 @@ export function createBondPurchase(
 
   if (!uniqueBonder) {
     uniqueBonder = new UniqueBonder(
-      network +
+      chainId +
       "_" +
       market.owner.toString() +
       "__" +
@@ -111,17 +116,20 @@ export function createBondToken(
   underlying: Address,
   expiry: BigInt,
   teller: Address,
-  network: string,
   type: string,
   decimals: BigInt = BigInt.zero(),
   symbol: string = ""
 ): void {
   const token = new BondToken(bondToken);
 
-  token.underlying = network + "_" + underlying.toHexString();
+  const network = dataSource.network();
+  const chainId = CHAIN_IDS.get(network).toString();
+
+  token.underlying = chainId + "_" + underlying.toHexString();
   token.expiry = expiry;
   token.teller = teller.toHexString();
   token.network = network;
+  token.chainId = BigInt.fromString(chainId);
   token.type = type;
   token.decimals = decimals.gt(BigInt.zero()) ? decimals : null;
   token.symbol = symbol.length > 0 ? symbol : null;

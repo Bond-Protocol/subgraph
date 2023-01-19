@@ -12,14 +12,16 @@ export function createMarket(
   address: Address,
   timestamp: BigInt,
   auctioneerName: string,
-  network: string,
   auctioneer: Address,
   payoutTokenAddress: Address,
   quoteTokenAddress: Address,
   vestingType: string,
 ): Market {
-  let payoutToken = loadOrAddERC20Token(network, payoutTokenAddress);
-  let quoteToken = loadOrAddERC20Token(network, quoteTokenAddress);
+  let payoutToken = loadOrAddERC20Token(payoutTokenAddress);
+  let quoteToken = loadOrAddERC20Token(quoteTokenAddress);
+
+  const network = dataSource.network();
+  const chainId = CHAIN_IDS.get(network).toString();
 
   if (isBalancerPool(quoteTokenAddress)) {
     erc20ToBalancerPoolToken(quoteToken);
@@ -34,10 +36,10 @@ export function createMarket(
     const markets = contract.markets(id);
 
     market = new Market(id.toString());
-    market.id = dataSource.network() + "_" + auctioneerName + "_" + id.toString();
+    market.id = chainId + "_" + auctioneerName + "_" + id.toString();
     market.name = auctioneerName;
-    market.network = dataSource.network();
-    market.chainId = BigInt.fromI32(CHAIN_IDS.get(dataSource.network()));
+    market.network = network;
+    market.chainId = BigInt.fromString(chainId);
     market.auctioneer = address.toHexString();
     market.teller = contract.getTeller().toHexString();
     market.marketId = id;
@@ -67,9 +69,8 @@ export function createMarket(
 export function closeMarket(
   id: BigInt,
   auctioneerName: string,
-  network: string,
 ): void {
-  const marketId = network + "_" + auctioneerName + "_" + id.toString();
+  const marketId = CHAIN_IDS.get(dataSource.network()).toString() + "_" + auctioneerName + "_" + id.toString();
   const market = Market.load(marketId);
 
   if (!market) return;
