@@ -91,6 +91,7 @@ type Market @entity {
     capacityInQuote: Boolean!
     minPrice: BigInt!
     scale: BigInt!
+    tunes: [Tune!] @derivedFrom(field: "market")
 }
 
 type Pair @entity {
@@ -104,4 +105,13 @@ type BalancerPool @entity {
     vaultAddress: String!
     poolId: String!
     constituentTokens: [Token!]!
+}
+
+type Tune @entity {
+    id: String!
+    market: Market!
+    oldControlVariable: BigInt!
+    newControlVariable: BigInt!
+    deltaTime: BigInt!
+    timestamp: BigInt!
 }

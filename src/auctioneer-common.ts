@@ -1,5 +1,5 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {Market} from "../generated/schema";
+import {Market, Tune} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
 import {erc20ToBalancerPoolToken, isBalancerPool} from "./balancer-pool";
@@ -77,4 +77,27 @@ export function closeMarket(
 
   market.isLive = false;
   market.save();
+}
+
+export function onTuned(
+  id: BigInt,
+  auctioneerName: String,
+  oldControlVariable: BigInt,
+  newControlVariable: BigInt,
+  timestamp: BigInt
+): void {
+  const network = dataSource.network();
+  const chainId = CHAIN_IDS.get(network).toString();
+  const marketId = chainId + "_" + auctioneerName + "_" + id.toString();
+
+  let tune = Tune.load(marketId);
+  if (!tune) tune = new Tune(marketId);
+
+  tune.market = marketId;
+  tune.oldControlVariable = oldControlVariable;
+  tune.newControlVariable = newControlVariable;
+  tune.deltaTime = oldControlVariable.minus(newControlVariable);
+  tune.timestamp = timestamp;
+
+  tune.save();
 }
