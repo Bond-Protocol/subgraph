@@ -3,8 +3,14 @@ import {Market, Tune} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
 import {erc20ToBalancerPoolToken, isBalancerPool} from "./lp-types/balancer-pool";
-import {erc20ToUniV2Pair, isLpToken} from "./lp-types/uni-v2";
+import {erc20ToUniV2Pair, isUniV2} from "./lp-types/uni-v2";
 import {CHAIN_IDS} from "./chain-ids";
+import {erc20ToDodoLpPair, isDodoLpToken} from "./lp-types/dodo";
+import {erc20ToGUniPool, isGUniPool} from "./lp-types/g-uni";
+import {erc20ToHypervisor, isHypervisor} from "./lp-types/hypervisor";
+import {erc20ToICHIVault, isICHIVault} from "./lp-types/ichi-vault";
+import {erc20ToVFloat, isVFloat} from "./lp-types/v-float";
+import {erc20ToVolatileV1AMM, isVolatileV1AMM} from "./lp-types/volatile-v1-amm";
 
 export function createMarket(
   id: BigInt,
@@ -25,8 +31,20 @@ export function createMarket(
 
   if (isBalancerPool(quoteTokenAddress)) {
     erc20ToBalancerPoolToken(quoteToken);
-  } else if (isLpToken(quoteTokenAddress)) {
+  } else if (isDodoLpToken(quoteTokenAddress)) {
+    erc20ToDodoLpPair(quoteToken);
+  } else if (isGUniPool(quoteTokenAddress)) {
+    erc20ToGUniPool(quoteToken);
+  } else if (isHypervisor(quoteTokenAddress)) {
+    erc20ToHypervisor(quoteToken);
+  } else if (isICHIVault(quoteTokenAddress)) {
+    erc20ToICHIVault(quoteToken);
+  } else if (isUniV2(quoteTokenAddress)) {
     erc20ToUniV2Pair(quoteToken);
+  } else if (isVFloat(quoteTokenAddress)) {
+    erc20ToVFloat(quoteToken);
+  } else if (isVolatileV1AMM(quoteTokenAddress)) {
+    erc20ToVolatileV1AMM(quoteToken);
   }
 
   const contract = Auctioneer.bind(address);

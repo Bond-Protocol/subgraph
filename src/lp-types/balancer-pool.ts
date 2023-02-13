@@ -29,7 +29,7 @@ export function erc20ToBalancerPoolToken(parentToken: Token): BalancerPool {
       constituentTokens.push(token.id.toString());
     }
 
-    parentToken.typeName = poolContract._name;
+    parentToken.typeName = "BalancerWeightedPool";
     balancerPool.poolId = poolId.toHexString().toLowerCase();
     balancerPool.vaultAddress = vaultAddress.toHexString().toLowerCase();
     balancerPool.constituentTokens = constituentTokens;

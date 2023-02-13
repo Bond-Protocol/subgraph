@@ -3,7 +3,7 @@ import {UniV2} from "../../generated/templates/UniV2/UniV2";
 import {Pair, Token} from "../../generated/schema";
 import {loadOrAddERC20Token} from "../erc20";
 
-export function isLpToken(address: Address): boolean {
+export function isUniV2(address: Address): boolean {
   let contract = UniV2.bind(address);
   let res = contract.try_getReserves();
   return res.reverted === false;
@@ -24,7 +24,7 @@ export function erc20ToUniV2Pair(parentToken: Token): Pair {
     pair.token1 = token1.id;
     pair.save();
 
-    parentToken.typeName = pairContract._name;
+    parentToken.typeName = "UniV2";
     parentToken.lpPair = pair.id;
     parentToken.save();
   }
