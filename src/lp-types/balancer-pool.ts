@@ -1,8 +1,8 @@
 import {Address} from "@graphprotocol/graph-ts";
-import {BalancerWeightedPool} from "../generated/templates/BalancerPool/BalancerWeightedPool";
-import {BalancerPool, Token} from "../generated/schema";
-import {BalancerVault} from "../generated/templates/BalancerVault/BalancerVault";
-import {loadOrAddERC20Token} from "./erc20";
+import {BalancerWeightedPool} from "../../generated/templates/BalancerPool/BalancerWeightedPool";
+import {BalancerPool, Token} from "../../generated/schema";
+import {BalancerVault} from "../../generated/templates/BalancerVault/BalancerVault";
+import {loadOrAddERC20Token} from "../erc20";
 
 export function isBalancerPool(address: Address): boolean {
   let contract = BalancerWeightedPool.bind(address);

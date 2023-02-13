@@ -2,8 +2,8 @@ import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {Market, Tune} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
-import {erc20ToBalancerPoolToken, isBalancerPool} from "./lp-type-balancer-pool";
-import {erc20ToSlpPair, isLpToken} from "./lp-type-uni-v2";
+import {erc20ToBalancerPoolToken, isBalancerPool} from "./lp-types/balancer-pool";
+import {erc20ToUniV2Pair, isLpToken} from "./lp-types/uni-v2";
 import {CHAIN_IDS} from "./chain-ids";
 
 export function createMarket(
@@ -26,7 +26,7 @@ export function createMarket(
   if (isBalancerPool(quoteTokenAddress)) {
     erc20ToBalancerPoolToken(quoteToken);
   } else if (isLpToken(quoteTokenAddress)) {
-    erc20ToSlpPair(quoteToken);
+    erc20ToUniV2Pair(quoteToken);
   }
 
   const contract = Auctioneer.bind(address);

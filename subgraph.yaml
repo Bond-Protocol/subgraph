@@ -114,12 +114,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -155,12 +167,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -196,12 +220,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -307,12 +343,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -348,12 +396,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -389,12 +449,24 @@ dataSources:
           file: ./abis/Auctioneer.json
         - name: ERC20
           file: ./abis/ERC20.json
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -431,10 +503,10 @@ templates:
           handler: handleTransfer
       file: ./src/erc20.ts
   - kind: ethereum/contract
-    name: SLP
+    name: UniV2
     network: mainnet
     source:
-      abi: SLP
+      abi: UniV2
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -443,8 +515,8 @@ templates:
         - Pair
         - Token
       abis:
-        - name: SLP
-          file: ./abis/SLP.json
+        - name: UniV2
+          file: ./abis/lp-types/UniV2.json
       eventHandlers:
         - event: Mint(indexed address,uint256,uint256)
           handler: handleMint
@@ -456,7 +528,194 @@ templates:
           handler: handleTransfer
         - event: Sync(uint112,uint112)
           handler: handleSync
-      file: ./src/lp-type-uni-v2.ts
+      file: ./src/lp-types/uni-v2.ts
+  - kind: ethereum/contract
+    name: DodoLp
+    network: mainnet
+    source:
+      abi: DodoLp
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: DodoLp
+          file: ./abis/lp-types/DodoLp.json
+      eventHandlers:
+        - event: Burn(indexed address,uint256)
+          handler: handleBurn
+        - event: BuyShares(address,uint256,uint256)
+          handler: handleBuyShares
+        - event: DODOFlashLoan(address,address,uint256,uint256)
+          handler: handleDODOFlashLoan
+        - event: DODOSwap(address,address,uint256,uint256,address,address)
+          handler: handleDODOSwap
+        - event: Mint(indexed address,uint256)
+          handler: handleMint
+        - event: SellShares(address,address,uint256,uint256)
+          handler: handleSellShares
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/lp-types/dodo.ts
+  - kind: ethereum/contract
+    name: GUniPool
+    network: mainnet
+    source:
+      abi: GUniPool
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: GUniPool
+          file: ./abis/lp-types/GUniPool.json
+      eventHandlers:
+        - event: Burned(address,uint256,uint256,uint256,uint128)
+          handler: handleBurned
+        - event: FeesEarned(uint256,uint256)
+          handler: handleFeesEarned
+        - event: Minted(address,uint256,uint256,uint256,uint128)
+          handler: handleMint
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Rebalance(int24,int24,uint128,uint128)
+          handler: handleRebalance
+        - event: SetManagerFee(uint16)
+          handler: handleSetManagerFee
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: UpdateAdminTreasury(address,address)
+          handler: handleUpdateAdminTreasury
+        - event: UpdateGelatoParams(uint16,uint16,uint16,uint32)
+          handler: handleUpdateGelatoParams
+      file: ./src/lp-types/g-uni.ts
+  - kind: ethereum/contract
+    name: Hypervisor
+    network: mainnet
+    source:
+      abi: Hypervisor
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: Hypervisor
+          file: ./abis/lp-types/Hypervisor.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Rebalance(int24,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRebalance
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/lp-types/hypervisor.ts
+  - kind: ethereum/contract
+    name: ICHIVault
+    network: mainnet
+    source:
+      abi: ICHIVault
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: ICHIVault
+          file: ./abis/lp-types/ICHIVault.json
+      eventHandlers:
+        - event: Affiliate(indexed address,address)
+          handler: handleAffiliate
+        - event: DeployICHIVault(indexed address,indexed
+            address,bool,bool,address,uint256)
+          handler: handleDeployICHIVault
+        - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: DepositMax(indexed address,uint256,uint256)
+          handler: handleDepositMax
+        - event: Hysteresis(indexed address,uint256)
+          handler: handleHysteresis
+        - event: MaxTotalSupply(indexed address,uint256)
+          handler: handleMaxTotalSupply
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: Rebalance(int24,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRebalance
+        - event: SetTwapPeriod(address,uint32)
+          handler: handleSetTwapPeriod
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/lp-types/ichi-vault.ts
+  - kind: ethereum/contract
+    name: vFloat
+    network: mainnet
+    source:
+      abi: vFloat
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: vFloat
+          file: ./abis/lp-types/vFloat.json
+      eventHandlers:
+        - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleDeposit
+        - event: Rebalance(int24,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRebalance
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
+      file: ./src/lp-types/v-float.ts
+  - kind: ethereum/contract
+    name: VolatileV1AMM
+    network: mainnet
+    source:
+      abi: VolatileV1AMM
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Pair
+        - Token
+      abis:
+        - name: VolatileV1AMM
+          file: ./abis/lp-types/VolatileV1AMM.json
+      eventHandlers:
+        - event: Burn(indexed address,uint256,uint256,indexed address)
+          handler: handleBurn
+        - event: Claim(indexed address,indexed address,uint256,uint256)
+          handler: handleClaim
+        - event: Fees(indexed address,uint256,uint256)
+          handler: handleFees
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
+        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
+          handler: handleSwap
+        - event: Sync(uint256,uint256)
+          handler: handleSync
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/lp-types/volatile-v1-amm.ts
   - kind: ethereum/contract
     name: BalancerVault
     network: mainnet
@@ -471,7 +730,7 @@ templates:
         - Token
       abis:
         - name: BalancerVault
-          file: ./abis/BalancerVault.json
+          file: ./abis/lp-types/BalancerVault.json
       eventHandlers:
         - event: AuthorizerChanged(indexed address)
           handler: handleAuthorizerChanged
@@ -514,7 +773,7 @@ templates:
         - Token
       abis:
         - name: BalancerWeightedPool
-          file: ./abis/BalancerWeightedPool.json
+          file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -526,7 +785,7 @@ templates:
           handler: handleSwapFeePercentageChanged
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/lp-type-balancer-pool.ts
+      file: ./src/lp-types/balancer-pool.ts
   - kind: ethereum
     name: Auctioneer
     network: mainnet
