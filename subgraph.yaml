@@ -456,7 +456,7 @@ templates:
           handler: handleTransfer
         - event: Sync(uint112,uint112)
           handler: handleSync
-      file: ./src/slp.ts
+      file: ./src/lp-type-uni-v2.ts
   - kind: ethereum/contract
     name: BalancerVault
     network: mainnet
@@ -526,7 +526,7 @@ templates:
           handler: handleSwapFeePercentageChanged
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/balancer-pool.ts
+      file: ./src/lp-type-balancer-pool.ts
   - kind: ethereum
     name: Auctioneer
     network: mainnet

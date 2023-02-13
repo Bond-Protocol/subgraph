@@ -2,8 +2,8 @@ import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {Market, Tune} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
-import {erc20ToBalancerPoolToken, isBalancerPool} from "./balancer-pool";
-import {erc20ToSlpPair, isLpToken} from "./slp";
+import {erc20ToBalancerPoolToken, isBalancerPool} from "./lp-type-balancer-pool";
+import {erc20ToSlpPair, isLpToken} from "./lp-type-uni-v2";
 import {CHAIN_IDS} from "./chain-ids";
 
 export function createMarket(
