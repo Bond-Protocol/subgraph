@@ -2,15 +2,15 @@ import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {Market, Tune} from "../generated/schema";
 import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
 import {loadOrAddERC20Token} from "./erc20";
-import {erc20ToBalancerPoolToken, isBalancerPool} from "./lp-types/balancer-pool";
-import {erc20ToUniV2Pair, isUniV2} from "./lp-types/uni-v2";
+import {isBalancerPool, loadOrAddBalancerPool} from "./lp-types/balancer-pool";
+import {isUniV2, loadOrAddUniV2Pair} from "./lp-types/uni-v2";
 import {CHAIN_IDS} from "./chain-ids";
-import {erc20ToDodoLpPair, isDodoLpToken} from "./lp-types/dodo";
-import {erc20ToGUniPool, isGUniPool} from "./lp-types/g-uni";
-import {erc20ToHypervisor, isHypervisor} from "./lp-types/hypervisor";
-import {erc20ToICHIVault, isICHIVault} from "./lp-types/ichi-vault";
-import {erc20ToVFloat, isVFloat} from "./lp-types/v-float";
-import {erc20ToVolatileV1AMM, isVolatileV1AMM} from "./lp-types/volatile-v1-amm";
+import {isDodoLpToken, loadOrAddDodoLpPair} from "./lp-types/dodo";
+import {isGUniPool, loadOrAddGUniPoolPair} from "./lp-types/g-uni";
+import {isHypervisor, loadOrAddHypervisorPair} from "./lp-types/hypervisor";
+import {isICHIVault, loadOrAddICHIVaultPair} from "./lp-types/ichi-vault";
+import {isVFloat, loadOrAddVFloatPair} from "./lp-types/v-float";
+import {isVolatileV1AMM, loadOrAddVolatileV1AMMPair} from "./lp-types/volatile-v1-amm";
 
 export function createMarket(
   id: BigInt,
@@ -30,21 +30,21 @@ export function createMarket(
   const chainId = CHAIN_IDS.get(network).toString();
 
   if (isBalancerPool(quoteTokenAddress)) {
-    erc20ToBalancerPoolToken(quoteToken);
+    loadOrAddBalancerPool(quoteToken);
   } else if (isDodoLpToken(quoteTokenAddress)) {
-    erc20ToDodoLpPair(quoteToken);
+    loadOrAddDodoLpPair(quoteToken);
   } else if (isGUniPool(quoteTokenAddress)) {
-    erc20ToGUniPool(quoteToken);
+    loadOrAddGUniPoolPair(quoteToken);
   } else if (isHypervisor(quoteTokenAddress)) {
-    erc20ToHypervisor(quoteToken);
+    loadOrAddHypervisorPair(quoteToken);
   } else if (isICHIVault(quoteTokenAddress)) {
-    erc20ToICHIVault(quoteToken);
+    loadOrAddICHIVaultPair(quoteToken);
   } else if (isUniV2(quoteTokenAddress)) {
-    erc20ToUniV2Pair(quoteToken);
+    loadOrAddUniV2Pair(quoteToken);
   } else if (isVFloat(quoteTokenAddress)) {
-    erc20ToVFloat(quoteToken);
+    loadOrAddVFloatPair(quoteToken);
   } else if (isVolatileV1AMM(quoteTokenAddress)) {
-    erc20ToVolatileV1AMM(quoteToken);
+    loadOrAddVolatileV1AMMPair(quoteToken);
   }
 
   const contract = Auctioneer.bind(address);

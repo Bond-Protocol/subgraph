@@ -10,7 +10,7 @@ export function isBalancerPool(address: Address): boolean {
   return res.reverted === false;
 }
 
-export function erc20ToBalancerPoolToken(parentToken: Token): BalancerPool {
+export function loadOrAddBalancerPool(parentToken: Token): BalancerPool {
   let balancerPool = BalancerPool.load(parentToken.id);
 
   if (!balancerPool) {

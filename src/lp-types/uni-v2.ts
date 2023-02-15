@@ -1,7 +1,7 @@
 import {Address} from "@graphprotocol/graph-ts";
 import {UniV2} from "../../generated/templates/UniV2/UniV2";
 import {Pair, Token} from "../../generated/schema";
-import {loadOrAddERC20Token} from "../erc20";
+import {addPair} from "./pair-common";
 
 export function isUniV2(address: Address): boolean {
   let contract = UniV2.bind(address);
@@ -9,24 +9,18 @@ export function isUniV2(address: Address): boolean {
   return res.reverted === false;
 }
 
-export function erc20ToUniV2Pair(parentToken: Token): Pair {
-  let pair = Pair.load(parentToken.id);
+export function loadOrAddUniV2Pair(parentToken: Token): Pair {
+  let pair = new Pair(parentToken.address);
 
   if (!pair) {
-    pair = new Pair(parentToken.address);
-
     let pairContract = UniV2.bind(Address.fromString(parentToken.address));
-
-    let token0 = loadOrAddERC20Token(pairContract.token0());
-    let token1 = loadOrAddERC20Token(pairContract.token1());
-
-    pair.token0 = token0.id;
-    pair.token1 = token1.id;
-    pair.save();
-
-    parentToken.typeName = "UniV2";
-    parentToken.lpPair = pair.id;
-    parentToken.save();
+    return addPair(
+      parentToken,
+      pairContract.token0(),
+      pairContract.token1(),
+      "UniV2"
+    );
   }
+
   return pair;
 }

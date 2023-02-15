@@ -1,7 +1,7 @@
 import {Address} from "@graphprotocol/graph-ts";
 import {Pair, Token} from "../../generated/schema";
-import {loadOrAddERC20Token} from "../erc20";
 import {Hypervisor} from "../../generated/templates/Hypervisor/Hypervisor";
+import {addPair} from "./pair-common";
 
 export function isHypervisor(address: Address): boolean {
   let contract = Hypervisor.bind(address);
@@ -9,24 +9,18 @@ export function isHypervisor(address: Address): boolean {
   return res.reverted === false;
 }
 
-export function erc20ToHypervisor(parentToken: Token): Pair {
-  let pair = Pair.load(parentToken.id);
+export function loadOrAddHypervisorPair(parentToken: Token): Pair {
+  let pair = new Pair(parentToken.address);
 
   if (!pair) {
-    pair = new Pair(parentToken.address);
-
     let pairContract = Hypervisor.bind(Address.fromString(parentToken.address));
-
-    let token0 = loadOrAddERC20Token(pairContract.token0());
-    let token1 = loadOrAddERC20Token(pairContract.token1());
-
-    pair.token0 = token0.id;
-    pair.token1 = token1.id;
-    pair.save();
-
-    parentToken.typeName = "Hypervisor";
-    parentToken.lpPair = pair.id;
-    parentToken.save();
+    return addPair(
+      parentToken,
+      pairContract.token0(),
+      pairContract.token1(),
+      "Hypervisor"
+    );
   }
+
   return pair;
 }
