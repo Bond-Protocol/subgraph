@@ -6,10 +6,9 @@ import {
   OwnerUpdated,
   TransferBatch,
   TransferSingle
-} from "../generated/BondFixedTermTeller/BondFixedTermTeller"
+} from "../generated/BondFixedTermTellerAbi/BondFixedTermTellerAbi"
 import {OwnerBalance} from "../generated/schema";
 import {BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {BondFixedTermCDA} from "../generated/BondFixedTermCDA/BondFixedTermCDA";
 import {createBondPurchase, createBondToken} from "./teller-common";
 import {CHAIN_IDS} from "./chain-ids";
 

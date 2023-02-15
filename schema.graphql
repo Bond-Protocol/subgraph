@@ -252,9 +252,9 @@ type Token @entity {
     """
     lpPair: Pair
     """
-    A reference to the BalancerPool record, if the Token is a BalancerWeightedPool, or null if it is not.
+    A reference to the BalancerWeightedPool record, if the Token is a BalancerWeightedPool, or null if it is not.
     """
-    balancerPool: BalancerPool
+    balancerWeightedPool: BalancerWeightedPool
 }
 
 """
@@ -377,7 +377,7 @@ The Pair entity stores references to the Tokens which make up a Uniswap-V2 or si
 type Pair @entity {
     """
     The address of the LP pair.
-    **NOTE** for consistency, this should probably be updated to append the chainId, as Token and BalancerPool do.
+    **NOTE** for consistency, this should probably be updated to append the chainId, as Token and BalancerWeightedPool do.
     """
     id: String!
     """
@@ -391,11 +391,11 @@ type Pair @entity {
 }
 
 """
-The BalancerPool entity contains the details of a BalancerWeightedPool Token.
+The BalancerWeightedPool entity contains the details of a BalancerWeightedPool Token.
 """
-type BalancerPool @entity {
+type BalancerWeightedPool @entity {
     """
-    Unique ID for the BalancerPool entity, in the format:
+    Unique ID for the BalancerWeightedPool entity, in the format:
     [chain Id]_[pool address]
     """
     id: String!

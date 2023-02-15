@@ -20,5 +20,6 @@ export function addPair(
   parentToken.typeName = typeName;
   parentToken.lpPair = pair.id;
   parentToken.save();
+
   return pair;
 }

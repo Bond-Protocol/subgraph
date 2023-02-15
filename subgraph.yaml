@@ -3,12 +3,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: BondFixedTermTeller
-    network: mainnet
+    name: BondFixedTermTellerAbi
+    network: goerli
     source:
-      abi: BondFixedTermTeller
+      abi: BondFixedTermTellerAbi
       address: "0x007F77B53ed0F058616335bc040cD326E125daE0"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -22,11 +22,11 @@ dataSources:
         - TransferBatch
         - TransferSingle
       abis:
-        - name: BondFixedTermTeller
+        - name: BondFixedTermTellerAbi
           file: ./abis/BondFixedTermTeller.json
-        - name: BondFixedTermCDA
+        - name: BondFixedTermCDAAbi
           file: ./abis/BondFixedTermCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
@@ -47,12 +47,12 @@ dataSources:
           handler: handleTransferSingle
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
-    name: BondFixedTermTeller2
-    network: mainnet
+    name: BondFixedTermTellerAbi2
+    network: goerli
     source:
-      abi: BondFixedTermTeller
+      abi: BondFixedTermTellerAbi
       address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -66,11 +66,11 @@ dataSources:
         - TransferBatch
         - TransferSingle
       abis:
-        - name: BondFixedTermTeller
+        - name: BondFixedTermTellerAbi
           file: ./abis/BondFixedTermTeller.json
-        - name: BondFixedTermCDA
+        - name: BondFixedTermCDAAbi
           file: ./abis/BondFixedTermCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
@@ -91,12 +91,12 @@ dataSources:
           handler: handleTransferSingle
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
-    name: BondFixedTermCDA
-    network: mainnet
+    name: BondFixedTermCDAAbi
+    network: goerli
     source:
-      abi: BondFixedTermCDA
+      abi: BondFixedTermCDAAbi
       address: "0x007F7A58103a31109F848Df1A14F7020E1F1b28A"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -108,29 +108,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedTermCDA
+        - name: BondFixedTermCDAAbi
           file: ./abis/BondFixedTermCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -144,12 +138,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
-    name: BondFixedTermCDA2
-    network: mainnet
+    name: BondFixedTermCDAAbi2
+    network: goerli
     source:
-      abi: BondFixedTermCDA
+      abi: BondFixedTermCDAAbi
       address: "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -161,29 +155,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedTermCDA
+        - name: BondFixedTermCDAAbi
           file: ./abis/BondFixedTermCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -197,12 +185,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
-    name: BondFixedTermCDA3
-    network: mainnet
+    name: BondFixedTermCDAAbi3
+    network: goerli
     source:
-      abi: BondFixedTermCDA
+      abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -214,29 +202,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedTermCDA
+        - name: BondFixedTermCDAAbi
           file: ./abis/BondFixedTermCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -250,12 +232,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
-    name: BondFixedExpTeller
-    network: mainnet
+    name: BondFixedExpTellerAbi
+    network: goerli
     source:
-      abi: BondFixedExpTeller
+      abi: BondFixedExpTellerAbi
       address: "0x007FE7c498A2Cf30971ad8f2cbC36bd14Ac51156"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -266,13 +248,13 @@ dataSources:
         - ERC20BondTokenCreated
         - OwnerUpdated
       abis:
-        - name: BondFixedExpTeller
+        - name: BondFixedExpTellerAbi
           file: ./abis/BondFixedExpTeller.json
-        - name: BondFixedExpCDA
+        - name: BondFixedExpCDAAbi
           file: ./abis/BondFixedExpCDA.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -285,12 +267,12 @@ dataSources:
           handler: handleOwnerUpdated
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
-    name: BondFixedExpTeller2
-    network: mainnet
+    name: BondFixedExpTellerAbi2
+    network: goerli
     source:
-      abi: BondFixedExpTeller
+      abi: BondFixedExpTellerAbi
       address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -301,13 +283,13 @@ dataSources:
         - ERC20BondTokenCreated
         - OwnerUpdated
       abis:
-        - name: BondFixedExpTeller
+        - name: BondFixedExpTellerAbi
           file: ./abis/BondFixedExpTeller.json
-        - name: BondFixedExpCDA
+        - name: BondFixedExpCDAAbi
           file: ./abis/BondFixedExpCDA.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -320,12 +302,12 @@ dataSources:
           handler: handleOwnerUpdated
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
-    name: BondFixedExpCDA
-    network: mainnet
+    name: BondFixedExpCDAAbi
+    network: goerli
     source:
-      abi: BondFixedExpCDA
+      abi: BondFixedExpCDAAbi
       address: "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -337,29 +319,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedExpCDA
+        - name: BondFixedExpCDAAbi
           file: ./abis/BondFixedExpCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -373,12 +349,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
-    name: BondFixedExpCDA2
-    network: mainnet
+    name: BondFixedExpCDAAbi2
+    network: goerli
     source:
-      abi: BondFixedExpCDA
+      abi: BondFixedExpCDAAbi
       address: "0x007FEA2a31644F20b0fE18f69643890b6F878AA6"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -390,29 +366,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedExpCDA
+        - name: BondFixedExpCDAAbi
           file: ./abis/BondFixedExpCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -426,12 +396,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
-    name: BondFixedExpCDA3
-    network: mainnet
+    name: BondFixedExpCDAAbi3
+    network: goerli
     source:
-      abi: BondFixedExpCDA
+      abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -443,29 +413,23 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedExpCDA
+        - name: BondFixedExpCDAAbi
           file: ./abis/BondFixedExpCDA.json
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
@@ -480,10 +444,10 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
 templates:
   - kind: ethereum/contract
-    name: ERC20
-    network: mainnet
+    name: ERC20Abi
+    network: goerli
     source:
-      abi: ERC20
+      abi: ERC20Abi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -494,7 +458,7 @@ templates:
         - TokenApproval
         - TokenBalance
       abis:
-        - name: ERC20
+        - name: ERC20Abi
           file: ./abis/ERC20.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
@@ -503,10 +467,10 @@ templates:
           handler: handleTransfer
       file: ./src/erc20.ts
   - kind: ethereum/contract
-    name: UniV2
-    network: mainnet
+    name: UniV2Abi
+    network: goerli
     source:
-      abi: UniV2
+      abi: UniV2Abi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -515,7 +479,7 @@ templates:
         - Pair
         - Token
       abis:
-        - name: UniV2
+        - name: UniV2Abi
           file: ./abis/lp-types/UniV2.json
       eventHandlers:
         - event: Mint(indexed address,uint256,uint256)
@@ -528,12 +492,12 @@ templates:
           handler: handleTransfer
         - event: Sync(uint112,uint112)
           handler: handleSync
-      file: ./src/lp-types/uni-v2.ts
+      file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
-    name: DodoLp
-    network: mainnet
+    name: DodoLpAbi
+    network: goerli
     source:
-      abi: DodoLp
+      abi: DodoLpAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -542,7 +506,7 @@ templates:
         - Pair
         - Token
       abis:
-        - name: DodoLp
+        - name: DodoLpAbi
           file: ./abis/lp-types/DodoLp.json
       eventHandlers:
         - event: Burn(indexed address,uint256)
@@ -559,12 +523,12 @@ templates:
           handler: handleSellShares
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/lp-types/dodo.ts
+      file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
-    name: GUniPool
-    network: mainnet
+    name: GUniPoolAbi
+    network: goerli
     source:
-      abi: GUniPool
+      abi: GUniPoolAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -573,7 +537,7 @@ templates:
         - Pair
         - Token
       abis:
-        - name: GUniPool
+        - name: GUniPoolAbi
           file: ./abis/lp-types/GUniPool.json
       eventHandlers:
         - event: Burned(address,uint256,uint256,uint256,uint128)
@@ -594,12 +558,12 @@ templates:
           handler: handleUpdateAdminTreasury
         - event: UpdateGelatoParams(uint16,uint16,uint16,uint32)
           handler: handleUpdateGelatoParams
-      file: ./src/lp-types/g-uni.ts
+      file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
-    name: Hypervisor
-    network: mainnet
+    name: HypervisorAbi
+    network: goerli
     source:
-      abi: Hypervisor
+      abi: HypervisorAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -608,7 +572,7 @@ templates:
         - Pair
         - Token
       abis:
-        - name: Hypervisor
+        - name: HypervisorAbi
           file: ./abis/lp-types/Hypervisor.json
       eventHandlers:
         - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
@@ -619,117 +583,21 @@ templates:
           handler: handleTransfer
         - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
           handler: handleWithdraw
-      file: ./src/lp-types/hypervisor.ts
+      file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
-    name: ICHIVault
-    network: mainnet
+    name: BalancerVaultAbi
+    network: goerli
     source:
-      abi: ICHIVault
+      abi: BalancerVaultAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - Pair
+        - BalancerWeightedPoolAbi
         - Token
       abis:
-        - name: ICHIVault
-          file: ./abis/lp-types/ICHIVault.json
-      eventHandlers:
-        - event: Affiliate(indexed address,address)
-          handler: handleAffiliate
-        - event: DeployICHIVault(indexed address,indexed
-            address,bool,bool,address,uint256)
-          handler: handleDeployICHIVault
-        - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
-          handler: handleDeposit
-        - event: DepositMax(indexed address,uint256,uint256)
-          handler: handleDepositMax
-        - event: Hysteresis(indexed address,uint256)
-          handler: handleHysteresis
-        - event: MaxTotalSupply(indexed address,uint256)
-          handler: handleMaxTotalSupply
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: Rebalance(int24,uint256,uint256,uint256,uint256,uint256)
-          handler: handleRebalance
-        - event: SetTwapPeriod(address,uint32)
-          handler: handleSetTwapPeriod
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
-          handler: handleWithdraw
-      file: ./src/lp-types/ichi-vault.ts
-  - kind: ethereum/contract
-    name: vFloat
-    network: mainnet
-    source:
-      abi: vFloat
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      entities:
-        - Pair
-        - Token
-      abis:
-        - name: vFloat
-          file: ./abis/lp-types/vFloat.json
-      eventHandlers:
-        - event: Deposit(indexed address,indexed address,uint256,uint256,uint256)
-          handler: handleDeposit
-        - event: Rebalance(int24,uint256,uint256,uint256,uint256,uint256)
-          handler: handleRebalance
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
-          handler: handleWithdraw
-      file: ./src/lp-types/v-float.ts
-  - kind: ethereum/contract
-    name: VolatileV1AMM
-    network: mainnet
-    source:
-      abi: VolatileV1AMM
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      entities:
-        - Pair
-        - Token
-      abis:
-        - name: VolatileV1AMM
-          file: ./abis/lp-types/VolatileV1AMM.json
-      eventHandlers:
-        - event: Burn(indexed address,uint256,uint256,indexed address)
-          handler: handleBurn
-        - event: Claim(indexed address,indexed address,uint256,uint256)
-          handler: handleClaim
-        - event: Fees(indexed address,uint256,uint256)
-          handler: handleFees
-        - event: Mint(indexed address,uint256,uint256)
-          handler: handleMint
-        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
-          handler: handleSwap
-        - event: Sync(uint256,uint256)
-          handler: handleSync
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-      file: ./src/lp-types/volatile-v1-amm.ts
-  - kind: ethereum/contract
-    name: BalancerVault
-    network: mainnet
-    source:
-      abi: BalancerVault
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.5
-      language: wasm/assemblyscript
-      entities:
-        - BalancerPool
-        - Token
-      abis:
-        - name: BalancerVault
+        - name: BalancerVaultAbi
           file: ./abis/lp-types/BalancerVault.json
       eventHandlers:
         - event: AuthorizerChanged(indexed address)
@@ -760,19 +628,19 @@ templates:
           handler: handleTokensRegistered
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
-    name: BalancerPool
-    network: mainnet
+    name: BalancerWeightedPoolAbi
+    network: goerli
     source:
-      abi: BalancerWeightedPool
+      abi: BalancerWeightedPoolAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - BalancerPool
+        - BalancerWeightedPoolAbi
         - Token
       abis:
-        - name: BalancerWeightedPool
+        - name: BalancerWeightedPoolAbi
           file: ./abis/lp-types/BalancerWeightedPool.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
@@ -785,12 +653,12 @@ templates:
           handler: handleSwapFeePercentageChanged
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/lp-types/balancer-pool.ts
+      file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
-    name: Auctioneer
-    network: mainnet
+    name: AuctioneerAbi
+    network: goerli
     source:
-      abi: Auctioneer
+      abi: AuctioneerAbi
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -802,7 +670,7 @@ templates:
         - MarketCreated
         - Tuned
       abis:
-        - name: Auctioneer
+        - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)

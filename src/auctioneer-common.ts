@@ -1,16 +1,16 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {Market, Tune} from "../generated/schema";
-import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
+import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {loadOrAddERC20Token} from "./erc20";
-import {isBalancerPool, loadOrAddBalancerPool} from "./lp-types/balancer-pool";
-import {isUniV2, loadOrAddUniV2Pair} from "./lp-types/uni-v2";
+import {
+  isBalancerWeightedPoolCompatible,
+  loadOrAddBalancerWeightedPoolCompatiblePool
+} from "./lp-types/balancer-weighted-pool-compatible";
+import {isUniV2Compatible, loadOrAddUniV2CompatiblePair} from "./lp-types/uni-v2-compatible";
 import {CHAIN_IDS} from "./chain-ids";
-import {isDodoLpToken, loadOrAddDodoLpPair} from "./lp-types/dodo";
-import {isGUniPool, loadOrAddGUniPoolPair} from "./lp-types/g-uni";
-import {isHypervisor, loadOrAddHypervisorPair} from "./lp-types/hypervisor";
-import {isICHIVault, loadOrAddICHIVaultPair} from "./lp-types/ichi-vault";
-import {isVFloat, loadOrAddVFloatPair} from "./lp-types/v-float";
-import {isVolatileV1AMM, loadOrAddVolatileV1AMMPair} from "./lp-types/volatile-v1-amm";
+import {isDodoLpCompatible, loadOrAddDodoLpCompatiblePair} from "./lp-types/dodo-compatible";
+import {isGUniPoolCompatible, loadOrAddGUniPoolCompatiblePair} from "./lp-types/g-uni-compatible";
+import {isHypervisorCompatible, loadOrAddHypervisorCompatiblePair} from "./lp-types/hypervisor-compatible";
 
 export function createMarket(
   id: BigInt,
@@ -29,25 +29,19 @@ export function createMarket(
   const network = dataSource.network();
   const chainId = CHAIN_IDS.get(network).toString();
 
-  if (isBalancerPool(quoteTokenAddress)) {
-    loadOrAddBalancerPool(quoteToken);
-  } else if (isDodoLpToken(quoteTokenAddress)) {
-    loadOrAddDodoLpPair(quoteToken);
-  } else if (isGUniPool(quoteTokenAddress)) {
-    loadOrAddGUniPoolPair(quoteToken);
-  } else if (isHypervisor(quoteTokenAddress)) {
-    loadOrAddHypervisorPair(quoteToken);
-  } else if (isICHIVault(quoteTokenAddress)) {
-    loadOrAddICHIVaultPair(quoteToken);
-  } else if (isUniV2(quoteTokenAddress)) {
-    loadOrAddUniV2Pair(quoteToken);
-  } else if (isVFloat(quoteTokenAddress)) {
-    loadOrAddVFloatPair(quoteToken);
-  } else if (isVolatileV1AMM(quoteTokenAddress)) {
-    loadOrAddVolatileV1AMMPair(quoteToken);
+  if (isBalancerWeightedPoolCompatible(quoteTokenAddress)) {
+    loadOrAddBalancerWeightedPoolCompatiblePool(quoteToken);
+  } else if (isDodoLpCompatible(quoteTokenAddress)) {
+    loadOrAddDodoLpCompatiblePair(quoteToken);
+  } else if (isGUniPoolCompatible(quoteTokenAddress)) {
+    loadOrAddGUniPoolCompatiblePair(quoteToken);
+  } else if (isHypervisorCompatible(quoteTokenAddress)) {
+    loadOrAddHypervisorCompatiblePair(quoteToken);
+  } else if (isUniV2Compatible(quoteTokenAddress)) {
+    loadOrAddUniV2CompatiblePair(quoteToken);
   }
 
-  const contract = Auctioneer.bind(address);
+  const contract = AuctioneerAbi.bind(address);
   let market = Market.load(id.toString());
 
   if (!market) {
