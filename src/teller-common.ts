@@ -1,6 +1,6 @@
 import {BondPurchase, BondToken, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
 import {Address, BigDecimal, BigInt, Bytes, dataSource} from "@graphprotocol/graph-ts";
-import {Auctioneer} from "../generated/templates/Auctioneer/Auctioneer";
+import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {CHAIN_IDS} from "./chain-ids";
 
 export function createBondPurchase(
@@ -25,7 +25,7 @@ export function createBondPurchase(
   const market = Market.load(marketId);
   if (!market) return;
 
-  const auctioneer = Auctioneer.bind(Address.fromString(market.auctioneer));
+  const auctioneer = AuctioneerAbi.bind(Address.fromString(market.auctioneer));
 
   const quoteToken = Token.load(market.quoteToken);
   if (!quoteToken) return;

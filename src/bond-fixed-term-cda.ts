@@ -1,10 +1,9 @@
 import {
   AuthorityUpdated,
-  BondFixedTermCDA,
   MarketClosed,
   MarketCreated,
   Tuned
-} from "../generated/BondFixedTermCDA/BondFixedTermCDA"
+} from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi"
 import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedTermCDA";
