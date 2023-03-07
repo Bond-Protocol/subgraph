@@ -1,4 +1,4 @@
-import {BondPurchase, BondToken, Market, OwnerTokenTbv, Token, UniqueBonder} from "../generated/schema";
+import {BondPurchase, BondToken, Market, OwnerTokenTbv, PurchaseCount, Token, UniqueBonder} from "../generated/schema";
 import {Address, BigDecimal, BigInt, Bytes, dataSource} from "@graphprotocol/graph-ts";
 import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {CHAIN_IDS} from "./chain-ids";
@@ -109,6 +109,14 @@ export function createBondPurchase(
   }
 
   uniqueBonder.save();
+
+  let purchaseCount = PurchaseCount.load("purchase-count");
+  if (!purchaseCount) {
+    purchaseCount = new PurchaseCount("purchase-count");
+    purchaseCount.count = BigInt.zero();
+  }
+  purchaseCount.count = purchaseCount.count.plus(BigInt.fromString("1"));
+  purchaseCount.save();
 }
 
 export function createBondToken(

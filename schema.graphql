@@ -443,3 +443,17 @@ type Tune @entity {
     """
     timestamp: BigInt!
 }
+
+"""
+Workaround due to no simple entity count being available.
+"""
+type PurchaseCount @entity {
+    """
+    There should only be one PurchaseCount entry, with id "purchase-count".
+    """
+    id: String!
+    """
+    The total number of bond purchases across all markets on this chain.
+    """
+    count: BigInt!
+}
