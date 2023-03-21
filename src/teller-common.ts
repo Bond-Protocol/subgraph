@@ -2,6 +2,7 @@ import {BondPurchase, BondToken, Market, OwnerTokenTbv, PurchaseCount, Token, Un
 import {Address, BigDecimal, BigInt, Bytes, dataSource} from "@graphprotocol/graph-ts";
 import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {CHAIN_IDS} from "./chain-ids";
+import {loadOrAddERC20Token} from "./erc20";
 
 export function createBondPurchase(
   id: BigInt,
@@ -133,7 +134,9 @@ export function createBondToken(
   const network = dataSource.network();
   const chainId = CHAIN_IDS.get(network).toString();
 
-  token.underlying = chainId + "_" + underlying.toHexString();
+  const underlyingToken = loadOrAddERC20Token(underlying);
+
+  token.underlying = underlyingToken.id;
   token.expiry = expiry;
   token.teller = teller.toHexString();
   token.network = network;
