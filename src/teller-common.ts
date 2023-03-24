@@ -1,19 +1,34 @@
 import {BondPurchase, BondToken, Market, OwnerTokenTbv, PurchaseCount, Token, UniqueBonder} from "../generated/schema";
 import {Address, BigDecimal, BigInt, Bytes, dataSource} from "@graphprotocol/graph-ts";
-import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {CHAIN_IDS} from "./chain-ids";
 import {loadOrAddERC20Token} from "./erc20";
+import {AggregatorAbi} from "../generated/templates/AggregatorAbi/AggregatorAbi";
+import {BondFixedTermCDAAbi} from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi";
+import {BondFixedExpCDAAbi} from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
+import {BondFixedExpOSDAAbi} from "../generated/BondFixedExpOSDAAbi/BondFixedExpOSDAAbi";
+import {BondFixedTermOSDAAbi} from "../generated/BondFixedTermOSDAAbi/BondFixedTermOSDAAbi";
+import {BondFixedExpOFDAAbi} from "../generated/BondFixedExpOFDAAbi/BondFixedExpOFDAAbi";
+import {BondFixedTermOFDAAbi} from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
+import {BondFixedExpFPAAbi} from "../generated/BondFixedExpFPAAbi/BondFixedExpFPAAbi";
+import {BondFixedTermFPAAbi} from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
 
 export function createBondPurchase(
   id: BigInt,
   txHash: Bytes,
-  auctioneerName: string,
   purchaseAmount: BigInt,
   payoutAmount: BigInt,
   from: Address,
   referrer: Address,
   timestamp: BigInt
 ): void {
+  const aggregator = AggregatorAbi.bind(Address.fromString("0x007A66A2a13415DB3613C1a4dd1C942A285902d1"));
+
+  const getAuctioneer = aggregator.try_getAuctioneer(id);
+  if (getAuctioneer.reverted) {
+    throw new Error("Auctioneer not found " + id.toString() + " " + aggregator._name);
+  }
+  const auctioneerAddress = getAuctioneer.value;
+
   let bondPurchase = BondPurchase.load(txHash.toHexString());
   if (!bondPurchase) {
     bondPurchase = new BondPurchase(txHash.toHexString());
@@ -22,11 +37,66 @@ export function createBondPurchase(
   const network = dataSource.network();
   const chainId = CHAIN_IDS.get(network).toString();
 
-  const marketId = chainId + "_" + auctioneerName + "_" + id.toString();
+  let marketId: string;
+  let marketPrice: BigDecimal;
+  if (
+    auctioneerAddress.toHexString().toLowerCase() === "0x007F7A58103a31109F848Df1A14F7020E1F1b28A".toLowerCase() ||
+    auctioneerAddress.toHexString().toLowerCase() === "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128".toLowerCase() ||
+    auctioneerAddress.toHexString().toLowerCase() === "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222".toLowerCase()
+  ) {
+    const auctioneer = BondFixedTermCDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43".toLowerCase() ||
+    auctioneerAddress.toHexString().toLowerCase() === "0x007FEA2a31644F20b0fE18f69643890b6F878AA6".toLowerCase() ||
+    auctioneerAddress.toHexString().toLowerCase() === "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase()
+  ) {
+    const auctioneer1 = BondFixedExpCDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer1._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer1.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50".toLowerCase()
+  ) {
+    const auctioneer2 = BondFixedExpOSDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer2._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer2.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C".toLowerCase()
+  ) {
+    const auctioneer3 = BondFixedTermOSDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer3._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer3.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B".toLowerCase()
+  ) {
+    const auctioneer4 = BondFixedExpOFDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer4._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer4.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0x56A07e0b05D60EF41318c60935c57924804d4541".toLowerCase()
+  ) {
+    const auctioneer5 = BondFixedTermOFDAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer5._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer5.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0xdc54a1463D72f828042F1a6F10826D3Dc6FF358C".toLowerCase()
+  ) {
+    const auctioneer6 = BondFixedExpFPAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer6._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer6.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() === "0x5aF872Bb472D08370df72019717E336758F1fa87".toLowerCase()
+  ) {
+    const auctioneer7 = BondFixedTermFPAAbi.bind(auctioneerAddress);
+    marketId = chainId + "_" + auctioneer7._name + "_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer7.marketPrice(id).toString());
+  } else {
+    throw new Error("ABI not found for " + auctioneerAddress.toHexString());
+  }
+
   const market = Market.load(marketId);
   if (!market) return;
-
-  const auctioneer = AuctioneerAbi.bind(Address.fromString(market.auctioneer));
 
   const quoteToken = Token.load(market.quoteToken);
   if (!quoteToken) return;
@@ -50,11 +120,15 @@ export function createBondPurchase(
   );
   const baseScaleDecimal = BigDecimal.fromString(baseScale.toString());
 
-  const marketScale = auctioneer.marketScale(market.marketId);
-  const marketScaleDecimal = BigDecimal.fromString(marketScale.toString());
-  const shift: BigDecimal = baseScaleDecimal.div(marketScaleDecimal);
-  const marketPrice: BigDecimal = BigDecimal.fromString(auctioneer.marketPrice(market.marketId).toString());
-  const price = marketPrice.times(shift);
+  let price: BigDecimal;
+  if (market.scale) {
+    const marketScaleDecimal = BigDecimal.fromString(market.scale!.toString());
+    const shift: BigDecimal = baseScaleDecimal.div(marketScaleDecimal);
+    price = marketPrice.times(shift);
+  } else {
+    price = marketPrice;
+  }
+
   const postPurchasePrice = price.div(BigDecimal.fromString(Math.pow(10, 36).toString()));
 
   ownerTokenTbv.owner = market.owner.toString();

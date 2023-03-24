@@ -1,13 +1,12 @@
 import {
   AuthorityUpdated,
-  BondFixedExpCDAAbi,
+  BondFixedTermFPAAbi,
   MarketClosed,
-  MarketCreated,
-  Tuned
-} from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
-import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
+  MarketCreated
+} from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
+import {closeMarket, createMarket} from "./auctioneer-common";
 
-const AUCTIONEER_NAME = "BondFixedExpCDA";
+const AUCTIONEER_NAME = "BondFixedTermFPA";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -20,8 +19,7 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const contract = BondFixedExpCDAAbi.bind(event.address);
-  const markets = contract.markets(event.params.id);
+  const contract = BondFixedTermFPAAbi.bind(event.address);const markets = contract.markets(event.params.id);
 
   createMarket(
     event.params.id,
@@ -31,7 +29,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     event.address,
     event.params.payoutToken,
     event.params.quoteToken,
-    "fixed-expiration",
+    "fixed-term",
     markets.getCallbackAddr().toHexString(),
     markets.getCapacity(),
     markets.getCapacityInQuote(),
@@ -39,17 +37,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     markets.value0.toHexString(),
     contract.isInstantSwap(event.params.id),
     contract.marketScale(event.params.id),
-    markets.getMinPrice(),
     null,
-  );
-}
-
-export function handleTuned(event: Tuned): void {
-  onTuned(
-    event.params.id,
-    AUCTIONEER_NAME,
-    event.params.oldControlVariable,
-    event.params.newControlVariable,
-    event.block.timestamp
+    markets.getPrice()
   );
 }

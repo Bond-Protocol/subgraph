@@ -1,13 +1,12 @@
 import {
   AuthorityUpdated,
-  BondFixedExpCDAAbi,
+  BondFixedExpOFDAAbi,
   MarketClosed,
-  MarketCreated,
-  Tuned
-} from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
-import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
+  MarketCreated
+} from "../generated/BondFixedExpOFDAAbi/BondFixedExpOFDAAbi";
+import {closeMarket, createMarket} from "./auctioneer-common";
 
-const AUCTIONEER_NAME = "BondFixedExpCDA";
+const AUCTIONEER_NAME = "BondFixedExpOFDA";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -20,7 +19,7 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const contract = BondFixedExpCDAAbi.bind(event.address);
+  const contract = BondFixedExpOFDAAbi.bind(event.address);
   const markets = contract.markets(event.params.id);
 
   createMarket(
@@ -38,18 +37,8 @@ export function handleMarketCreated(event: MarketCreated): void {
     contract.getTeller().toHexString(),
     markets.value0.toHexString(),
     contract.isInstantSwap(event.params.id),
-    contract.marketScale(event.params.id),
-    markets.getMinPrice(),
     null,
-  );
-}
-
-export function handleTuned(event: Tuned): void {
-  onTuned(
-    event.params.id,
-    AUCTIONEER_NAME,
-    event.params.oldControlVariable,
-    event.params.newControlVariable,
-    event.block.timestamp
+    null,
+    null
   );
 }

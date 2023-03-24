@@ -315,15 +315,13 @@ type Market @entity {
     """
     vestingType: String!
     """
-    Whether the contract is live.
-    **NOTE** This field is deprecated as we cannot rely on it being updated in all market close conditions.
-    It will be removed from the subgraph once fully removed from all frontend code.
-    """
-    isLive: Boolean! @deprecated(reason: "Cannot rely on field to be accurately updated in all conditions.")
-    """
     Whether or not the Market is an instant swap market.
     """
     isInstantSwap: Boolean!
+    """
+    Whether or not the Market has been closed.
+    """
+    hasClosed: Boolean!
     """
     The total amount of quote tokens bonded for this market.
     **NOTE** This is the number of quote tokens, NOT their USD value.
@@ -334,11 +332,6 @@ type Market @entity {
     **NOTE** This is the number of payout tokens, NOT their USD value.
     """
     totalPayoutAmount: BigDecimal!
-    """
-    Scale value to use when converting between quote token and payout token amounts with marketPrice.
-    **NOTE** this is the same as scale, as such one or both of these will be changed/removed in a future refactor.
-    """
-    scaleAdjustment: BigInt!
     """
     The timestamp of the block in which the Market was created.
     """
@@ -359,12 +352,16 @@ type Market @entity {
     The minimum price at which a bond can be purchased.
     **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
     """
-    minPrice: BigInt!
+    minPrice: BigInt
+    """
+    The price at which a bond can be purchased.
+    **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
+    """
+    price: BigInt
     """
     Scale value to use when converting between quote token and payout token amounts with marketPrice.
-    **NOTE** this is the same as scaleAdjustment, as such one or both of these will be changed/removed in a future refactor.
     """
-    scale: BigInt!
+    scale: BigInt
     """
     A list of all tuning events that have been emitted for this Market.
     """

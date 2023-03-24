@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F77B53ed0F058616335bc040cD326E125daE0"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -28,6 +28,8 @@ dataSources:
           file: ./abis/BondFixedTermCDA.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
+        - name: AggregatorAbi
+          file: ./abis/Aggregator.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
@@ -48,11 +50,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermTellerAbi2
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -72,6 +74,8 @@ dataSources:
           file: ./abis/BondFixedTermCDA.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
+        - name: AggregatorAbi
+          file: ./abis/Aggregator.json
       eventHandlers:
         - event: ApprovalForAll(indexed address,indexed address,bool)
           handler: handleApprovalForAll
@@ -92,11 +96,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A58103a31109F848Df1A14F7020E1F1b28A"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -139,11 +143,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi2
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A6012A5e03f6F388dd9F19Fd1D754Cfc128"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -186,11 +190,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi3
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -233,11 +237,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE7c498A2Cf30971ad8f2cbC36bd14Ac51156"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -256,6 +260,8 @@ dataSources:
           file: ./abis/ERC20.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
+        - name: AggregatorAbi
+          file: ./abis/Aggregator.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -268,11 +274,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi2
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -291,6 +297,8 @@ dataSources:
           file: ./abis/ERC20.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
+        - name: AggregatorAbi
+          file: ./abis/Aggregator.json
       eventHandlers:
         - event: AuthorityUpdated(indexed address,indexed address)
           handler: handleAuthorityUpdated
@@ -303,11 +311,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA7A23da99F3Ce7eA34F976f32BF79A09C43"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -350,11 +358,11 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi2
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA2a31644F20b0fE18f69643890b6F878AA6"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -397,11 +405,11 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi3
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 43274490
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -442,10 +450,276 @@ dataSources:
         - event: Tuned(indexed uint256,uint256,uint256)
           handler: handleTuned
       file: ./src/bond-fixed-exp-cda.ts
+  - kind: ethereum
+    name: BondFixedExpOSDAAbi
+    network: goerli
+    source:
+      abi: BondFixedExpOSDAAbi
+      address: "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedExpOSDAAbi
+          file: ./abis/BondFixedExpOSDA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed address,uint48)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-osda.ts
+  - kind: ethereum
+    name: BondFixedTermOSDAAbi
+    network: goerli
+    source:
+      abi: BondFixedTermOSDAAbi
+      address: "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedTermOSDAAbi
+          file: ./abis/BondFixedTermOSDA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed address,uint48)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-term-osda.ts
+  - kind: ethereum
+    name: BondFixedExpOFDAAbi
+    network: goerli
+    source:
+      abi: BondFixedExpOFDAAbi
+      address: "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedExpOFDAAbi
+          file: ./abis/BondFixedExpOFDA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed address,uint48)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-exp-ofda.ts
+  - kind: ethereum
+    name: BondFixedTermOFDAAbi
+    network: goerli
+    source:
+      abi: BondFixedTermOFDAAbi
+      address: "0x56A07e0b05D60EF41318c60935c57924804d4541"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedTermOFDAAbi
+          file: ./abis/BondFixedTermOFDA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed address,uint48)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-term-ofda.ts
+  - kind: ethereum
+    name: BondFixedExpFPAAbi
+    network: goerli
+    source:
+      abi: BondFixedExpFPAAbi
+      address: "0xdc54a1463D72f828042F1a6F10826D3Dc6FF358C"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedExpFPAAbi
+          file: ./abis/BondFixedExpFPA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-exp-fpa.ts
+  - kind: ethereum
+    name: BondFixedTermFPAAbi
+    network: goerli
+    source:
+      abi: BondFixedTermFPAAbi
+      address: "0x5aF872Bb472D08370df72019717E336758F1fa87"
+      startBlock: 7072454
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedTermFPAAbi
+          file: ./abis/BondFixedTermFPA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-term-fpa.ts
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: ERC20Abi
     mapping:
@@ -468,7 +742,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: UniV2Abi
     mapping:
@@ -495,7 +769,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: DodoLpAbi
     mapping:
@@ -526,7 +800,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: GUniPoolAbi
     mapping:
@@ -561,7 +835,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: HypervisorAbi
     mapping:
@@ -586,7 +860,7 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BalancerVaultAbi
     mapping:
@@ -629,7 +903,7 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -656,7 +930,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: arbitrum-one
+    network: goerli
     source:
       abi: AuctioneerAbi
     mapping:
@@ -672,14 +946,20 @@ templates:
       abis:
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
-      eventHandlers:
-        - event: AuthorityUpdated(indexed address,indexed address)
-          handler: handleAuthorityUpdated
-        - event: MarketClosed(indexed uint256)
-          handler: handleMarketClosed
-        - event: MarketCreated(indexed uint256,indexed address,indexed
-            address,uint48,uint256)
-          handler: handleMarketCreated
-        - event: Tuned(indexed uint256,uint256,uint256)
-          handler: handleTuned
       file: ./src/auctioneer-common.ts
+  - kind: ethereum
+    name: AggregatorAbi
+    network: goerli
+    source:
+      abi: AggregatorAbi
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - OwnerUpdated
+      abis:
+        - name: AggregatorAbi
+          file: ./abis/Aggregator.json
+      file: ./src/aggregator-common.ts

@@ -14,7 +14,6 @@ export function handleBonded(event: Bonded): void {
   createBondPurchase(
     event.params.id,
     event.transaction.hash,
-    "BondFixedExpCDA",
     event.params.amount,
     event.params.payout,
     event.transaction.from,

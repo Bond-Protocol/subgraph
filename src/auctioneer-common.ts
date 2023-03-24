@@ -1,6 +1,5 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
 import {Market, Tune} from "../generated/schema";
-import {AuctioneerAbi} from "../generated/templates/AuctioneerAbi/AuctioneerAbi";
 import {loadOrAddERC20Token} from "./erc20";
 import {
   isBalancerWeightedPoolCompatible,
@@ -15,13 +14,21 @@ import {isHypervisorCompatible, loadOrAddHypervisorCompatiblePair} from "./lp-ty
 export function createMarket(
   id: BigInt,
   vesting: BigInt,
-  address: Address,
   timestamp: BigInt,
   auctioneerName: string,
   auctioneer: Address,
   payoutTokenAddress: Address,
   quoteTokenAddress: Address,
   vestingType: string,
+  callbackAddress: string,
+  capacity: BigInt,
+  capacityInQuote: boolean,
+  teller: string,
+  owner: string,
+  isInstantSwap: boolean,
+  scale: BigInt | null,
+  minPrice: BigInt | null,
+  price: BigInt | null
 ): Market {
   let payoutToken = loadOrAddERC20Token(payoutTokenAddress);
   let quoteToken = loadOrAddERC20Token(quoteTokenAddress);
@@ -41,36 +48,33 @@ export function createMarket(
     loadOrAddUniV2CompatiblePair(quoteToken);
   }
 
-  const contract = AuctioneerAbi.bind(address);
   let market = Market.load(id.toString());
 
   if (!market) {
-    const markets = contract.markets(id);
-
     market = new Market(id.toString());
     market.id = chainId + "_" + auctioneerName + "_" + id.toString();
     market.name = auctioneerName;
     market.network = network;
     market.chainId = BigInt.fromString(chainId);
-    market.auctioneer = address.toHexString();
-    market.teller = contract.getTeller().toHexString();
+    market.auctioneer = auctioneer.toHexString();
     market.marketId = id;
-    market.owner = contract.markets(id).value0.toHexString();
     market.payoutToken = payoutToken.id;
     market.quoteToken = quoteToken.id;
     market.vesting = vesting;
     market.vestingType = vestingType;
-    market.isLive = contract.isLive(id);
-    market.isInstantSwap = contract.isInstantSwap(id);
     market.totalBondedAmount = BigDecimal.fromString("0");
     market.totalPayoutAmount = BigDecimal.fromString("0");
-    market.scaleAdjustment = contract.marketScale(id);
     market.creationBlockTimestamp = timestamp;
-    market.callbackAddress = markets.getCallbackAddr().toHexString();
-    market.capacity = markets.getCapacity();
-    market.capacityInQuote = markets.getCapacityInQuote();
-    market.minPrice = markets.getMinPrice();
-    market.scale = markets.getScale();
+    market.callbackAddress = callbackAddress;
+    market.capacity = capacity;
+    market.capacityInQuote = capacityInQuote;
+    market.teller = teller;
+    market.owner = owner;
+    market.isInstantSwap = isInstantSwap;
+    market.hasClosed = false;
+    price && (market.price = price);
+    minPrice && (market.minPrice = minPrice);
+    scale && (market.scale = scale);
 
     market.save();
   }
@@ -87,7 +91,7 @@ export function closeMarket(
 
   if (!market) return;
 
-  market.isLive = false;
+  market.hasClosed = true;
   market.save();
 }
 

@@ -1,5 +1,6 @@
 import {
   AuthorityUpdated,
+  BondFixedTermCDAAbi,
   MarketClosed,
   MarketCreated,
   Tuned
@@ -19,16 +20,27 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
+  const contract = BondFixedTermCDAAbi.bind(event.address);
+  const markets = contract.markets(event.params.id);
+
   createMarket(
     event.params.id,
     event.params.vesting,
-    event.address,
     event.block.timestamp,
     AUCTIONEER_NAME,
     event.address,
     event.params.payoutToken,
     event.params.quoteToken,
-    "fixed-term"
+    "fixed-term",
+    markets.getCallbackAddr().toHexString(),
+    markets.getCapacity(),
+    markets.getCapacityInQuote(),
+    contract.getTeller().toHexString(),
+    markets.value0.toHexString(),
+    contract.isInstantSwap(event.params.id),
+    contract.marketScale(event.params.id),
+    markets.getMinPrice(),
+    null
   );
 }
 
