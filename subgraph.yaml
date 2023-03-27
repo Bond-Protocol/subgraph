@@ -3,7 +3,7 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: BondFixedTermTellerAbi2
+    name: BondFixedTermTellerAbi
     network: goerli
     source:
       abi: BondFixedTermTellerAbi
@@ -53,7 +53,7 @@ dataSources:
           handler: handleTransferSingle
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
-    name: BondFixedTermCDAAbi3
+    name: BondFixedTermCDAAbi
     network: goerli
     source:
       abi: BondFixedTermCDAAbi
@@ -100,7 +100,7 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
-    name: BondFixedExpTellerAbi2
+    name: BondFixedExpTellerAbi
     network: goerli
     source:
       abi: BondFixedExpTellerAbi
@@ -141,7 +141,7 @@ dataSources:
           handler: handleOwnerUpdated
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
-    name: BondFixedExpCDAAbi3
+    name: BondFixedExpCDAAbi
     network: goerli
     source:
       abi: BondFixedExpCDAAbi
