@@ -370,7 +370,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedExpFPAAbi
-      address: "0xdc54a1463D72f828042F1a6F10826D3Dc6FF358C"
+      address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
       startBlock: 7072454
     mapping:
       kind: ethereum/events
@@ -414,7 +414,7 @@ dataSources:
     network: goerli
     source:
       abi: BondFixedTermFPAAbi
-      address: "0x5aF872Bb472D08370df72019717E336758F1fa87"
+      address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
       startBlock: 7072454
     mapping:
       kind: ethereum/events

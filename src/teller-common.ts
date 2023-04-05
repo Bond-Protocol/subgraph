@@ -76,13 +76,13 @@ export function createBondPurchase(
     marketId = chainId + "_BondFixedTermOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer5.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xdc54a1463D72f828042F1a6F10826D3Dc6FF358C".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase()
   ) {
     const auctioneer6 = BondFixedExpFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpFPA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer6.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0x5aF872Bb472D08370df72019717E336758F1fa87".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase()
   ) {
     const auctioneer7 = BondFixedTermFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermFPA_" + id.toString();
