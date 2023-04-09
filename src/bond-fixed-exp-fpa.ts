@@ -22,10 +22,14 @@ export function handleMarketCreated(event: MarketCreated): void {
   const contract = BondFixedExpFPAAbi.bind(event.address);
   const markets = contract.markets(event.params.id);
 
+  const terms = contract.terms(event.params.id);
+
   createMarket(
     event.params.id,
     event.params.vesting,
     event.block.timestamp,
+    terms.getStart(),
+    terms.getConclusion(),
     AUCTIONEER_NAME,
     event.address,
     event.params.payoutToken,

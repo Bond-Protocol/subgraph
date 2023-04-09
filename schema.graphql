@@ -311,6 +311,14 @@ type Market @entity {
     """
     vesting: BigInt!
     """
+    The Market's start time (for supported Market types)
+    """
+    start: BigInt
+    """
+    The Market's conclusion time
+    """
+    conclusion: BigInt
+    """
     The type of vesting for the market. At the time of writing, this will be either "fixed-term" or "fixed-expiration". More options may be added in the future if new vesting types become available.
     """
     vestingType: String!

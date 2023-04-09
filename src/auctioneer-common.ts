@@ -15,6 +15,8 @@ export function createMarket(
   id: BigInt,
   vesting: BigInt,
   timestamp: BigInt,
+  start: BigInt | null,
+  conclusion: BigInt,
   auctioneerName: string,
   auctioneer: Address,
   payoutTokenAddress: Address,
@@ -28,7 +30,7 @@ export function createMarket(
   isInstantSwap: boolean,
   scale: BigInt | null,
   minPrice: BigInt | null,
-  price: BigInt | null
+  price: BigInt | null,
 ): Market {
   let payoutToken = loadOrAddERC20Token(payoutTokenAddress);
   let quoteToken = loadOrAddERC20Token(quoteTokenAddress);
@@ -65,6 +67,8 @@ export function createMarket(
     market.totalBondedAmount = BigDecimal.fromString("0");
     market.totalPayoutAmount = BigDecimal.fromString("0");
     market.creationBlockTimestamp = timestamp;
+    market.start = start;
+    market.conclusion = conclusion;
     market.callbackAddress = callbackAddress;
     market.capacity = capacity;
     market.capacityInQuote = capacityInQuote;
