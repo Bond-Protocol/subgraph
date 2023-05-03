@@ -7,7 +7,7 @@ import {
 } from "../generated/BondFixedExpSDAv2Abi/BondFixedExpSDAv2Abi";
 import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
 
-const AUCTIONEER_NAME = "BondFixedExpCDA";
+const AUCTIONEER_NAME = "BondFixedExpSDAv2";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
