@@ -100,11 +100,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 7072454
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 7072454
     }
   },
   "arbitrum-one": {
@@ -154,11 +154,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 43274490
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 43274490
     }
   },
   "arbitrum-goerli": {
@@ -208,11 +208,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 1931076
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 1931076
     }
   },
   "optimism-goerli": {
@@ -262,11 +262,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 4024619
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 4024619
     }
   },
   "mumbai": {
@@ -316,11 +316,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 30832648
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 30832648
     }
   },
   "fuji": {
@@ -370,11 +370,11 @@
     },
     "BondFixedExpSDAv2Abi": {
       "address": "0xFE5DA6ad5720237D19229e7416791d390255E9AA",
-      "startBlock": 15546730
+      "startBlock": 18155848
     },
     "BondFixedTermSDAv2Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
-      "startBlock": 15546730
+      "startBlock": 18155848
     }
   }
 }
