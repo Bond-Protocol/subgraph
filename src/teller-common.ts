@@ -11,6 +11,8 @@ import {BondFixedExpOFDAAbi} from "../generated/BondFixedExpOFDAAbi/BondFixedExp
 import {BondFixedTermOFDAAbi} from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
 import {BondFixedExpFPAAbi} from "../generated/BondFixedExpFPAAbi/BondFixedExpFPAAbi";
 import {BondFixedTermFPAAbi} from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
+import {BondFixedExpSDAv2Abi} from "../generated/BondFixedExpSDAv2Abi/BondFixedExpSDAv2Abi";
+import {BondFixedTermSDAv2Abi} from "../generated/BondFixedTermSDAv2Abi/BondFixedTermSDAv2Abi";
 
 export function createBondPurchase(
   id: BigInt,
@@ -48,45 +50,57 @@ export function createBondPurchase(
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase()
   ) {
-    const auctioneer1 = BondFixedExpCDAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedExpCDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpCDA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer1.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50".toLowerCase()
   ) {
-    const auctioneer2 = BondFixedExpOSDAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedExpOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOSDA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer2.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C".toLowerCase()
   ) {
-    const auctioneer3 = BondFixedTermOSDAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedTermOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOSDA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer3.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B".toLowerCase()
   ) {
-    const auctioneer4 = BondFixedExpOFDAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedExpOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOFDA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer4.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0x56A07e0b05D60EF41318c60935c57924804d4541".toLowerCase()
   ) {
-    const auctioneer5 = BondFixedTermOFDAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedTermOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOFDA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer5.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase()
   ) {
-    const auctioneer6 = BondFixedExpFPAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedExpFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpFPA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer6.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase()
   ) {
-    const auctioneer7 = BondFixedTermFPAAbi.bind(auctioneerAddress);
+    const auctioneer = BondFixedTermFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermFPA_" + id.toString();
-    marketPrice = BigDecimal.fromString(auctioneer7.marketPrice(id).toString());
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase()
+  ) {
+    const auctioneer = BondFixedExpSDAv2Abi.bind(auctioneerAddress);
+    marketId = chainId + "_BondFixedTermSDA_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
+  } else if (
+    auctioneerAddress.toHexString().toLowerCase() == "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase()
+  ) {
+    const auctioneer = BondFixedTermSDAv2Abi.bind(auctioneerAddress);
+    marketId = chainId + "_BondFixedTermSDA_" + id.toString();
+    marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else {
     throw new Error("ABI not found for " + auctioneerAddress.toHexString() + " " + id.toString() + " " + auctioneerAddress.toHexString().toLowerCase() + " " + "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase());
   }
