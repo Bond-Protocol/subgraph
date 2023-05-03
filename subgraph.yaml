@@ -32,6 +32,8 @@ dataSources:
           file: ./abis/BondFixedTermOFDA.json
         - name: BondFixedTermFPAAbi
           file: ./abis/BondFixedTermFPA.json
+        - name: BondFixedTermSDAv2Abi
+          file: ./abis/BondFixedTermSDAv2.json
         - name: AggregatorAbi
           file: ./abis/Aggregator.json
       eventHandlers:
@@ -105,7 +107,7 @@ dataSources:
     source:
       abi: BondFixedTermSDAv2Abi
       address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -173,6 +175,8 @@ dataSources:
           file: ./abis/BondFixedExpCDA.json
         - name: BondFixedExpOSDAAbi
           file: ./abis/BondFixedExpOSDA.json
+        - name: BondFixedExpSDAv2Abi
+          file: ./abis/BondFixedExpSDAv2.json
         - name: ERC20Abi
           file: ./abis/ERC20.json
         - name: AggregatorAbi
@@ -240,7 +244,7 @@ dataSources:
     source:
       abi: BondFixedExpSDAv2Abi
       address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
-      startBlock: 15546730
+      startBlock: 7072454
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
