@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -32,8 +32,8 @@ dataSources:
           file: ./abis/BondFixedTermOFDA.json
         - name: BondFixedTermFPAAbi
           file: ./abis/BondFixedTermFPA.json
-        - name: BondFixedTermSDAv2Abi
-          file: ./abis/BondFixedTermSDAv2.json
+        - name: BondFixedTermSDAv1_1Abi
+          file: ./abis/BondFixedTermSDAv1_1.json
         - name: AggregatorAbi
           file: ./abis/Aggregator.json
       eventHandlers:
@@ -56,11 +56,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -102,12 +102,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
-    name: BondFixedTermSDAv2Abi
-    network: goerli
+    name: BondFixedTermSDAv1_1Abi
+    network: arbitrum-goerli
     source:
-      abi: BondFixedTermSDAv2Abi
+      abi: BondFixedTermSDAv1_1Abi
       address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -119,8 +119,8 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedTermSDAv2Abi
-          file: ./abis/BondFixedTermSDAv2.json
+        - name: BondFixedTermSDAv1_1Abi
+          file: ./abis/BondFixedTermSDAv1_1.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
         - name: ERC20Abi
@@ -150,11 +150,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -175,8 +175,8 @@ dataSources:
           file: ./abis/BondFixedExpCDA.json
         - name: BondFixedExpOSDAAbi
           file: ./abis/BondFixedExpOSDA.json
-        - name: BondFixedExpSDAv2Abi
-          file: ./abis/BondFixedExpSDAv2.json
+        - name: BondFixedExpSDAv1_1Abi
+          file: ./abis/BondFixedExpSDAv1_1.json
         - name: ERC20Abi
           file: ./abis/ERC20.json
         - name: AggregatorAbi
@@ -193,11 +193,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -239,12 +239,12 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
-    name: BondFixedExpSDAv2Abi
-    network: goerli
+    name: BondFixedExpSDAv1_1Abi
+    network: arbitrum-goerli
     source:
-      abi: BondFixedExpSDAv2Abi
+      abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -256,8 +256,8 @@ dataSources:
         - MarketCreated
         - Tuned
       abis:
-        - name: BondFixedExpSDAv2Abi
-          file: ./abis/BondFixedExpSDAv2.json
+        - name: BondFixedExpSDAv1_1Abi
+          file: ./abis/BondFixedExpSDAv1_1.json
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
         - name: ERC20Abi
@@ -287,11 +287,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpOSDAAbi
       address: "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -333,11 +333,11 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermOSDAAbi
       address: "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -379,11 +379,11 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpOFDAAbi
       address: "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -422,11 +422,11 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermOFDAAbi
       address: "0x56A07e0b05D60EF41318c60935c57924804d4541"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -465,11 +465,11 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -509,11 +509,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 7072454
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -554,7 +554,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: ERC20Abi
     mapping:
@@ -577,7 +577,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: UniV2Abi
     mapping:
@@ -604,7 +604,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: DodoLpAbi
     mapping:
@@ -635,7 +635,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: GUniPoolAbi
     mapping:
@@ -670,7 +670,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: HypervisorAbi
     mapping:
@@ -695,7 +695,7 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BalancerVaultAbi
     mapping:
@@ -738,7 +738,7 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -765,7 +765,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: AuctioneerAbi
     mapping:
@@ -784,7 +784,7 @@ templates:
       file: ./src/auctioneer-common.ts
   - kind: ethereum
     name: AggregatorAbi
-    network: goerli
+    network: arbitrum-goerli
     source:
       abi: AggregatorAbi
     mapping:

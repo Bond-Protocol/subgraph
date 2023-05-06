@@ -11,8 +11,8 @@ import {BondFixedExpOFDAAbi} from "../generated/BondFixedExpOFDAAbi/BondFixedExp
 import {BondFixedTermOFDAAbi} from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
 import {BondFixedExpFPAAbi} from "../generated/BondFixedExpFPAAbi/BondFixedExpFPAAbi";
 import {BondFixedTermFPAAbi} from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
-import {BondFixedExpSDAv2Abi} from "../generated/BondFixedExpSDAv2Abi/BondFixedExpSDAv2Abi";
-import {BondFixedTermSDAv2Abi} from "../generated/BondFixedTermSDAv2Abi/BondFixedTermSDAv2Abi";
+import {BondFixedExpSDAv1_1Abi} from "../generated/BondFixedExpSDAv1_1Abi/BondFixedExpSDAv1_1Abi";
+import {BondFixedTermSDAv1_1Abi} from "../generated/BondFixedTermSDAv1_1Abi/BondFixedTermSDAv1_1Abi";
 
 export function createBondPurchase(
   id: BigInt,
@@ -92,13 +92,13 @@ export function createBondPurchase(
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase()
   ) {
-    const auctioneer = BondFixedExpSDAv2Abi.bind(auctioneerAddress);
+    const auctioneer = BondFixedExpSDAv1_1Abi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase()
   ) {
-    const auctioneer = BondFixedTermSDAv2Abi.bind(auctioneerAddress);
+    const auctioneer = BondFixedTermSDAv1_1Abi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else {

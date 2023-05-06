@@ -1,13 +1,13 @@
 import {
   AuthorityUpdated,
-  BondFixedExpSDAv2Abi,
+  BondFixedExpSDAv1_1Abi,
   MarketClosed,
   MarketCreated,
   Tuned
-} from "../generated/BondFixedExpSDAv2Abi/BondFixedExpSDAv2Abi";
+} from "../generated/BondFixedExpSDAv1_1Abi/BondFixedExpSDAv1_1Abi";
 import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
 
-const AUCTIONEER_NAME = "BondFixedExpSDAv2";
+const AUCTIONEER_NAME = "BondFixedExpSDAv1_1";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -20,7 +20,7 @@ export function handleMarketClosed(event: MarketClosed): void {
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const contract = BondFixedExpSDAv2Abi.bind(event.address);
+  const contract = BondFixedExpSDAv1_1Abi.bind(event.address);
   const markets = contract.markets(event.params.id);
 
   const terms = contract.terms(event.params.id);
