@@ -310,7 +310,7 @@
         },
         {
           "internalType": "uint256",
-          "name": "maxPayout",
+          "name": "maxPayout_",
           "type": "uint256"
         }
       ],

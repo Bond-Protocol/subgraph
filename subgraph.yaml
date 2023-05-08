@@ -290,7 +290,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedExpOSDAAbi
-      address: "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50"
+      address: "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -336,7 +336,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedTermOSDAAbi
-      address: "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C"
+      address: "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -382,7 +382,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedExpOFDAAbi
-      address: "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B"
+      address: "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -425,7 +425,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedTermOFDAAbi
-      address: "0x56A07e0b05D60EF41318c60935c57924804d4541"
+      address: "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -468,7 +468,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedExpFPAAbi
-      address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
+      address: "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -512,7 +512,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedTermFPAAbi
-      address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
+      address: "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1"
       startBlock: 1931076
     mapping:
       kind: ethereum/events

@@ -54,37 +54,37 @@ export function createBondPurchase(
     marketId = chainId + "_BondFixedExpCDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0x2E579f046c1474166cc3cc4c7Ab5fAD0B0E05e50".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90".toLowerCase()
   ) {
     const auctioneer = BondFixedExpOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF1d4fef484b50eB66Eb7c5cF4FAA04166573317C".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b".toLowerCase()
   ) {
     const auctioneer = BondFixedTermOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xaAdb8904C8E83C00848f9eC519ad4833227BE47B".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4".toLowerCase()
   ) {
     const auctioneer = BondFixedExpOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0x56A07e0b05D60EF41318c60935c57924804d4541".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7".toLowerCase()
   ) {
     const auctioneer = BondFixedTermOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55".toLowerCase()
   ) {
     const auctioneer = BondFixedExpFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpFPA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1".toLowerCase()
   ) {
     const auctioneer = BondFixedTermFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermFPA_" + id.toString();
