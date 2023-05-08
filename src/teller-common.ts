@@ -23,7 +23,7 @@ export function createBondPurchase(
   referrer: Address,
   timestamp: BigInt
 ): void {
-  const aggregator = AggregatorAbi.bind(Address.fromString("0x007A66A2a13415DB3613C1a4dd1C942A285902d1"));
+  const aggregator = AggregatorAbi.bind(Address.fromString("0x007a66A2a13415DB3613C1a4dd1C942A285902d1"));
 
   const getAuctioneer = aggregator.try_getAuctioneer(id);
   if (getAuctioneer.reverted) {

@@ -47,7 +47,6 @@ type UniqueBonder @entity {
     id: String!
 }
 
-
 """
 A BondToken record is created to track vesting tokens, both ERC-20 and ERC-1155, created by our contracts.
 """
