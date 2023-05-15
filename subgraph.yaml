@@ -382,7 +382,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedExpOFDAAbi
-      address: "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4"
+      address: "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -425,7 +425,7 @@ dataSources:
     network: arbitrum-goerli
     source:
       abi: BondFixedTermOFDAAbi
-      address: "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7"
+      address: "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd"
       startBlock: 1931076
     mapping:
       kind: ethereum/events
@@ -465,6 +465,50 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
+    network: arbitrum-goerli
+    source:
+      abi: BondFixedExpFPAAbi
+      address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
+      startBlock: 1931076
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedExpFPAAbi
+          file: ./abis/BondFixedExpFPA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-exp-fpa.ts
+  - kind: ethereum
+    name: BondFixedExpFPA2Abi
     network: arbitrum-goerli
     source:
       abi: BondFixedExpFPAAbi
@@ -509,6 +553,50 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
+    network: arbitrum-goerli
+    source:
+      abi: BondFixedTermFPAAbi
+      address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
+      startBlock: 1931076
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+      abis:
+        - name: BondFixedTermFPAAbi
+          file: ./abis/BondFixedTermFPA.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+      file: ./src/bond-fixed-term-fpa.ts
+  - kind: ethereum
+    name: BondFixedTermFPA2Abi
     network: arbitrum-goerli
     source:
       abi: BondFixedTermFPAAbi

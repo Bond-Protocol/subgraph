@@ -29,19 +29,19 @@
       "startBlock": 15546730
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 15546730
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 15546730
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 15546730
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 15546730
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -50,6 +50,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 15546730
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 15546730
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 15546730
     }
   },
@@ -83,19 +91,19 @@
       "startBlock": 7072454
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 7072454
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 7072454
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 7072454
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 7072454
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -104,6 +112,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 7072454
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 7072454
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 7072454
     }
   },
@@ -137,19 +153,19 @@
       "startBlock": 43274490
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 43274490
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 43274490
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 43274490
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 43274490
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -158,6 +174,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 43274490
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 43274490
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 43274490
     }
   },
@@ -191,19 +215,19 @@
       "startBlock": 1931076
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 1931076
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 1931076
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 1931076
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 1931076
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -212,6 +236,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 1931076
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 1931076
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 1931076
     }
   },
@@ -245,19 +277,19 @@
       "startBlock": 4024619
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 4024619
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 4024619
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 4024619
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 4024619
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -266,6 +298,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 4024619
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 4024619
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 4024619
     }
   },
@@ -299,19 +339,19 @@
       "startBlock": 30832648
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 30832648
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 30832648
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 30832648
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 30832648
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -320,6 +360,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 30832648
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 30832648
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 30832648
     }
   },
@@ -353,19 +401,19 @@
       "startBlock": 18155848
     },
     "BondFixedExpOFDAAbi": {
-      "address": "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4",
+      "address": "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6",
       "startBlock": 18155848
     },
     "BondFixedTermOFDAAbi": {
-      "address": "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7",
+      "address": "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd",
       "startBlock": 18155848
     },
     "BondFixedExpFPAAbi": {
-      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "address": "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54",
       "startBlock": 18155848
     },
     "BondFixedTermFPAAbi": {
-      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
+      "address": "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0",
       "startBlock": 18155848
     },
     "BondFixedExpSDAv1_1Abi": {
@@ -374,6 +422,14 @@
     },
     "BondFixedTermSDAv1_1Abi": {
       "address": "0xF75DAFffaF63f5D935f8A481EE827d68974FD992",
+      "startBlock": 18155848
+    },
+    "BondFixedExpFPA2Abi": {
+      "address": "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55",
+      "startBlock": 18155848
+    },
+    "BondFixedTermFPA2Abi": {
+      "address": "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1",
       "startBlock": 18155848
     }
   }

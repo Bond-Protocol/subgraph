@@ -66,24 +66,26 @@ export function createBondPurchase(
     marketId = chainId + "_BondFixedTermOSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA5406Ef715f6cE35B6550A45c4b2c4069e4".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6".toLowerCase()
   ) {
     const auctioneer = BondFixedExpOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF70FDA8bc3F30FE36cA3d63bcD0E75024c2371c7".toLowerCase()
+    auctioneerAddress.toHexString().toLowerCase() == "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd".toLowerCase()
   ) {
     const auctioneer = BondFixedTermOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
+    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase() ||
     auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55".toLowerCase()
   ) {
     const auctioneer = BondFixedExpFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpFPA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
+    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase() ||
     auctioneerAddress.toHexString().toLowerCase() == "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1".toLowerCase()
   ) {
     const auctioneer = BondFixedTermFPAAbi.bind(auctioneerAddress);
@@ -102,7 +104,12 @@ export function createBondPurchase(
     marketId = chainId + "_BondFixedTermSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else {
-    throw new Error("ABI not found for " + auctioneerAddress.toHexString() + " " + id.toString() + " " + auctioneerAddress.toHexString().toLowerCase() + " " + "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase());
+    log.warning("ABI not found for Chain: {} Auctioneer: {} Market ID: {}", [
+      chainId,
+      auctioneerAddress.toHexString().toLowerCase(),
+      id.toString()
+    ]);
+    return;
   }
 
   const market = Market.load(marketId);
