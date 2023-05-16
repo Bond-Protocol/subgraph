@@ -1,5 +1,5 @@
 import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {Market, Tune} from "../generated/schema";
+import {Market, MarketOwnerCount, Tune} from "../generated/schema";
 import {loadOrAddERC20Token} from "./erc20";
 import {
   isBalancerWeightedPoolCompatible,
@@ -82,6 +82,16 @@ export function createMarket(
 
     market.save();
   }
+
+  let marketOwnerCount = MarketOwnerCount.load(owner.toString());
+  if (!marketOwnerCount) {
+    marketOwnerCount = new MarketOwnerCount(owner.toString());
+    marketOwnerCount.count = BigInt.fromI32(1);
+  } else {
+    marketOwnerCount.count = marketOwnerCount.count.plus(BigInt.fromI32(1));
+  }
+
+  marketOwnerCount.save();
 
   return market;
 }

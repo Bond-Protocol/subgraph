@@ -461,3 +461,17 @@ type PurchaseCount @entity {
     """
     count: BigInt!
 }
+
+"""
+Workaround due to no simple entity count being available.
+"""
+type MarketOwnerCount @entity {
+    """
+    There should be one MarketOwnerCount entry per market owner, with owner address as id.
+    """
+    id: String!
+    """
+    The total number of markets (open and closed) owned by this address on this chain.
+    """
+    count: BigInt!
+}
