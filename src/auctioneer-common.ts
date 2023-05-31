@@ -32,8 +32,8 @@ export function createMarket(
   minPrice: BigInt | null,
   price: BigInt | null,
 ): Market {
-  let payoutToken = loadOrAddERC20Token(payoutTokenAddress);
-  let quoteToken = loadOrAddERC20Token(quoteTokenAddress);
+  let payoutToken = loadOrAddERC20Token(payoutTokenAddress, true, false);
+  let quoteToken = loadOrAddERC20Token(quoteTokenAddress, false, true);
 
   const network = dataSource.network();
   const chainId = CHAIN_IDS.get(network).toString();

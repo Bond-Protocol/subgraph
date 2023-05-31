@@ -25,7 +25,7 @@ export function loadOrAddBalancerWeightedPoolCompatiblePool(parentToken: Token):
 
     let constituentTokens: string[] = [];
     for (let i = 0; i < tokens.getTokens().length; i++) {
-      let token = loadOrAddERC20Token(tokens.getTokens().at(i));
+      let token = loadOrAddERC20Token(tokens.getTokens().at(i), false, false);
       constituentTokens.push(token.id.toString());
     }
 

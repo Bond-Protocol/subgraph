@@ -1,4 +1,16 @@
-import {BondPurchase, BondToken, Market, OwnerTokenTbv, PurchaseCount, Token, UniqueBonder} from "../generated/schema";
+import {
+  BondPurchase,
+  BondToken,
+  Market,
+  OwnerTokenTbv,
+  PayoutTokenTbv,
+  PurchaseCount,
+  Token,
+  UniqueBonder,
+  UniqueBonderCount,
+  UniqueTokenBonder,
+  UniqueTokenBonderCount
+} from "../generated/schema";
 import {Address, BigDecimal, BigInt, Bytes, dataSource, log} from "@graphprotocol/graph-ts";
 import {CHAIN_IDS} from "./chain-ids";
 import {loadOrAddERC20Token} from "./erc20";
@@ -159,10 +171,31 @@ export function createBondPurchase(
 
   ownerTokenTbv.save();
 
+  const payoutTokenTbvId = chainId + "_" + market.payoutToken.toString() + "_" + market.quoteToken.toString();
+  let payoutTokenTbv = PayoutTokenTbv.load(payoutTokenTbvId);
+  if (!payoutTokenTbv) {
+    payoutTokenTbv = new PayoutTokenTbv(payoutTokenTbvId);
+    payoutTokenTbv.tbv = BigDecimal.zero();
+  }
+
+  payoutTokenTbv.payoutToken = market.payoutToken;
+  payoutTokenTbv.quoteToken = market.quoteToken;
+  payoutTokenTbv.tbv = payoutTokenTbv.tbv.plus(BigDecimal.fromString(purchaseAmt));
+  payoutTokenTbv.network = network;
+  payoutTokenTbv.chainId = BigInt.fromString(chainId);
+
+  payoutTokenTbv.save();
+
+  const payout = BigDecimal.fromString((parseInt(payoutAmount.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
+
+  payoutToken.totalPayoutAmount = payoutToken.totalPayoutAmount.plus(payout);
+  payoutToken.purchaseCount = payoutToken.purchaseCount.plus(BigInt.fromI32(1));
+  payoutToken.save();
+
   bondPurchase.marketId = marketId;
   bondPurchase.owner = market.owner;
   bondPurchase.amount = BigDecimal.fromString(purchaseAmt);
-  bondPurchase.payout = BigDecimal.fromString((parseInt(payoutAmount.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
+  bondPurchase.payout = payout;
   bondPurchase.recipient = from.toHexString();
   bondPurchase.referrer = referrer.toHexString();
   bondPurchase.timestamp = timestamp;
@@ -201,9 +234,48 @@ export function createBondPurchase(
       "__" +
       from.toHexString()
     );
+
+    let uniqueBonderCount = UniqueBonderCount.load(market.owner.toString());
+
+    if (!uniqueBonderCount) {
+      uniqueBonderCount = new UniqueBonderCount(market.owner.toString());
+      uniqueBonderCount.count = BigInt.zero();
+    }
+    uniqueBonderCount.count = uniqueBonderCount.count.plus(BigInt.fromI32(1));
+    uniqueBonderCount.save();
   }
 
   uniqueBonder.save();
+
+  let uniqueTokenBonder = UniqueTokenBonder.load(
+    chainId +
+    "_" +
+    market.payoutToken +
+    "__" +
+    from.toHexString()
+  );
+
+  if (!uniqueTokenBonder) {
+    uniqueTokenBonder = new UniqueTokenBonder(
+      chainId +
+      "_" +
+      market.payoutToken +
+      "__" +
+      from.toHexString()
+    );
+
+    let uniqueTokenBonderCount = UniqueTokenBonderCount.load(payoutToken.id.toString());
+
+    if (!uniqueTokenBonderCount) {
+      uniqueTokenBonderCount = new UniqueTokenBonderCount(payoutToken.id.toString());
+      uniqueTokenBonderCount.count = BigInt.zero();
+      uniqueTokenBonderCount.token = payoutToken.id;
+    }
+    uniqueTokenBonderCount.count = uniqueTokenBonderCount.count.plus(BigInt.fromI32(1));
+    uniqueTokenBonderCount.save();
+  }
+
+  uniqueTokenBonder.save();
 
   let purchaseCount = PurchaseCount.load("purchase-count");
   if (!purchaseCount) {
@@ -228,7 +300,7 @@ export function createBondToken(
   const network = dataSource.network();
   const chainId = CHAIN_IDS.get(network).toString();
 
-  const underlyingToken = loadOrAddERC20Token(underlying);
+  const underlyingToken = loadOrAddERC20Token(underlying, false, false);
 
   token.underlying = underlyingToken.id;
   token.expiry = expiry;

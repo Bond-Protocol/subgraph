@@ -4,14 +4,14 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - ApprovalForAll
@@ -56,14 +56,14 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -103,14 +103,14 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermSDAv1_1Abi
       address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -150,14 +150,14 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -193,14 +193,14 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -240,14 +240,14 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -287,14 +287,14 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpOSDAAbi
       address: "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -333,14 +333,14 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermOSDAAbi
       address: "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -379,14 +379,14 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpOFDAAbi
       address: "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -422,14 +422,14 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermOFDAAbi
       address: "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -465,14 +465,14 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -509,14 +509,14 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedExpFPA2Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -553,14 +553,14 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -597,14 +597,14 @@ dataSources:
       file: ./src/bond-fixed-term-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPA2Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1"
-      startBlock: 15546730
+      startBlock: 43274490
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -642,12 +642,12 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: ERC20Abi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Account
@@ -665,12 +665,12 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: UniV2Abi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Pair
@@ -692,12 +692,12 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: DodoLpAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Pair
@@ -723,12 +723,12 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: GUniPoolAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Pair
@@ -758,12 +758,12 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: HypervisorAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Pair
@@ -783,12 +783,12 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BalancerVaultAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - BalancerWeightedPoolAbi
@@ -826,12 +826,12 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - BalancerWeightedPoolAbi
@@ -853,12 +853,12 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: AuctioneerAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated
@@ -872,12 +872,12 @@ templates:
       file: ./src/auctioneer-common.ts
   - kind: ethereum
     name: AggregatorAbi
-    network: mainnet
+    network: arbitrum-one
     source:
       abi: AggregatorAbi
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.5
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - AuthorityUpdated

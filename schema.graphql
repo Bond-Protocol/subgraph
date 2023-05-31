@@ -48,6 +48,49 @@ type UniqueBonder @entity {
 }
 
 """
+Workaround due to no simple entity count being available.
+"""
+type UniqueBonderCount @entity {
+    """
+    There should be one UniqueBonderCount entry per market owner, with owner address as id.
+    """
+    id: String!
+    """
+    The total number of unique bonders for this token on this chain.
+    """
+    count: BigInt!
+}
+
+"""
+A UniqueTokenBonder record is created for each unique combination of chain, payout token address, bond purchaser.
+"""
+type UniqueTokenBonder @entity {
+    """
+    Unique ID for the UniqueTokenBonder entity, in the format:
+    [chainId]_[payout token address]__[bond purchaser address]
+    """
+    id: String!
+}
+
+"""
+Workaround due to no simple entity count being available.
+"""
+type UniqueTokenBonderCount @entity {
+    """
+    There should be one UniqueTokenBonderCount entry per token, with token address as id.
+    """
+    id: String!
+    """
+    The token for which bonders are being counted.
+    """
+    token: Token!
+    """
+    The total number of unique bonders for this token on this chain.
+    """
+    count: BigInt!
+}
+
+"""
 A BondToken record is created to track vesting tokens, both ERC-20 and ERC-1155, created by our contracts.
 """
 type BondToken @entity {
@@ -130,6 +173,44 @@ type OwnerTokenTbv @entity {
 }
 
 """
+The PayoutTokenTbv entity tracks the total of each quote token received in exchange for the given payout token.
+"""
+type PayoutTokenTbv @entity {
+    """
+    Unique ID for the PayoutTokenTbv entity, in the format:
+    [chainId]_[payout token address]__[quote token id]
+    **NOTE** the Token ID also appends the chain ID before the token address, so the chain ID will appear once at the start of the OwnerTokenTbv ID and once in the quote token subsection of the ID.
+    """
+    id: String!
+    """
+    The payout Token address for which TBV is being calculated.
+    """
+    payoutToken: Token!
+    """
+    The quote Token for which TBV is being calculated.
+    """
+    quoteToken: Token!
+    """
+    The network name, as used by Graph Protocol.
+    **NOTE** This may not be the same as the name as used by wallets.
+    As such, we use the chainId field to identify networks in our frontend.
+    """
+    network: String!
+    """
+    The numeric chain ID on which the contracts are deployed.
+    """
+    chainId: BigInt!
+    """
+    The amount of the quote token received across the owner's markets.
+    """
+    tbv: BigDecimal!
+    """
+    A list of BondPurchase records in which the owner has received the quote token.
+    """
+    bondPurchases: [BondPurchase!] @derivedFrom(field: "payoutTokenTbv")
+}
+
+"""
 The BondPurchase entity tracks individual bond purchases.
 """
 type BondPurchase @entity {
@@ -205,6 +286,10 @@ type BondPurchase @entity {
     A reference to the OwnerTokenTbv record for this chain/owner/token combination.
     """
     ownerTokenTbv: OwnerTokenTbv
+    """
+    A reference to the PayoutTokenTbv record for this chain/owner/token combination.
+    """
+    payoutTokenTbv: PayoutTokenTbv
 }
 
 """
@@ -254,6 +339,30 @@ type Token @entity {
     A reference to the BalancerWeightedPool record, if the Token is a BalancerWeightedPool, or null if it is not.
     """
     balancerWeightedPool: BalancerWeightedPool
+    """
+    Whether the Token has been used as a Payout Token for any Markets
+    """
+    usedAsPayout: Boolean!
+    """
+    Whether the Token has been used as a Quote Token for any Markets
+    """
+    usedAsQuote: Boolean!
+    """
+    The amount of the this token paid out across the owner's markets.
+    """
+    totalPayoutAmount: BigDecimal!
+    """
+    The total number of times this Token has been purchased on this chain.
+    """
+    purchaseCount: BigInt!
+    """
+    A list of BondPurchase records in which the owner has received the quote token.
+    """
+    payoutTokenTbvs: [PayoutTokenTbv!] @derivedFrom(field: "payoutToken")
+    """
+    The UniqueTokenBonderCount for this Token
+    """
+    uniqueBonders: UniqueTokenBonderCount @derivedFrom(field: "token")
 }
 
 """
@@ -474,4 +583,12 @@ type MarketOwnerCount @entity {
     The total number of markets (open and closed) owned by this address on this chain.
     """
     count: BigInt!
+}
+
+type PayoutToken @entity {
+    id: String!
+}
+
+type QuoteToken @entity {
+    id: String!
 }
