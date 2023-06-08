@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -56,11 +56,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -103,11 +103,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermSDAv1_1Abi
       address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -150,11 +150,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -193,11 +193,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -240,11 +240,11 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -287,11 +287,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpOSDAAbi
       address: "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -333,11 +333,11 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermOSDAAbi
       address: "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -379,11 +379,11 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpOFDAAbi
       address: "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -422,11 +422,11 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermOFDAAbi
       address: "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -465,11 +465,11 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -509,11 +509,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedExpFPA1_1Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -553,11 +553,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -597,11 +597,11 @@ dataSources:
       file: ./src/bond-fixed-term-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPA1_1Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1"
-      startBlock: 101880844
+      startBlock: 1931076
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -642,7 +642,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: ERC20Abi
     mapping:
@@ -665,7 +665,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: UniV2Abi
     mapping:
@@ -692,7 +692,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: DodoLpAbi
     mapping:
@@ -723,7 +723,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: GUniPoolAbi
     mapping:
@@ -758,7 +758,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: HypervisorAbi
     mapping:
@@ -783,7 +783,7 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BalancerVaultAbi
     mapping:
@@ -826,7 +826,7 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -853,7 +853,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: AuctioneerAbi
     mapping:
@@ -872,7 +872,7 @@ templates:
       file: ./src/auctioneer-common.ts
   - kind: ethereum
     name: AggregatorAbi
-    network: optimism
+    network: arbitrum-goerli
     source:
       abi: AggregatorAbi
     mapping:

@@ -192,7 +192,7 @@ export function createBondPurchase(
   payoutToken.purchaseCount = payoutToken.purchaseCount.plus(BigInt.fromI32(1));
   payoutToken.save();
 
-  bondPurchase.marketId = marketId;
+  bondPurchase.market = marketId;
   bondPurchase.owner = market.owner;
   bondPurchase.amount = BigDecimal.fromString(purchaseAmt);
   bondPurchase.payout = payout;
@@ -214,7 +214,11 @@ export function createBondPurchase(
   bondPurchase.save();
 
   market.totalBondedAmount = market.totalBondedAmount.plus(bondPurchase.amount);
-  market.totalPayoutAmount = market.totalPayoutAmount.plus(bondPurchase.payout);
+  market.totalPayoutAmount = market.totalBondedAmount.plus(bondPurchase.payout);
+  market.averageBondPrice = market.totalBondedAmount.gt(BigDecimal.fromString("0"))
+    ? market.totalPayoutAmount.div(market.totalBondedAmount)
+    : BigDecimal.fromString("0");
+  market.bondsIssued = market.bondsIssued.plus(BigInt.fromI32(1));
 
   market.save();
 

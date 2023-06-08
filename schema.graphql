@@ -221,7 +221,7 @@ type BondPurchase @entity {
     """
     The ID of the Market from which the bond was purchased.
     """
-    marketId: String!
+    market: Market!
     """
     The owner address of the Market from which the bond was purchased.
     """
@@ -356,13 +356,17 @@ type Token @entity {
     """
     purchaseCount: BigInt!
     """
-    A list of BondPurchase records in which the owner has received the quote token.
+    A list of PayoutTokenTbv for this Token.
     """
     payoutTokenTbvs: [PayoutTokenTbv!] @derivedFrom(field: "payoutToken")
     """
     The UniqueTokenBonderCount for this Token
     """
     uniqueBonders: UniqueTokenBonderCount @derivedFrom(field: "token")
+    """
+    Markets for this Token
+    """
+    markets: [Market!] @derivedFrom(field: "payoutToken")
 }
 
 """
@@ -479,9 +483,21 @@ type Market @entity {
     """
     scale: BigInt
     """
+    The average bond price across all purchases.
+    """
+    averageBondPrice: BigDecimal
+    """
     A list of all tuning events that have been emitted for this Market.
     """
     tunes: [Tune!] @derivedFrom(field: "market")
+    """
+    A list of BondPurchase records for this Market.
+    """
+    bondPurchases: [BondPurchase!] @derivedFrom(field: "market")
+    """
+    A count of BondPurchases for this market
+    """
+    bondsIssued: BigInt!
 }
 
 """

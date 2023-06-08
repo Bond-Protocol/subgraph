@@ -66,6 +66,7 @@ export function createMarket(
     market.vestingType = vestingType;
     market.totalBondedAmount = BigDecimal.fromString("0");
     market.totalPayoutAmount = BigDecimal.fromString("0");
+    market.averageBondPrice = BigDecimal.fromString("0");
     market.creationBlockTimestamp = timestamp;
     market.start = start;
     market.conclusion = conclusion;
@@ -76,6 +77,7 @@ export function createMarket(
     market.owner = owner;
     market.isInstantSwap = isInstantSwap;
     market.hasClosed = false;
+    market.bondsIssued = BigInt.zero();
     price && (market.price = price);
     minPrice && (market.minPrice = minPrice);
     scale && (market.scale = scale);
