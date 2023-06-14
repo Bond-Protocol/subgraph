@@ -107,13 +107,13 @@ export function createBondPurchase(
     auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase()
   ) {
     const auctioneer = BondFixedExpSDAv1_1Abi.bind(auctioneerAddress);
-    marketId = chainId + "_BondFixedTermSDA_" + id.toString();
+    marketId = chainId + "_BondFixedTermSDAv1_1_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     auctioneerAddress.toHexString().toLowerCase() == "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase()
   ) {
     const auctioneer = BondFixedTermSDAv1_1Abi.bind(auctioneerAddress);
-    marketId = chainId + "_BondFixedTermSDA_" + id.toString();
+    marketId = chainId + "_BondFixedTermSDAv1_1_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else {
     log.warning("ABI not found for Chain: {} Auctioneer: {} Market ID: {}", [

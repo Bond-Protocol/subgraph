@@ -19,6 +19,7 @@ export function createMarket(
   conclusion: BigInt,
   auctioneerName: string,
   auctioneer: Address,
+  type: string,
   payoutTokenAddress: Address,
   quoteTokenAddress: Address,
   vestingType: string,
@@ -53,12 +54,14 @@ export function createMarket(
   let market = Market.load(id.toString());
 
   if (!market) {
+
     market = new Market(id.toString());
     market.id = chainId + "_" + auctioneerName + "_" + id.toString();
     market.name = auctioneerName;
     market.network = network;
     market.chainId = BigInt.fromString(chainId);
     market.auctioneer = auctioneer.toHexString();
+    market.type = type;
     market.marketId = id;
     market.payoutToken = payoutToken.id;
     market.quoteToken = quoteToken.id;

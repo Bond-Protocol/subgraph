@@ -381,9 +381,12 @@ type Market @entity {
     id: String!
     """
     The Auctioneer contract name.
-    **NOTE** At the time of writing, contract name will be either 'BondFixedTermCDA' or BondFixedExpCDA. More will be added in the future as different auctioneer types become available.
     """
     name: String!
+    """
+    The type of Market.
+    """
+    type: String!
     """
     The network name, as used by Graph Protocol.
     **NOTE** This may not be the same as the name as used by wallets.

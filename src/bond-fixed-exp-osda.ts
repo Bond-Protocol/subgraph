@@ -8,6 +8,7 @@ import {
 import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedExpOSDA";
+const AUCTION_TYPE = "oracle-dynamic";
 
 export function handleAuthorityUpdated(event: AuthorityUpdated): void {
 }
@@ -33,6 +34,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     terms.getConclusion(),
     AUCTIONEER_NAME,
     event.address,
+    AUCTION_TYPE,
     event.params.payoutToken,
     event.params.quoteToken,
     "fixed-expiration",
