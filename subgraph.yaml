@@ -149,6 +149,53 @@ dataSources:
           handler: handleTuned
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
+    name: BondFixedTermSDAv1_1Abi2
+    network: mainnet
+    source:
+      abi: BondFixedTermSDAv1_1Abi
+      address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
+      startBlock: 15546730
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedTermSDAv1_1Abi
+          file: ./abis/BondFixedTermSDAv1_1.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-term-sda-v2.ts
+  - kind: ethereum
     name: BondFixedExpTellerAbi
     network: mainnet
     source:
@@ -244,6 +291,53 @@ dataSources:
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
+      startBlock: 15546730
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - AuthorityUpdated
+        - Bonded
+        - MarketClosed
+        - MarketCreated
+        - Tuned
+      abis:
+        - name: BondFixedExpSDAv1_1Abi
+          file: ./abis/BondFixedExpSDAv1_1.json
+        - name: AuctioneerAbi
+          file: ./abis/Auctioneer.json
+        - name: ERC20Abi
+          file: ./abis/ERC20.json
+        - name: UniV2Abi
+          file: ./abis/lp-types/UniV2.json
+        - name: DodoLpAbi
+          file: ./abis/lp-types/DodoLp.json
+        - name: GUniPoolAbi
+          file: ./abis/lp-types/GUniPool.json
+        - name: HypervisorAbi
+          file: ./abis/lp-types/Hypervisor.json
+        - name: BalancerVaultAbi
+          file: ./abis/lp-types/BalancerVault.json
+        - name: BalancerWeightedPoolAbi
+          file: ./abis/lp-types/BalancerWeightedPool.json
+      eventHandlers:
+        - event: AuthorityUpdated(indexed address,indexed address)
+          handler: handleAuthorityUpdated
+        - event: MarketClosed(indexed uint256)
+          handler: handleMarketClosed
+        - event: MarketCreated(indexed uint256,indexed address,indexed
+            address,uint48,uint256)
+          handler: handleMarketCreated
+        - event: Tuned(indexed uint256,uint256,uint256)
+          handler: handleTuned
+      file: ./src/bond-fixed-exp-sda-v2.ts
+  - kind: ethereum
+    name: BondFixedExpSDAv1_1Abi2
+    network: mainnet
+    source:
+      abi: BondFixedExpSDAv1_1Abi
+      address: "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646"
       startBlock: 15546730
     mapping:
       kind: ethereum/events
