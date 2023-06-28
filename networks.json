@@ -277,14 +277,6 @@
     "BondFixedTermSDAv1_1Abi2": {
       "address": "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F",
       "startBlock": 101880844
-    },
-    "BondFixedExpSDAv1_1Abi2": {
-      "address": "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646",
-      "startBlock": 101880844
-    },
-    "BondFixedTermSDAv1_1Abi2": {
-      "address": "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F",
-      "startBlock": 101880844
     }
   },
   "arbitrum-goerli": {
