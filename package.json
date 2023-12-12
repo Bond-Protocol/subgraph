@@ -10,7 +10,7 @@
     "build-optimism-mainnet": "graph build --network optimism",
     "build-optimism-goerli": "graph build --network optimism-goerli",
     "build-polygon-mumbai": "graph build --network mumbai",
-    "build-polygon-mainnet": "graph build --network polygon",
+    "build-polygon-mainnet": "graph build --network matic",
     "build-avalanche-fuji": "graph build --network fuji",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
