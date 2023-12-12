@@ -26,7 +26,7 @@
     "deploy-optimism-mainnet-testing": "yarn build-optimism-mainnet && graph deploy --product hosted-service spaceturtleship/bp-optimism-testing",
     "deploy-optimism-goerli": "yarn build-optimism-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-optimism-goerli",
     "deploy-optimism-goerli-testing": "yarn build-optimism-goerli && graph deploy --product hosted-service bond-protocol/bp-optimism-goerli-testing",
-    "deploy-polygon-mumbai": "yarn build-polygon-mumbai && graph deploy --product hosted-service brightiron/bond-protocol-polygon-mumbai",
+    "deploy-polygon-mumbai": "yarn build-polygon-mumbai && graph deploy --product hosted-service bond-protocol/bond-protocol-polygon-mumbai",
     "deploy-polygon-mainnet": "yarn build-polygon-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-polygon-mainnet",
     "deploy-avalanche-fuji": "yarn build-avalanche-fuji && graph deploy --product hosted-service bond-protocol/bond-protocol-avalanche-fuji",
     "deploy-avalanche-fuji-testing": "yarn build-avalanche-fuji && graph deploy --product hosted-service bond-protocol/bp-avalanche-fuji-testing",
