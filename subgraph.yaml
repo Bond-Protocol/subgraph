@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermTellerAbi
-      address: "0x007F774351e541b8bc720018De0796c4BF5afE3D"
-      startBlock: 43450855
+      address: "0x007F7735baF391e207E3aA380bb53c4Bd9a5Fed6"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -56,11 +56,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermCDAAbi
       address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 43450855
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -103,11 +103,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermSDAv1_1Abi
-      address: "0xF75DA1E6eA0521da0cb938D2F96bfe1Da5929557"
-      startBlock: 43450855
+      address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -150,11 +150,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi2
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermSDAv1_1Abi
-      address: "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F"
-      startBlock: 43450855
+      address: "0xF75DAFffaF63f5D935f8A481EE827d68974FD992"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -197,11 +197,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpTellerAbi
-      address: "0x007FE7c977a584CC54269730d210D889a86Ff9Cf"
-      startBlock: 43450855
+      address: "0x007FE70dc9797C4198528aE43d8195ffF82Bdc95"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -240,11 +240,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpCDAAbi
       address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 43450855
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -287,11 +287,11 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpSDAv1_1Abi
-      address: "0xFE5DA8cF974EaC29606EDce195BF7fAbfC570f1C"
-      startBlock: 43450855
+      address: "0xFE5DA6ad5720237D19229e7416791d390255E9AA"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -334,11 +334,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi2
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646"
-      startBlock: 43450855
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -381,11 +381,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpOSDAAbi
-      address: "0xFE05DA30aF9cfAc9bCfC911273F83fDcbb04Ae22"
-      startBlock: 43450855
+      address: "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -427,11 +427,11 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermOSDAAbi
-      address: "0xF705DA88cd0AAeed5EA612502Fb9E5E7f1A5c2bD"
-      startBlock: 43450855
+      address: "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -473,11 +473,11 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpOFDAAbi
-      address: "0xFE0FDAD3969BbD8dd94c0bda7b04eC4ab66fFf85"
-      startBlock: 43450855
+      address: "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -516,11 +516,11 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermOFDAAbi
-      address: "0xF70FDA7c9C397CE958320Db5C481939F0a8bb08D"
-      startBlock: 43450855
+      address: "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -559,11 +559,11 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
-      startBlock: 43450855
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -603,11 +603,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedExpFPA1_1Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedExpFPAAbi
-      address: "0xFEF9A1BB7c9AFd5F31c58Cf87Cefc639bDfA04Dd"
-      startBlock: 43450855
+      address: "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -647,11 +647,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 43450855
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -691,11 +691,11 @@ dataSources:
       file: ./src/bond-fixed-term-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPA1_1Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: BondFixedTermFPAAbi
-      address: "0xF7F9A834CBD3075D4810A9b818f594312C0de168"
-      startBlock: 43450855
+      address: "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1"
+      startBlock: 15546730
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -736,7 +736,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: ERC20Abi
     mapping:
@@ -759,7 +759,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: mumbai
+    network: mainnet
     source:
       abi: UniV2Abi
     mapping:
@@ -786,7 +786,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: DodoLpAbi
     mapping:
@@ -817,7 +817,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: GUniPoolAbi
     mapping:
@@ -852,7 +852,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: HypervisorAbi
     mapping:
@@ -877,7 +877,7 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BalancerVaultAbi
     mapping:
@@ -920,7 +920,7 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -947,7 +947,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: AuctioneerAbi
     mapping:
@@ -966,7 +966,7 @@ templates:
       file: ./src/auctioneer-common.ts
   - kind: ethereum
     name: AggregatorAbi
-    network: mumbai
+    network: mainnet
     source:
       abi: AggregatorAbi
     mapping:
