@@ -10,6 +10,7 @@
     "build-optimism-mainnet": "graph build --network optimism",
     "build-optimism-goerli": "graph build --network optimism-goerli",
     "build-polygon-mumbai": "graph build --network mumbai",
+    "build-polygon-mainnet": "graph build --network matic",
     "build-avalanche-fuji": "graph build --network fuji",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
@@ -26,7 +27,7 @@
     "deploy-optimism-goerli": "yarn build-optimism-goerli && graph deploy --product hosted-service bond-protocol/bond-protocol-optimism-goerli",
     "deploy-optimism-goerli-testing": "yarn build-optimism-goerli && graph deploy --product hosted-service bond-protocol/bp-optimism-goerli-testing",
     "deploy-polygon-mumbai": "yarn build-polygon-mumbai && graph deploy --product hosted-service bond-protocol/bond-protocol-polygon-mumbai",
-    "deploy-polygon-mumbai-testing": "yarn build-polygon-mumbai && graph deploy --product hosted-service bond-protocol/bp-polygon-mumbai-testing",
+    "deploy-polygon-mainnet": "yarn build-polygon-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-polygon-mainnet",
     "deploy-avalanche-fuji": "yarn build-avalanche-fuji && graph deploy --product hosted-service bond-protocol/bond-protocol-avalanche-fuji",
     "deploy-avalanche-fuji-testing": "yarn build-avalanche-fuji && graph deploy --product hosted-service bond-protocol/bp-avalanche-fuji-testing",
     "create-local": "graph create --node http://localhost:8020/ bond-protocol",
@@ -36,5 +37,9 @@
   "dependencies": {
     "@graphprotocol/graph-cli": "0.49.0",
     "@graphprotocol/graph-ts": "0.27.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.6",
+    "@babel/preset-typescript": "^7.23.3"
   }
 }
