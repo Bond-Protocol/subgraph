@@ -22,3 +22,5 @@ CHAIN_IDS.set("aurora", 1313161554);
 CHAIN_IDS.set("aurora-testnet", 1313161555);
 CHAIN_IDS.set("boba", 288);
 CHAIN_IDS.set("harmony", 1666600000);
+CHAIN_IDS.set("base", 8453);
+CHAIN_IDS.set("base-sepolia", 84532);
