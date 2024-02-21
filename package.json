@@ -13,7 +13,7 @@
     "build-polygon-mainnet": "graph build --network matic",
     "build-avalanche-fuji": "graph build --network fuji",
     "build-base-sepolia": "graph build --network base-sepolia",
-    "build-base": "graph build --network base",
+    "build-base-mainnet": "graph build --network base",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
     "deploy-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-mainnet",
@@ -34,7 +34,7 @@
     "deploy-avalanche-fuji-testing": "yarn build-avalanche-fuji && graph deploy --product hosted-service bond-protocol/bp-avalanche-fuji-testing",
     "deploy-base-sepolia": "yarn build-base-sepolia && graph deploy --product hosted-service bond-protocol/bond-protocol-base-sepolia",
     "deploy-base-sepolia-testing": "yarn build-base-sepolia && graph deploy --product hosted-service bond-protocol/bp-base-sepolia-testing",
-    "deploy-base-mainnet": "yarn build-polygon && graph deploy --product hosted-service bond-protocol/bond-protocol-base",
+    "deploy-base-mainnet": "yarn build-base-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-base-mainnet",
     "create-local": "graph create --node http://localhost:8020/ bond-protocol",
     "remove-local": "graph remove --node http://localhost:8020/ bond-protocol",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 bond-protocol"
