@@ -2,7 +2,9 @@
 
 1. Update/add addresses in `networks.json`
 2. Run `yarn graph codegen`
-3. Run deploy script for target network. I.e. for polygon-mumbai run: `yarn deploy-polygon-mumbai`
+
+3.a For graph hosted services, uun deploy script for target network. I.e. for polygon-mumbai run: `yarn deploy-polygon-mumbai`
+3.b For Alchemy subgraph there's a single deploy script. I.e for base-sepolia `yarn deploy-alchemy base-sepolia 0.0.7 <your_access_token>`
 
 ## Deployment Permissions
 
