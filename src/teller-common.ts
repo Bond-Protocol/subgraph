@@ -9,22 +9,30 @@ import {
   UniqueBonder,
   UniqueBonderCount,
   UniqueTokenBonder,
-  UniqueTokenBonderCount
+  UniqueTokenBonderCount,
 } from "../generated/schema";
-import {Address, BigDecimal, BigInt, Bytes, dataSource, log} from "@graphprotocol/graph-ts";
-import {CHAIN_IDS} from "./chain-ids";
-import {loadOrAddERC20Token} from "./erc20";
-import {AggregatorAbi} from "../generated/templates/AggregatorAbi/AggregatorAbi";
-import {BondFixedTermCDAAbi} from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi";
-import {BondFixedExpCDAAbi} from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
-import {BondFixedExpOSDAAbi} from "../generated/BondFixedExpOSDAAbi/BondFixedExpOSDAAbi";
-import {BondFixedTermOSDAAbi} from "../generated/BondFixedTermOSDAAbi/BondFixedTermOSDAAbi";
-import {BondFixedExpOFDAAbi} from "../generated/BondFixedExpOFDAAbi/BondFixedExpOFDAAbi";
-import {BondFixedTermOFDAAbi} from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
-import {BondFixedExpFPAAbi} from "../generated/BondFixedExpFPAAbi/BondFixedExpFPAAbi";
-import {BondFixedTermFPAAbi} from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
-import {BondFixedExpSDAv1_1Abi} from "../generated/BondFixedExpSDAv1_1Abi/BondFixedExpSDAv1_1Abi";
-import {BondFixedTermSDAv1_1Abi} from "../generated/BondFixedTermSDAv1_1Abi/BondFixedTermSDAv1_1Abi";
+import {
+  Address,
+  BigDecimal,
+  BigInt,
+  Bytes,
+  dataSource,
+  log,
+} from "@graphprotocol/graph-ts";
+import { CHAIN_IDS } from "./chain-ids";
+import { loadOrAddERC20Token } from "./erc20";
+import { AggregatorAbi } from "../generated/templates/AggregatorAbi/AggregatorAbi";
+import { BondFixedTermCDAAbi } from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi";
+import { BondFixedExpCDAAbi } from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
+import { BondFixedExpOSDAAbi } from "../generated/BondFixedExpOSDAAbi/BondFixedExpOSDAAbi";
+import { BondFixedTermOSDAAbi } from "../generated/BondFixedTermOSDAAbi/BondFixedTermOSDAAbi";
+import { BondFixedExpOFDAAbi } from "../generated/BondFixedExpOFDAAbi/BondFixedExpOFDAAbi";
+import { BondFixedTermOFDAAbi } from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
+import { BondFixedExpFPAAbi } from "../generated/BondFixedExpFPAAbi/BondFixedExpFPAAbi";
+import { BondFixedTermFPAAbi } from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
+import { BondFixedExpSDAv1_1Abi } from "../generated/BondFixedExpSDAv1_1Abi/BondFixedExpSDAv1_1Abi";
+import { BondFixedTermSDAv1_1Abi } from "../generated/BondFixedTermSDAv1_1Abi/BondFixedTermSDAv1_1Abi";
+import { addressesByChain, oldAddresses } from "./address-map";
 
 export function createBondPurchase(
   id: BigInt,
@@ -35,11 +43,25 @@ export function createBondPurchase(
   referrer: Address,
   timestamp: BigInt
 ): void {
-  const aggregator = AggregatorAbi.bind(Address.fromString("0x007a66A2a13415DB3613C1a4dd1C942A285902d1"));
+  const network = dataSource.network();
+  const _chainId = CHAIN_IDS.get(network);
+  const chainId = _chainId.toString();
+
+  let contracts = oldAddresses;
+
+  if (addressesByChain.has(_chainId)) {
+    contracts = addressesByChain.get(_chainId);
+  }
+
+  const aggregator = AggregatorAbi.bind(
+    Address.fromString(contracts.get("aggregator"))
+  );
 
   const getAuctioneer = aggregator.try_getAuctioneer(id);
   if (getAuctioneer.reverted) {
-    throw new Error("Auctioneer not found " + id.toString() + " " + aggregator._name);
+    throw new Error(
+      "Auctioneer not found " + id.toString() + " " + aggregator._name
+    );
   }
   const auctioneerAddress = getAuctioneer.value;
 
@@ -48,71 +70,93 @@ export function createBondPurchase(
     bondPurchase = new BondPurchase(txHash.toHexString());
   }
 
-  const network = dataSource.network();
-  const chainId = CHAIN_IDS.get(network).toString();
-
   let marketId: string;
   let marketPrice: BigDecimal;
-  if (
-    auctioneerAddress.toHexString().toLowerCase() == "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222".toLowerCase()
-  ) {
+  const auctioneerAddressLower = auctioneerAddress.toHexString().toLowerCase();
+  //TODO: improve this section
+  //Some cases have an hardcoded address,
+  //they're deprecated addresses that we still wanna include to allow bond redemptions
+  if (auctioneerAddressLower === contracts.get("aggregator").toLowerCase()) {
+    //auctioneerAddressLower == "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222".toLowerCase()
     const auctioneer = BondFixedTermCDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermCDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase()
+    //auctioneerAddress.toHexString().toLowerCase() == "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase()
+    auctioneerAddressLower ===
+    contracts.get("fixedExpirySDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpCDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpCDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90".toLowerCase()
+    //auctioneerAddress.toHexString().toLowerCase() == "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90".toLowerCase()
+    auctioneerAddressLower ===
+    contracts.get("fixedExpiryOSDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b".toLowerCase()
+    //auctioneerAddress.toHexString().toLowerCase() == "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b".toLowerCase()
+    auctioneerAddressLower ===
+    contracts.get("fixedTermOSDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermOSDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOSDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6".toLowerCase()
+    //auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6".toLowerCase()
+    auctioneerAddressLower ===
+    contracts.get("fixedExpiryOFDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd".toLowerCase()
+    //auctioneerAddress.toHexString().toLowerCase() == "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd".toLowerCase()
+    auctioneerAddressLower ===
+    contracts.get("fixedTermOFDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermOFDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermOFDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase() ||
-    auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55".toLowerCase()
+    auctioneerAddressLower ==
+      "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase() ||
+    // auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55".toLowerCase()
+    auctioneerAddressLower ===
+      contracts.get("fixedExpiryFPAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpFPA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase() ||
-    auctioneerAddress.toHexString().toLowerCase() == "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1".toLowerCase()
+    auctioneerAddressLower ==
+      "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase() ||
+    //auctioneerAddress.toHexString().toLowerCase() == "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1".toLowerCase()
+    auctioneerAddressLower ===
+      contracts.get("fixedTermFPAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermFPAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermFPA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase() ||
-    auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646".toLowerCase()
+    auctioneerAddressLower ==
+      "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase() ||
+    // auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646".toLowerCase()
+    auctioneerAddressLower ===
+      contracts.get("fixedExpirySDAv1_1Auctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpSDAv1_1Abi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedExpSDAv1_1_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
-    auctioneerAddress.toHexString().toLowerCase() == "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase() ||
-    auctioneerAddress.toHexString().toLowerCase() == "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F".toLowerCase()
+    auctioneerAddressLower ==
+      "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase() ||
+    // auctioneerAddress.toHexString().toLowerCase() == "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F".toLowerCase()/
+    auctioneerAddressLower ===
+      contracts.get("fixedTermSDAv1_1Auctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermSDAv1_1Abi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermSDAv1_1_" + id.toString();
@@ -120,8 +164,8 @@ export function createBondPurchase(
   } else {
     log.warning("ABI not found for Chain: {} Auctioneer: {} Market ID: {}", [
       chainId,
-      auctioneerAddress.toHexString().toLowerCase(),
-      id.toString()
+      auctioneerAddressLower,
+      id.toString(),
     ]);
     return;
   }
@@ -137,21 +181,29 @@ export function createBondPurchase(
   const payoutToken = Token.load(market.payoutToken);
   if (!payoutToken) return;
 
-  const ownerTokenTbvId = chainId + "_" + market.owner.toString() + "_" + market.quoteToken.toString();
+  const ownerTokenTbvId =
+    chainId +
+    "_" +
+    market.owner.toString() +
+    "_" +
+    market.quoteToken.toString();
   let ownerTokenTbv = OwnerTokenTbv.load(ownerTokenTbvId);
   if (!ownerTokenTbv) {
     ownerTokenTbv = new OwnerTokenTbv(ownerTokenTbvId);
     ownerTokenTbv.tbv = BigDecimal.zero();
   }
 
-  const purchaseAmt = BigDecimal.fromString((parseInt(purchaseAmount.toString()) / Math.pow(10, parseInt(quoteToken.decimals.toString()))).toString()).toString();
+  const purchaseAmt = BigDecimal.fromString(
+    (
+      parseInt(purchaseAmount.toString()) /
+      Math.pow(10, parseInt(quoteToken.decimals.toString()))
+    ).toString()
+  ).toString();
 
   const payoutDecimals: u8 = payoutToken.decimals.toI32() as u8;
   const quoteDecimals: u8 = quoteToken.decimals.toI32() as u8;
 
-  const baseScale = BigInt.fromI32(10).pow(
-    36 + payoutDecimals - quoteDecimals
-  );
+  const baseScale = BigInt.fromI32(10).pow(36 + payoutDecimals - quoteDecimals);
   const baseScaleDecimal = BigDecimal.fromString(baseScale.toString());
 
   let price: BigDecimal;
@@ -163,17 +215,26 @@ export function createBondPurchase(
     price = marketPrice;
   }
 
-  const postPurchasePrice = price.div(BigDecimal.fromString(Math.pow(10, 36).toString()));
+  const postPurchasePrice = price.div(
+    BigDecimal.fromString(Math.pow(10, 36).toString())
+  );
 
   ownerTokenTbv.owner = market.owner.toString();
   ownerTokenTbv.token = market.quoteToken.toString();
-  ownerTokenTbv.tbv = ownerTokenTbv.tbv.plus(BigDecimal.fromString(purchaseAmt));
+  ownerTokenTbv.tbv = ownerTokenTbv.tbv.plus(
+    BigDecimal.fromString(purchaseAmt)
+  );
   ownerTokenTbv.network = network;
   ownerTokenTbv.chainId = BigInt.fromString(chainId);
 
   ownerTokenTbv.save();
 
-  const payoutTokenTbvId = chainId + "_" + market.payoutToken.toString() + "_" + market.quoteToken.toString();
+  const payoutTokenTbvId =
+    chainId +
+    "_" +
+    market.payoutToken.toString() +
+    "_" +
+    market.quoteToken.toString();
   let payoutTokenTbv = PayoutTokenTbv.load(payoutTokenTbvId);
   if (!payoutTokenTbv) {
     payoutTokenTbv = new PayoutTokenTbv(payoutTokenTbvId);
@@ -182,13 +243,20 @@ export function createBondPurchase(
 
   payoutTokenTbv.payoutToken = market.payoutToken;
   payoutTokenTbv.quoteToken = market.quoteToken;
-  payoutTokenTbv.tbv = payoutTokenTbv.tbv.plus(BigDecimal.fromString(purchaseAmt));
+  payoutTokenTbv.tbv = payoutTokenTbv.tbv.plus(
+    BigDecimal.fromString(purchaseAmt)
+  );
   payoutTokenTbv.network = network;
   payoutTokenTbv.chainId = BigInt.fromString(chainId);
 
   payoutTokenTbv.save();
 
-  const payout = BigDecimal.fromString((parseInt(payoutAmount.toString()) / Math.pow(10, parseInt(payoutToken.decimals.toString()))).toString());
+  const payout = BigDecimal.fromString(
+    (
+      parseInt(payoutAmount.toString()) /
+      Math.pow(10, parseInt(payoutToken.decimals.toString()))
+    ).toString()
+  );
 
   payoutToken.totalPayoutAmount = payoutToken.totalPayoutAmount.plus(payout);
   payoutToken.purchaseCount = payoutToken.purchaseCount.plus(BigInt.fromI32(1));
@@ -207,7 +275,9 @@ export function createBondPurchase(
   bondPurchase.quoteToken = quoteToken.id;
   bondPurchase.network = network;
   bondPurchase.chainId = BigInt.fromString(chainId);
-  bondPurchase.purchasePrice = bondPurchase.payout.gt(BigDecimal.fromString("0"))
+  bondPurchase.purchasePrice = bondPurchase.payout.gt(
+    BigDecimal.fromString("0")
+  )
     ? bondPurchase.amount.div(bondPurchase.payout)
     : BigDecimal.fromString("0");
   bondPurchase.postPurchasePrice = postPurchasePrice;
@@ -217,7 +287,9 @@ export function createBondPurchase(
 
   market.totalBondedAmount = market.totalBondedAmount.plus(bondPurchase.amount);
   market.totalPayoutAmount = market.totalBondedAmount.plus(bondPurchase.payout);
-  market.averageBondPrice = market.totalBondedAmount.gt(BigDecimal.fromString("0"))
+  market.averageBondPrice = market.totalBondedAmount.gt(
+    BigDecimal.fromString("0")
+  )
     ? market.totalPayoutAmount.div(market.totalBondedAmount)
     : BigDecimal.fromString("0");
   market.bondsIssued = market.bondsIssued.plus(BigInt.fromI32(1));
@@ -225,20 +297,12 @@ export function createBondPurchase(
   market.save();
 
   let uniqueBonder = UniqueBonder.load(
-    chainId +
-    "_" +
-    market.owner.toString() +
-    "__" +
-    from.toHexString()
+    chainId + "_" + market.owner.toString() + "__" + from.toHexString()
   );
 
   if (!uniqueBonder) {
     uniqueBonder = new UniqueBonder(
-      chainId +
-      "_" +
-      market.owner.toString() +
-      "__" +
-      from.toHexString()
+      chainId + "_" + market.owner.toString() + "__" + from.toHexString()
     );
 
     let uniqueBonderCount = UniqueBonderCount.load(market.owner.toString());
@@ -254,30 +318,28 @@ export function createBondPurchase(
   uniqueBonder.save();
 
   let uniqueTokenBonder = UniqueTokenBonder.load(
-    chainId +
-    "_" +
-    market.payoutToken +
-    "__" +
-    from.toHexString()
+    chainId + "_" + market.payoutToken + "__" + from.toHexString()
   );
 
   if (!uniqueTokenBonder) {
     uniqueTokenBonder = new UniqueTokenBonder(
-      chainId +
-      "_" +
-      market.payoutToken +
-      "__" +
-      from.toHexString()
+      chainId + "_" + market.payoutToken + "__" + from.toHexString()
     );
 
-    let uniqueTokenBonderCount = UniqueTokenBonderCount.load(payoutToken.id.toString());
+    let uniqueTokenBonderCount = UniqueTokenBonderCount.load(
+      payoutToken.id.toString()
+    );
 
     if (!uniqueTokenBonderCount) {
-      uniqueTokenBonderCount = new UniqueTokenBonderCount(payoutToken.id.toString());
+      uniqueTokenBonderCount = new UniqueTokenBonderCount(
+        payoutToken.id.toString()
+      );
       uniqueTokenBonderCount.count = BigInt.zero();
       uniqueTokenBonderCount.token = payoutToken.id;
     }
-    uniqueTokenBonderCount.count = uniqueTokenBonderCount.count.plus(BigInt.fromI32(1));
+    uniqueTokenBonderCount.count = uniqueTokenBonderCount.count.plus(
+      BigInt.fromI32(1)
+    );
     uniqueTokenBonderCount.save();
   }
 
