@@ -15,6 +15,7 @@
     "build-base-sepolia": "graph build --network base-sepolia",
     "build-base-mainnet": "graph build --network base",
     "build-bsc": "graph build --network bsc",
+    "build-mode": "graph build --network mode-mainnet",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
     "deploy-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-mainnet",
