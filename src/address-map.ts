@@ -113,3 +113,4 @@ export const addressesByChain: Map<number, Map<string, string>> = new Map();
 
 addressesByChain.set(137, newAddresses);
 addressesByChain.set(80001, newAddresses);
+addressesByChain.set(56, newAddresses);
