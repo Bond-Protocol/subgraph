@@ -14,6 +14,7 @@
     "build-avalanche-fuji": "graph build --network fuji",
     "build-base-sepolia": "graph build --network base-sepolia",
     "build-base-mainnet": "graph build --network base",
+    "build-bsc": "graph build --network bsc",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
     "deploy-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-mainnet",
@@ -41,6 +42,7 @@
     "deploy-alchemy": "node scripts/alchemy-deploy.js"
   },
   "dependencies": {
+    "@goldskycom/cli": "^8.9.1",
     "@graphprotocol/graph-cli": "0.49.0",
     "@graphprotocol/graph-ts": "0.27.0"
   },
