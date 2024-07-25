@@ -9,7 +9,7 @@ import {
   UniqueBonder,
   UniqueBonderCount,
   UniqueTokenBonder,
-  UniqueTokenBonderCount,
+  UniqueTokenBonderCount
 } from "../generated/schema";
 import {
   Address,
@@ -17,7 +17,7 @@ import {
   BigInt,
   Bytes,
   dataSource,
-  log,
+  log
 } from "@graphprotocol/graph-ts";
 import { CHAIN_IDS } from "./chain-ids";
 import { loadOrAddERC20Token } from "./erc20";
@@ -76,14 +76,17 @@ export function createBondPurchase(
   //TODO: improve this section
   //Some cases have an hardcoded address,
   //they're deprecated addresses that we still wanna include to allow bond redemptions
-  if (auctioneerAddressLower === contracts.get("aggregator").toLowerCase()) {
+  if (
+    auctioneerAddressLower ==
+    contracts.get("fixedTermSDAAuctioneer").toLowerCase()
+  ) {
     //auctioneerAddressLower == "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222".toLowerCase()
     const auctioneer = BondFixedTermCDAAbi.bind(auctioneerAddress);
     marketId = chainId + "_BondFixedTermCDA_" + id.toString();
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     //auctioneerAddress.toHexString().toLowerCase() == "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
     contracts.get("fixedExpirySDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpCDAAbi.bind(auctioneerAddress);
@@ -91,7 +94,7 @@ export function createBondPurchase(
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     //auctioneerAddress.toHexString().toLowerCase() == "0xFE05DA9fffc72027C26E2327A9e6339670CD1b90".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
     contracts.get("fixedExpiryOSDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpOSDAAbi.bind(auctioneerAddress);
@@ -99,7 +102,7 @@ export function createBondPurchase(
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     //auctioneerAddress.toHexString().toLowerCase() == "0xF705DA9476a172408e1B94b2A7B2eF595A91C29b".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
     contracts.get("fixedTermOSDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermOSDAAbi.bind(auctioneerAddress);
@@ -107,7 +110,7 @@ export function createBondPurchase(
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     //auctioneerAddress.toHexString().toLowerCase() == "0xFE0FDA2ACB13249099E5edAc64439ac76C7eF4B6".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
     contracts.get("fixedExpiryOFDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpOFDAAbi.bind(auctioneerAddress);
@@ -115,7 +118,7 @@ export function createBondPurchase(
     marketPrice = BigDecimal.fromString(auctioneer.marketPrice(id).toString());
   } else if (
     //auctioneerAddress.toHexString().toLowerCase() == "0xF70FDAae514a8b48B83caDa51C0847B46Bb698bd".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
     contracts.get("fixedTermOFDAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermOFDAAbi.bind(auctioneerAddress);
@@ -125,7 +128,7 @@ export function createBondPurchase(
     auctioneerAddressLower ==
       "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54".toLowerCase() ||
     // auctioneerAddress.toHexString().toLowerCase() == "0xFEF9A53AA10Ce2C9Ab6519AEE7DF82767F504f55".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
       contracts.get("fixedExpiryFPAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpFPAAbi.bind(auctioneerAddress);
@@ -135,7 +138,7 @@ export function createBondPurchase(
     auctioneerAddressLower ==
       "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0".toLowerCase() ||
     //auctioneerAddress.toHexString().toLowerCase() == "0xF7F9A96cDBFEFd70BDa14a8f30EC503b16bCe9b1".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
       contracts.get("fixedTermFPAAuctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermFPAAbi.bind(auctioneerAddress);
@@ -145,7 +148,7 @@ export function createBondPurchase(
     auctioneerAddressLower ==
       "0xFE5DA6ad5720237D19229e7416791d390255E9AA".toLowerCase() ||
     // auctioneerAddress.toHexString().toLowerCase() == "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646".toLowerCase()
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
       contracts.get("fixedExpirySDAv1_1Auctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedExpSDAv1_1Abi.bind(auctioneerAddress);
@@ -155,7 +158,7 @@ export function createBondPurchase(
     auctioneerAddressLower ==
       "0xF75DAFffaF63f5D935f8A481EE827d68974FD992".toLowerCase() ||
     // auctioneerAddress.toHexString().toLowerCase() == "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F".toLowerCase()/
-    auctioneerAddressLower ===
+    auctioneerAddressLower ==
       contracts.get("fixedTermSDAv1_1Auctioneer").toLowerCase()
   ) {
     const auctioneer = BondFixedTermSDAv1_1Abi.bind(auctioneerAddress);
@@ -165,7 +168,7 @@ export function createBondPurchase(
     log.warning("ABI not found for Chain: {} Auctioneer: {} Market ID: {}", [
       chainId,
       auctioneerAddressLower,
-      id.toString(),
+      id.toString()
     ]);
     return;
   }
