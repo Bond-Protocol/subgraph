@@ -116,3 +116,4 @@ addressesByChain.set(80001, newAddresses);
 addressesByChain.set(56, newAddresses);
 addressesByChain.set(34443, newAddresses);
 addressesByChain.set(84532, newAddresses);
+addressesByChain.set(80084, newAddresses);

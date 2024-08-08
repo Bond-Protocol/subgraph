@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermTellerAbi
       address: "0x007F774351e541b8bc720018De0796c4BF5afE3D"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -56,11 +56,11 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermCDAAbi
-      address: "0x007F7A1cb838A872515c8ebd16bE4b14Ef43a222"
-      startBlock: 5099115
+      address: "0x0000000000000000000000000000000000000000"
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -103,11 +103,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermSDAv1_1Abi
       address: "0xF75DA1E6eA0521da0cb938D2F96bfe1Da5929557"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -150,11 +150,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi2
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermSDAv1_1Abi
-      address: "0xF75DA09c8538b7AFe8B9D3adC1d626dA5D33467F"
-      startBlock: 5099115
+      address: "0xF75DA1E6eA0521da0cb938D2F96bfe1Da5929557"
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -197,11 +197,11 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE7c977a584CC54269730d210D889a86Ff9Cf"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -240,11 +240,11 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpCDAAbi
-      address: "0x007FEA32545a39Ff558a1367BBbC1A22bc7ABEfD"
-      startBlock: 5099115
+      address: "0x0000000000000000000000000000000000000000"
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -287,11 +287,11 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA8cF974EaC29606EDce195BF7fAbfC570f1C"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -334,11 +334,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi2
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpSDAv1_1Abi
-      address: "0xFE5DA041e5a3941BA12EbaBA7A7492BEAf91B646"
-      startBlock: 5099115
+      address: "0xFE5DA8cF974EaC29606EDce195BF7fAbfC570f1C"
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -381,11 +381,11 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpOSDAAbi
       address: "0xFE05DA30aF9cfAc9bCfC911273F83fDcbb04Ae22"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -427,11 +427,11 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermOSDAAbi
       address: "0xF705DA88cd0AAeed5EA612502Fb9E5E7f1A5c2bD"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -473,11 +473,11 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpOFDAAbi
       address: "0xFE0FDAD3969BbD8dd94c0bda7b04eC4ab66fFf85"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -516,11 +516,11 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermOFDAAbi
       address: "0xF70FDA7c9C397CE958320Db5C481939F0a8bb08D"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -559,11 +559,11 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -603,11 +603,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedExpFPA1_1Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A1BB7c9AFd5F31c58Cf87Cefc639bDfA04Dd"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -647,11 +647,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -691,11 +691,11 @@ dataSources:
       file: ./src/bond-fixed-term-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPA1_1Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9A834CBD3075D4810A9b818f594312C0de168"
-      startBlock: 5099115
+      startBlock: 1888994
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -736,7 +736,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: ERC20Abi
     mapping:
@@ -759,7 +759,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: UniV2Abi
     mapping:
@@ -786,7 +786,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: DodoLpAbi
     mapping:
@@ -817,7 +817,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: GUniPoolAbi
     mapping:
@@ -852,7 +852,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: HypervisorAbi
     mapping:
@@ -877,7 +877,7 @@ templates:
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
     name: BalancerVaultAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BalancerVaultAbi
     mapping:
@@ -920,7 +920,7 @@ templates:
       file: ./src/balancer-vault.ts
   - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -947,7 +947,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: AuctioneerAbi
     mapping:
@@ -966,7 +966,7 @@ templates:
       file: ./src/auctioneer-common.ts
   - kind: ethereum
     name: AggregatorAbi
-    network: base-sepolia
+    network: berachain-bartio
     source:
       abi: AggregatorAbi
     mapping:

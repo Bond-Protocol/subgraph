@@ -3,611 +3,622 @@ The OwnerBalance entity tracks user balances of fixed-term ERC-1155 bond tokens.
 It does not track balances of fixed-expiry ERC-20 tokens. These can be found by querying the user's wallet.
 """
 type OwnerBalance @entity {
-    """
-    Unique ID for the OwnerBalance entity, in the format:
-    [owner address]_[BondToken tokenId]
-    """
-    id: String!
-    """
-    The unique ID of the token, assigned on creation.
-    """
-    tokenId: BigInt!
-    """
-    The wallet address the balance pertains to.
-    """
-    owner: String!
-    """
-    The current balance of ERC-1155 bond tokens.
-    """
-    balance: BigInt!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    A reference to the BondToken for which the balance is being recorded.
-    """
-    bondToken: BondToken
+  """
+  Unique ID for the OwnerBalance entity, in the format:
+  [owner address]_[BondToken tokenId]
+  """
+  id: String!
+  """
+  The unique ID of the token, assigned on creation.
+  """
+  tokenId: BigInt!
+  """
+  The wallet address the balance pertains to.
+  """
+  owner: String!
+  """
+  The current balance of ERC-1155 bond tokens.
+  """
+  balance: BigInt!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  A reference to the BondToken for which the balance is being recorded.
+  """
+  bondToken: BondToken
+  """
+  The hash of the transaction where this purchase happened.
+  """
+  txHash: String!
+
+  bondPurchase: BondPurchase
 }
 
 """
 A UniqueBonder record is created for each unique combination of chain, market owner, bond purchaser.
 """
 type UniqueBonder @entity {
-    """
-    Unique ID for the UniqueBonder entity, in the format:
-    [chainId]_[Market owner address]__[bond purchaser address]
-    """
-    id: String!
+  """
+  Unique ID for the UniqueBonder entity, in the format:
+  [chainId]_[Market owner address]__[bond purchaser address]
+  """
+  id: String!
 }
 
 """
 Workaround due to no simple entity count being available.
 """
 type UniqueBonderCount @entity {
-    """
-    There should be one UniqueBonderCount entry per market owner, with owner address as id.
-    """
-    id: String!
-    """
-    The total number of unique bonders for this token on this chain.
-    """
-    count: BigInt!
+  """
+  There should be one UniqueBonderCount entry per market owner, with owner address as id.
+  """
+  id: String!
+  """
+  The total number of unique bonders for this token on this chain.
+  """
+  count: BigInt!
 }
 
 """
 A UniqueTokenBonder record is created for each unique combination of chain, payout token address, bond purchaser.
 """
 type UniqueTokenBonder @entity {
-    """
-    Unique ID for the UniqueTokenBonder entity, in the format:
-    [chainId]_[payout token address]__[bond purchaser address]
-    """
-    id: String!
+  """
+  Unique ID for the UniqueTokenBonder entity, in the format:
+  [chainId]_[payout token address]__[bond purchaser address]
+  """
+  id: String!
 }
 
 """
 Workaround due to no simple entity count being available.
 """
 type UniqueTokenBonderCount @entity {
-    """
-    There should be one UniqueTokenBonderCount entry per token, with token address as id.
-    """
-    id: String!
-    """
-    The token for which bonders are being counted.
-    """
-    token: Token!
-    """
-    The total number of unique bonders for this token on this chain.
-    """
-    count: BigInt!
+  """
+  There should be one UniqueTokenBonderCount entry per token, with token address as id.
+  """
+  id: String!
+  """
+  The token for which bonders are being counted.
+  """
+  token: Token!
+  """
+  The total number of unique bonders for this token on this chain.
+  """
+  count: BigInt!
 }
 
 """
 A BondToken record is created to track vesting tokens, both ERC-20 and ERC-1155, created by our contracts.
 """
 type BondToken @entity {
-    """
-    Unique ID for the BondToken entity. In the case of an ERC-20 token, this will be the token's address. In the case of an ERC-1155 token, it will be the token's ID.
-    """
-    id: String!
-    """
-    The number of decimals if an ERC-20, null if an ERC-1155.
-    """
-    decimals: BigInt
-    """
-    The token symbol if an ERC-20, null if an ERC-1155.
-    """
-    symbol: String
-    """
-    A reference to the Token which will be paid out upon vesting.
-    """
-    underlying: Token!
-    """
-    Timestamp at which vesting completes.
-    """
-    expiry: BigInt!
-    """
-    The address of the relevant Teller contract.
-    """
-    teller: String!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The type of bond, either "fixed-term" or "fixed-expiration".
-    """
-    type: String!
+  """
+  Unique ID for the BondToken entity. In the case of an ERC-20 token, this will be the token's address. In the case of an ERC-1155 token, it will be the token's ID.
+  """
+  id: String!
+  """
+  The number of decimals if an ERC-20, null if an ERC-1155.
+  """
+  decimals: BigInt
+  """
+  The token symbol if an ERC-20, null if an ERC-1155.
+  """
+  symbol: String
+  """
+  A reference to the Token which will be paid out upon vesting.
+  """
+  underlying: Token!
+  """
+  Timestamp at which vesting completes.
+  """
+  expiry: BigInt!
+  """
+  The address of the relevant Teller contract.
+  """
+  teller: String!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The type of bond, either "fixed-term" or "fixed-expiration".
+  """
+  type: String!
 }
 
 """
 The OwnerTokenTbv entity tracks the total of each quote token received by each Market owner.
 """
 type OwnerTokenTbv @entity {
-    """
-    Unique ID for the OwnerTokenTbv entity, in the format:
-    [chainId]_[Market owner address]__[quote Token id]
-    **NOTE** the Token ID also appends the chain ID before the token address, so the chain ID will appear once at the start of the OwnerTokenTbv ID and once in the quote token subsection of the ID.
-    """
-    id: String!
-    """
-    The Market owner address for which TBV is being calculated.
-    """
-    owner: String!
-    """
-    The quote Token for which TBV is being calculated.
-    """
-    token: String!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The amount of the quote token received across the owner's markets.
-    """
-    tbv: BigDecimal!
-    """
-    A list of BondPurchase records in which the owner has received the quote token.
-    """
-    bondPurchases: [BondPurchase!] @derivedFrom(field: "ownerTokenTbv")
+  """
+  Unique ID for the OwnerTokenTbv entity, in the format:
+  [chainId]_[Market owner address]__[quote Token id]
+  **NOTE** the Token ID also appends the chain ID before the token address, so the chain ID will appear once at the start of the OwnerTokenTbv ID and once in the quote token subsection of the ID.
+  """
+  id: String!
+  """
+  The Market owner address for which TBV is being calculated.
+  """
+  owner: String!
+  """
+  The quote Token for which TBV is being calculated.
+  """
+  token: String!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The amount of the quote token received across the owner's markets.
+  """
+  tbv: BigDecimal!
+  """
+  A list of BondPurchase records in which the owner has received the quote token.
+  """
+  bondPurchases: [BondPurchase!] @derivedFrom(field: "ownerTokenTbv")
 }
 
 """
 The PayoutTokenTbv entity tracks the total of each quote token received in exchange for the given payout token.
 """
 type PayoutTokenTbv @entity {
-    """
-    Unique ID for the PayoutTokenTbv entity, in the format:
-    [chainId]_[payout token address]__[quote token id]
-    **NOTE** the Token ID also appends the chain ID before the token address, so the chain ID will appear once at the start of the OwnerTokenTbv ID and once in the quote token subsection of the ID.
-    """
-    id: String!
-    """
-    The payout Token address for which TBV is being calculated.
-    """
-    payoutToken: Token!
-    """
-    The quote Token for which TBV is being calculated.
-    """
-    quoteToken: Token!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The amount of the quote token received across the owner's markets.
-    """
-    tbv: BigDecimal!
-    """
-    A list of BondPurchase records in which the owner has received the quote token.
-    """
-    bondPurchases: [BondPurchase!] @derivedFrom(field: "payoutTokenTbv")
+  """
+  Unique ID for the PayoutTokenTbv entity, in the format:
+  [chainId]_[payout token address]__[quote token id]
+  **NOTE** the Token ID also appends the chain ID before the token address, so the chain ID will appear once at the start of the OwnerTokenTbv ID and once in the quote token subsection of the ID.
+  """
+  id: String!
+  """
+  The payout Token address for which TBV is being calculated.
+  """
+  payoutToken: Token!
+  """
+  The quote Token for which TBV is being calculated.
+  """
+  quoteToken: Token!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The amount of the quote token received across the owner's markets.
+  """
+  tbv: BigDecimal!
+  """
+  A list of BondPurchase records in which the owner has received the quote token.
+  """
+  bondPurchases: [BondPurchase!] @derivedFrom(field: "payoutTokenTbv")
 }
 
 """
 The BondPurchase entity tracks individual bond purchases.
 """
 type BondPurchase @entity {
-    """
-    The transaction hash is used as the BondPurchase ID.
-    """
-    id: String!
-    """
-    The ID of the Market from which the bond was purchased.
-    """
-    market: Market!
-    """
-    The owner address of the Market from which the bond was purchased.
-    """
-    owner: String!
-    """
-    The amount of quote tokens paid.
-    """
-    amount: BigDecimal!
-    """
-    The amount of payout tokens purchased.
-    """
-    payout: BigDecimal!
-    """
-    The purchaser's address.
-    """
-    recipient: String!
-    """
-    The frontend referrer address.
-    """
-    referrer: String!
-    """
-    The time of the purchase.
-    """
-    timestamp: BigInt!
-    """
-    The address of the relevant Teller contract.
-    """
-    teller: String!
-    """
-    The address of the relevant Auctioneer contract.
-    """
-    auctioneer: String!
-    """
-    A reference to the payout Token record.
-    """
-    payoutToken: Token!
-    """
-    A reference to the quote Token record.
-    """
-    quoteToken: Token!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The price at which the bond was purchased.
-    **NOTE** this is quoteToken amount / payoutToken amount, it is NOT a USD price.
-    """
-    purchasePrice: BigDecimal!
-    """
-    The new bond price, updated after the purchase.
-    **NOTE** this is the Auctioneer contract's marketPrice adjusted for marketScale, it is NOT a USD price.
-    """
-    postPurchasePrice: BigDecimal!
-    """
-    A reference to the OwnerTokenTbv record for this chain/owner/token combination.
-    """
-    ownerTokenTbv: OwnerTokenTbv
-    """
-    A reference to the PayoutTokenTbv record for this chain/owner/token combination.
-    """
-    payoutTokenTbv: PayoutTokenTbv
+  """
+  The transaction hash is used as the BondPurchase ID.
+  """
+  id: String!
+  """
+  The ID of the Market from which the bond was purchased.
+  """
+  market: Market!
+  """
+  The owner address of the Market from which the bond was purchased.
+  """
+  owner: String!
+  """
+  The amount of quote tokens paid.
+  """
+  amount: BigDecimal!
+  """
+  The amount of payout tokens purchased.
+  """
+  payout: BigDecimal!
+  """
+  The purchaser's address.
+  """
+  recipient: String!
+  """
+  The frontend referrer address.
+  """
+  referrer: String!
+  """
+  The time of the purchase.
+  """
+  timestamp: BigInt!
+  """
+  The address of the relevant Teller contract.
+  """
+  teller: String!
+  """
+  The address of the relevant Auctioneer contract.
+  """
+  auctioneer: String!
+  """
+  A reference to the payout Token record.
+  """
+  payoutToken: Token!
+  """
+  A reference to the quote Token record.
+  """
+  quoteToken: Token!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The price at which the bond was purchased.
+  **NOTE** this is quoteToken amount / payoutToken amount, it is NOT a USD price.
+  """
+  purchasePrice: BigDecimal!
+  """
+  The new bond price, updated after the purchase.
+  **NOTE** this is the Auctioneer contract's marketPrice adjusted for marketScale, it is NOT a USD price.
+  """
+  postPurchasePrice: BigDecimal!
+  """
+  A reference to the OwnerTokenTbv record for this chain/owner/token combination.
+  """
+  ownerTokenTbv: OwnerTokenTbv
+  """
+  A reference to the PayoutTokenTbv record for this chain/owner/token combination.
+  """
+  payoutTokenTbv: PayoutTokenTbv
+
+  """
+  The owner balance created by this purchase
+  """
+  ownerBalance: OwnerBalance @derivedFrom(field: "bondPurchase")
 }
 
 """
 The Token entity tracks all payout and quote tokens, including LP pairs, Balancer Pools etc and their constituent tokens.
 """
 type Token @entity {
-    """
-    Unique ID for the Token entity, in the format:
-    [chainId]_[token address]
-    """
-    id: String!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The address of the Token.
-    """
-    address: String! # address
-    """
-    The number of decimals for the Token.
-    """
-    decimals: BigInt!
-    """
-    The Token symbol.
-    """
-    symbol: String!
-    """
-    The Token name.
-    """
-    name: String!
-    """
-    The smart contract (as opposed to token) name - e.g. "ERC20", "SLP", "BalancerWeightedPool".
-    """
-    typeName: String!
-    """
-    A reference to the Pair record, if the Token is a Uniswap-V2 (or compatible) LP token, null if it is not.
-    """
-    lpPair: Pair
-    """
-    A reference to the BalancerWeightedPool record, if the Token is a BalancerWeightedPool, or null if it is not.
-    """
-    balancerWeightedPool: BalancerWeightedPool
-    """
-    Whether the Token has been used as a Payout Token for any Markets
-    """
-    usedAsPayout: Boolean!
-    """
-    Whether the Token has been used as a Quote Token for any Markets
-    """
-    usedAsQuote: Boolean!
-    """
-    The amount of the this token paid out across the owner's markets.
-    """
-    totalPayoutAmount: BigDecimal!
-    """
-    The total number of times this Token has been purchased on this chain.
-    """
-    purchaseCount: BigInt!
-    """
-    A list of PayoutTokenTbv for this Token.
-    """
-    payoutTokenTbvs: [PayoutTokenTbv!] @derivedFrom(field: "payoutToken")
-    """
-    The UniqueTokenBonderCount for this Token
-    """
-    uniqueBonders: UniqueTokenBonderCount @derivedFrom(field: "token")
-    """
-    Markets for this Token
-    """
-    markets: [Market!] @derivedFrom(field: "payoutToken")
+  """
+  Unique ID for the Token entity, in the format:
+  [chainId]_[token address]
+  """
+  id: String!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The address of the Token.
+  """
+  address: String! # address
+  """
+  The number of decimals for the Token.
+  """
+  decimals: BigInt!
+  """
+  The Token symbol.
+  """
+  symbol: String!
+  """
+  The Token name.
+  """
+  name: String!
+  """
+  The smart contract (as opposed to token) name - e.g. "ERC20", "SLP", "BalancerWeightedPool".
+  """
+  typeName: String!
+  """
+  A reference to the Pair record, if the Token is a Uniswap-V2 (or compatible) LP token, null if it is not.
+  """
+  lpPair: Pair
+  """
+  A reference to the BalancerWeightedPool record, if the Token is a BalancerWeightedPool, or null if it is not.
+  """
+  balancerWeightedPool: BalancerWeightedPool
+  """
+  Whether the Token has been used as a Payout Token for any Markets
+  """
+  usedAsPayout: Boolean!
+  """
+  Whether the Token has been used as a Quote Token for any Markets
+  """
+  usedAsQuote: Boolean!
+  """
+  The amount of the this token paid out across the owner's markets.
+  """
+  totalPayoutAmount: BigDecimal!
+  """
+  The total number of times this Token has been purchased on this chain.
+  """
+  purchaseCount: BigInt!
+  """
+  A list of PayoutTokenTbv for this Token.
+  """
+  payoutTokenTbvs: [PayoutTokenTbv!] @derivedFrom(field: "payoutToken")
+  """
+  The UniqueTokenBonderCount for this Token
+  """
+  uniqueBonders: UniqueTokenBonderCount @derivedFrom(field: "token")
+  """
+  Markets for this Token
+  """
+  markets: [Market!] @derivedFrom(field: "payoutToken")
 }
 
 """
 The Market entity tracks all bond markets which have been created, whether currently open or closed.
 """
 type Market @entity {
-    """
-    Unique ID for the Market entity, in the format:
-    [chainId]_[auctioneer contract name]_[market id]
-    **NOTE** At the time of writing, contract name will be either 'BondFixedTermCDA' or BondFixedExpCDA. More will be added in the future as different auctioneer types become available.
-    """
-    id: String!
-    """
-    The Auctioneer contract name.
-    """
-    name: String!
-    """
-    The type of Market.
-    """
-    type: String!
-    """
-    The network name, as used by Graph Protocol.
-    **NOTE** This may not be the same as the name as used by wallets.
-    As such, we use the chainId field to identify networks in our frontend.
-    """
-    network: String!
-    """
-    The numeric chain ID on which the contracts are deployed.
-    """
-    chainId: BigInt!
-    """
-    The address of the Market's Auctioneer contract.
-    """
-    auctioneer: String!
-    """
-    The address of the Market's Teller contract.
-    """
-    teller: String!
-    """
-    The Market's ID for use with the Auctioneer.
-    """
-    marketId: BigInt!
-    """
-    The address of the Market owner.
-    """
-    owner: String!
-    """
-    A reference to the payout Token record.
-    """
-    payoutToken: Token!
-    """
-    A reference to the quote Token record.
-    """
-    quoteToken: Token!
-    """
-    The Market's vesting time. In the case of fixed expiry markets, this will be a timestamp. In the case of fixed term markets, it will be the vesting duration in seconds.
-    """
-    vesting: BigInt!
-    """
-    The Market's start time (for supported Market types)
-    """
-    start: BigInt
-    """
-    The Market's conclusion time
-    """
-    conclusion: BigInt
-    """
-    The type of vesting for the market. At the time of writing, this will be either "fixed-term" or "fixed-expiration". More options may be added in the future if new vesting types become available.
-    """
-    vestingType: String!
-    """
-    Whether or not the Market is an instant swap market.
-    """
-    isInstantSwap: Boolean!
-    """
-    Whether or not the Market has been closed.
-    """
-    hasClosed: Boolean!
-    """
-    The total amount of quote tokens bonded for this market.
-    **NOTE** This is the number of quote tokens, NOT their USD value.
-    """
-    totalBondedAmount: BigDecimal!
-    """
-    The total amount of payout tokens purchased through this market.
-    **NOTE** This is the number of payout tokens, NOT their USD value.
-    """
-    totalPayoutAmount: BigDecimal!
-    """
-    The timestamp of the block in which the Market was created.
-    """
-    creationBlockTimestamp: BigInt!
-    """
-    The address of the Market callback contract, if specified. 0x0000000000000000000000000000000000000000 if there is no callback contract.
-    """
-    callbackAddress: String!
-    """
-    The current capacity of the Market. This can be in either the quote or payout Token, according to the value of the capacityInQuote field.
-    """
-    capacity: BigInt!
-    """
-    Whether the Market capacity is measured in the quote (true) or payout (false) Token.
-    """
-    capacityInQuote: Boolean!
-    """
-    The minimum price at which a bond can be purchased.
-    **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
-    """
-    minPrice: BigInt
-    """
-    The price at which a bond can be purchased.
-    **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
-    """
-    price: BigInt
-    """
-    Scale value to use when converting between quote token and payout token amounts with marketPrice.
-    """
-    scale: BigInt
-    """
-    The average bond price across all purchases.
-    """
-    averageBondPrice: BigDecimal
-    """
-    A list of all tuning events that have been emitted for this Market.
-    """
-    tunes: [Tune!] @derivedFrom(field: "market")
-    """
-    A list of BondPurchase records for this Market.
-    """
-    bondPurchases: [BondPurchase!] @derivedFrom(field: "market")
-    """
-    A count of BondPurchases for this market
-    """
-    bondsIssued: BigInt!
+  """
+  Unique ID for the Market entity, in the format:
+  [chainId]_[auctioneer contract name]_[market id]
+  **NOTE** At the time of writing, contract name will be either 'BondFixedTermCDA' or BondFixedExpCDA. More will be added in the future as different auctioneer types become available.
+  """
+  id: String!
+  """
+  The Auctioneer contract name.
+  """
+  name: String!
+  """
+  The type of Market.
+  """
+  type: String!
+  """
+  The network name, as used by Graph Protocol.
+  **NOTE** This may not be the same as the name as used by wallets.
+  As such, we use the chainId field to identify networks in our frontend.
+  """
+  network: String!
+  """
+  The numeric chain ID on which the contracts are deployed.
+  """
+  chainId: BigInt!
+  """
+  The address of the Market's Auctioneer contract.
+  """
+  auctioneer: String!
+  """
+  The address of the Market's Teller contract.
+  """
+  teller: String!
+  """
+  The Market's ID for use with the Auctioneer.
+  """
+  marketId: BigInt!
+  """
+  The address of the Market owner.
+  """
+  owner: String!
+  """
+  A reference to the payout Token record.
+  """
+  payoutToken: Token!
+  """
+  A reference to the quote Token record.
+  """
+  quoteToken: Token!
+  """
+  The Market's vesting time. In the case of fixed expiry markets, this will be a timestamp. In the case of fixed term markets, it will be the vesting duration in seconds.
+  """
+  vesting: BigInt!
+  """
+  The Market's start time (for supported Market types)
+  """
+  start: BigInt
+  """
+  The Market's conclusion time
+  """
+  conclusion: BigInt
+  """
+  The type of vesting for the market. At the time of writing, this will be either "fixed-term" or "fixed-expiration". More options may be added in the future if new vesting types become available.
+  """
+  vestingType: String!
+  """
+  Whether or not the Market is an instant swap market.
+  """
+  isInstantSwap: Boolean!
+  """
+  Whether or not the Market has been closed.
+  """
+  hasClosed: Boolean!
+  """
+  The total amount of quote tokens bonded for this market.
+  **NOTE** This is the number of quote tokens, NOT their USD value.
+  """
+  totalBondedAmount: BigDecimal!
+  """
+  The total amount of payout tokens purchased through this market.
+  **NOTE** This is the number of payout tokens, NOT their USD value.
+  """
+  totalPayoutAmount: BigDecimal!
+  """
+  The timestamp of the block in which the Market was created.
+  """
+  creationBlockTimestamp: BigInt!
+  """
+  The address of the Market callback contract, if specified. 0x0000000000000000000000000000000000000000 if there is no callback contract.
+  """
+  callbackAddress: String!
+  """
+  The current capacity of the Market. This can be in either the quote or payout Token, according to the value of the capacityInQuote field.
+  """
+  capacity: BigInt!
+  """
+  Whether the Market capacity is measured in the quote (true) or payout (false) Token.
+  """
+  capacityInQuote: Boolean!
+  """
+  The minimum price at which a bond can be purchased.
+  **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
+  """
+  minPrice: BigInt
+  """
+  The price at which a bond can be purchased.
+  **NOTE** This is a minimum return value for the Auctioneer marketPrice function, NOT a USD price.
+  """
+  price: BigInt
+  """
+  Scale value to use when converting between quote token and payout token amounts with marketPrice.
+  """
+  scale: BigInt
+  """
+  The average bond price across all purchases.
+  """
+  averageBondPrice: BigDecimal
+  """
+  A list of all tuning events that have been emitted for this Market.
+  """
+  tunes: [Tune!] @derivedFrom(field: "market")
+  """
+  A list of BondPurchase records for this Market.
+  """
+  bondPurchases: [BondPurchase!] @derivedFrom(field: "market")
+  """
+  A count of BondPurchases for this market
+  """
+  bondsIssued: BigInt!
 }
 
 """
 The Pair entity stores references to the Tokens which make up a Uniswap-V2 or similar LP Pair.
 """
 type Pair @entity {
-    """
-    The address of the LP pair.
-    **NOTE** for consistency, this should probably be updated to append the chainId, as Token and BalancerWeightedPool do.
-    """
-    id: String!
-    """
-    A reference to the Token record for the LP pair's token0.
-    """
-    token0: Token!
-    """
-    A reference to the Token record for the LP pair's token1.
-    """
-    token1: Token!
+  """
+  The address of the LP pair.
+  **NOTE** for consistency, this should probably be updated to append the chainId, as Token and BalancerWeightedPool do.
+  """
+  id: String!
+  """
+  A reference to the Token record for the LP pair's token0.
+  """
+  token0: Token!
+  """
+  A reference to the Token record for the LP pair's token1.
+  """
+  token1: Token!
 }
 
 """
 The BalancerWeightedPool entity contains the details of a BalancerWeightedPool Token.
 """
 type BalancerWeightedPool @entity {
-    """
-    Unique ID for the BalancerWeightedPool entity, in the format:
-    [chain Id]_[pool address]
-    """
-    id: String!
-    """
-    The pool's vault address.
-    """
-    vaultAddress: String!
-    """
-    The pool's ID, for use in calls to vault functions.
-    """
-    poolId: String!
-    """
-    A list of the Tokens which make up the vault.
-    """
-    constituentTokens: [Token!]!
+  """
+  Unique ID for the BalancerWeightedPool entity, in the format:
+  [chain Id]_[pool address]
+  """
+  id: String!
+  """
+  The pool's vault address.
+  """
+  vaultAddress: String!
+  """
+  The pool's ID, for use in calls to vault functions.
+  """
+  poolId: String!
+  """
+  A list of the Tokens which make up the vault.
+  """
+  constituentTokens: [Token!]!
 }
 
 """
 The Tune entity tracks Market tuning events.
 """
 type Tune @entity {
-    """
-    The ID of the Market to which the event relates.
-    """
-    id: String!
-    """
-    A reference to the related Market record.
-    """
-    market: Market!
-    """
-    The pre-tuning value of the control variable.
-    """
-    oldControlVariable: BigInt!
-    """
-    The post-tuning value of the control variable.
-    """
-    newControlVariable: BigInt!
-    """
-    The difference between the old and new control variables.
-    oldControlVariable - newControlVariable
-    """
-    deltaTime: BigInt!
-    """
-    The timestamp at which the tuning event occurred.
-    """
-    timestamp: BigInt!
+  """
+  The ID of the Market to which the event relates.
+  """
+  id: String!
+  """
+  A reference to the related Market record.
+  """
+  market: Market!
+  """
+  The pre-tuning value of the control variable.
+  """
+  oldControlVariable: BigInt!
+  """
+  The post-tuning value of the control variable.
+  """
+  newControlVariable: BigInt!
+  """
+  The difference between the old and new control variables.
+  oldControlVariable - newControlVariable
+  """
+  deltaTime: BigInt!
+  """
+  The timestamp at which the tuning event occurred.
+  """
+  timestamp: BigInt!
 }
 
 """
 Workaround due to no simple entity count being available.
 """
 type PurchaseCount @entity {
-    """
-    There should only be one PurchaseCount entry, with id "purchase-count".
-    """
-    id: String!
-    """
-    The total number of bond purchases across all markets on this chain.
-    """
-    count: BigInt!
+  """
+  There should only be one PurchaseCount entry, with id "purchase-count".
+  """
+  id: String!
+  """
+  The total number of bond purchases across all markets on this chain.
+  """
+  count: BigInt!
 }
 
 """
 Workaround due to no simple entity count being available.
 """
 type MarketOwnerCount @entity {
-    """
-    There should be one MarketOwnerCount entry per market owner, with owner address as id.
-    """
-    id: String!
-    """
-    The total number of markets (open and closed) owned by this address on this chain.
-    """
-    count: BigInt!
+  """
+  There should be one MarketOwnerCount entry per market owner, with owner address as id.
+  """
+  id: String!
+  """
+  The total number of markets (open and closed) owned by this address on this chain.
+  """
+  count: BigInt!
 }
 
 type PayoutToken @entity {
-    id: String!
+  id: String!
 }
 
 type QuoteToken @entity {
-    id: String!
+  id: String!
 }
