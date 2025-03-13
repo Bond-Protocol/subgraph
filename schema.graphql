@@ -298,9 +298,9 @@ type BondPurchase @entity {
   payoutTokenTbv: PayoutTokenTbv
 
   """
-  The owner balance created by this purchase
+  The owner balances created by this purchase, may be multiple if the token is transferred
   """
-  ownerBalance: OwnerBalance @derivedFrom(field: "bondPurchase")
+  ownerBalances: [OwnerBalance!] @derivedFrom(field: "bondPurchase")
 }
 
 """

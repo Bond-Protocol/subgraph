@@ -56,19 +56,21 @@ export function handleTransferSingle(event: TransferSingle): void {
     ownerBalance = new OwnerBalance(
       event.params.to.toHexString() + "_" + event.params.id.toString()
     );
+    ownerBalance.bondPurchase = event.transaction.hash.toHexString();
     ownerBalance.balance = BigInt.fromI32(0);
   }
 
-  ownerBalance.txHash = event.transaction.hash.toHexString();
+  if (prevOwnerBalance) {
+    ownerBalance.bondPurchase = prevOwnerBalance.bondPurchase;
+  }
 
+  ownerBalance.txHash = event.transaction.hash.toHexString();
   ownerBalance.tokenId = event.params.id;
   ownerBalance.owner = event.params.to.toHexString();
   ownerBalance.balance = ownerBalance.balance.plus(event.params.amount);
   ownerBalance.network = dataSource.network();
   ownerBalance.chainId = BigInt.fromI32(CHAIN_IDS.get(dataSource.network()));
   ownerBalance.bondToken = event.params.id.toString();
-
-  ownerBalance.bondPurchase = event.transaction.hash.toHexString();
 
   ownerBalance.save();
 

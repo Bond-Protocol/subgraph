@@ -1,8 +1,10 @@
 ## Deployment Steps
 
 1. Update/add addresses in `networks.json`
-2. Run `yarn graph codegen` if updating handlers
-3. Run `yarn graph build --<NETWORK_NAME>` (or add as a command to package.json)
+2. Add chain id in `src/chain-ids`
+   2.1. If new addresses, add the corresponding chain id to `newChainIds` in `address-map`
+3. Run `yarn graph codegen` if updating handlers
+4. Run `yarn graph build --<NETWORK_NAME>` (or add as a command to package.json)
 
 3.a For graph hosted services, run deploy script for target network. I.e. for polygon-mumbai run: `yarn deploy-polygon-mumbai`
 3.b For Alchemy subgraph there's a single deploy script. I.e for base-sepolia `yarn deploy-alchemy base-sepolia 0.0.7 <your_access_token>`

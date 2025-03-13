@@ -3,6 +3,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
+    "build": "graph build --network",
     "build-ethereum-mainnet": "graph build --network mainnet",
     "build-ethereum-goerli": "graph build --network goerli",
     "build-arbitrum-mainnet": "graph build --network arbitrum-one",
@@ -17,6 +18,7 @@
     "build-bsc": "graph build --network bsc",
     "build-mode": "graph build --network mode-mainnet",
     "build-bera-bartio": "graph build --network berachain-bartio",
+    "build-berachain": "graph build --network berachain",
     "deploy-studio-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --studio bond-protocol-ethereum-mainnet",
     "deploy-studio-arbitrum-mainnet": "yarn build-arbitrum-mainnet && graph deploy --studio bond-protocol-arbitrum-mainnet",
     "deploy-ethereum-mainnet": "yarn build-ethereum-mainnet && graph deploy --product hosted-service bond-protocol/bond-protocol-mainnet",

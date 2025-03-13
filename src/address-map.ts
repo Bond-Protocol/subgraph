@@ -1,4 +1,13 @@
-export const newAddressChains = [137, 80001, 56, 34443, 80084, 84532];
+export const newAddressChains = [
+  137,
+  80001,
+  56,
+  34443,
+  80084,
+  84532,
+  8453,
+  80094
+];
 
 //Original deployments all share the same addresses
 export const oldAddresses: Map<string, string> = new Map();
@@ -117,3 +126,5 @@ addressesByChain.set(56, newAddresses);
 addressesByChain.set(34443, newAddresses);
 addressesByChain.set(84532, newAddresses);
 addressesByChain.set(80084, newAddresses);
+addressesByChain.set(8453, newAddresses);
+addressesByChain.set(80094, newAddresses);
