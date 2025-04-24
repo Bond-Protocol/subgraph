@@ -26,4 +26,5 @@ CHAIN_IDS.set("base", 8453);
 CHAIN_IDS.set("base-sepolia", 84532);
 CHAIN_IDS.set("mode-mainnet", 34443);
 CHAIN_IDS.set("berachain-bartio", 80084);
-CHAIN_IDS.set("berachain-bartio", 80094);
+CHAIN_IDS.set("berachain", 80094);
+CHAIN_IDS.set("sonic", 146);

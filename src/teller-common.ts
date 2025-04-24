@@ -9,7 +9,7 @@ import {
   UniqueBonder,
   UniqueBonderCount,
   UniqueTokenBonder,
-  UniqueTokenBonderCount
+  UniqueTokenBonderCount,
 } from "../generated/schema";
 import {
   Address,
@@ -17,7 +17,7 @@ import {
   BigInt,
   Bytes,
   dataSource,
-  log
+  log,
 } from "@graphprotocol/graph-ts";
 import { CHAIN_IDS } from "./chain-ids";
 import { loadOrAddERC20Token } from "./erc20";
@@ -32,7 +32,7 @@ import { BondFixedExpFPAAbi } from "../generated/BondFixedExpFPAAbi/BondFixedExp
 import { BondFixedTermFPAAbi } from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
 import { BondFixedExpSDAv1_1Abi } from "../generated/BondFixedExpSDAv1_1Abi/BondFixedExpSDAv1_1Abi";
 import { BondFixedTermSDAv1_1Abi } from "../generated/BondFixedTermSDAv1_1Abi/BondFixedTermSDAv1_1Abi";
-import { addressesByChain, oldAddresses } from "./address-map";
+import { addressesByChain, v0Addresses } from "./address-map";
 
 export function createBondPurchase(
   id: BigInt,
@@ -47,7 +47,7 @@ export function createBondPurchase(
   const _chainId = CHAIN_IDS.get(network);
   const chainId = _chainId.toString();
 
-  let contracts = oldAddresses;
+  let contracts = v0Addresses;
 
   if (addressesByChain.has(_chainId)) {
     contracts = addressesByChain.get(_chainId);
@@ -168,7 +168,7 @@ export function createBondPurchase(
     log.warning("ABI not found for Chain: {} Auctioneer: {} Market ID: {}", [
       chainId,
       auctioneerAddressLower,
-      id.toString()
+      id.toString(),
     ]);
     return;
   }
