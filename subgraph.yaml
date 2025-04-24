@@ -4,11 +4,11 @@ schema:
 dataSources:
   - kind: ethereum
     name: BondFixedTermTellerAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermTellerAbi
-      address: "0x007F774351e541b8bc720018De0796c4BF5afE3D"
-      startBlock: 803694
+      address: "0x007F77eF813B60a07af960dDA509137f6cCecdCa"
+      startBlock: 17491918
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -56,7 +56,7 @@ dataSources:
       file: ./src/bond-fixed-term-teller.ts
   - kind: ethereum
     name: BondFixedTermCDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermCDAAbi
       address: "0x0000000000000000000000000000000000000000"
@@ -103,11 +103,11 @@ dataSources:
       file: ./src/bond-fixed-term-cda.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermSDAv1_1Abi
-      address: "0xF75DA1E6eA0521da0cb938D2F96bfe1Da5929557"
-      startBlock: 803694
+      address: "0xF75DA8A0803b02978498371562800488cDB4665F"
+      startBlock: 17491918
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -150,7 +150,7 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedTermSDAv1_1Abi2
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermSDAv1_1Abi
       address: "0xF75DA1E6eA0521da0cb938D2F96bfe1Da5929557"
@@ -197,7 +197,7 @@ dataSources:
       file: ./src/bond-fixed-term-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpTellerAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpTellerAbi
       address: "0x007FE7c977a584CC54269730d210D889a86Ff9Cf"
@@ -240,7 +240,7 @@ dataSources:
       file: ./src/bond-fixed-exp-teller.ts
   - kind: ethereum
     name: BondFixedExpCDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpCDAAbi
       address: "0x0000000000000000000000000000000000000000"
@@ -287,7 +287,7 @@ dataSources:
       file: ./src/bond-fixed-exp-cda.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA8cF974EaC29606EDce195BF7fAbfC570f1C"
@@ -334,7 +334,7 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpSDAv1_1Abi2
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpSDAv1_1Abi
       address: "0xFE5DA8cF974EaC29606EDce195BF7fAbfC570f1C"
@@ -381,7 +381,7 @@ dataSources:
       file: ./src/bond-fixed-exp-sda-v2.ts
   - kind: ethereum
     name: BondFixedExpOSDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpOSDAAbi
       address: "0xFE05DA30aF9cfAc9bCfC911273F83fDcbb04Ae22"
@@ -427,7 +427,7 @@ dataSources:
       file: ./src/bond-fixed-exp-osda.ts
   - kind: ethereum
     name: BondFixedTermOSDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermOSDAAbi
       address: "0xF705DA88cd0AAeed5EA612502Fb9E5E7f1A5c2bD"
@@ -473,7 +473,7 @@ dataSources:
       file: ./src/bond-fixed-term-osda.ts
   - kind: ethereum
     name: BondFixedExpOFDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpOFDAAbi
       address: "0xFE0FDAD3969BbD8dd94c0bda7b04eC4ab66fFf85"
@@ -516,7 +516,7 @@ dataSources:
       file: ./src/bond-fixed-exp-ofda.ts
   - kind: ethereum
     name: BondFixedTermOFDAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermOFDAAbi
       address: "0xF70FDA7c9C397CE958320Db5C481939F0a8bb08D"
@@ -559,7 +559,7 @@ dataSources:
       file: ./src/bond-fixed-term-ofda.ts
   - kind: ethereum
     name: BondFixedExpFPAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A527ac84836DC9939Ad75eb8ce325bBE0E54"
@@ -603,7 +603,7 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedExpFPA1_1Abi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedExpFPAAbi
       address: "0xFEF9A1BB7c9AFd5F31c58Cf87Cefc639bDfA04Dd"
@@ -647,11 +647,11 @@ dataSources:
       file: ./src/bond-fixed-exp-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPAAbi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermFPAAbi
-      address: "0xF7F9Ae2415F8Cb89BEebf9662A19f2393e7065e0"
-      startBlock: 803694
+      address: "0xF7F9AcFd8CF2dd78ADe9E5b02B6e776655Ae62a1"
+      startBlock: 17491918
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -691,7 +691,7 @@ dataSources:
       file: ./src/bond-fixed-term-fpa.ts
   - kind: ethereum
     name: BondFixedTermFPA1_1Abi
-    network: berachain
+    network: sonic
     source:
       abi: BondFixedTermFPAAbi
       address: "0xF7F9A834CBD3075D4810A9b818f594312C0de168"
@@ -736,7 +736,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: ERC20Abi
-    network: berachain
+    network: sonic
     source:
       abi: ERC20Abi
     mapping:
@@ -759,7 +759,7 @@ templates:
       file: ./src/erc20.ts
   - kind: ethereum/contract
     name: UniV2Abi
-    network: berachain
+    network: sonic
     source:
       abi: UniV2Abi
     mapping:
@@ -786,7 +786,7 @@ templates:
       file: ./src/lp-types/uni-v2-compatible.ts
   - kind: ethereum/contract
     name: DodoLpAbi
-    network: berachain
+    network: sonic
     source:
       abi: DodoLpAbi
     mapping:
@@ -817,7 +817,7 @@ templates:
       file: ./src/lp-types/dodo-compatible.ts
   - kind: ethereum/contract
     name: GUniPoolAbi
-    network: berachain
+    network: sonic
     source:
       abi: GUniPoolAbi
     mapping:
@@ -852,7 +852,7 @@ templates:
       file: ./src/lp-types/g-uni-compatible.ts
   - kind: ethereum/contract
     name: HypervisorAbi
-    network: berachain
+    network: sonic
     source:
       abi: HypervisorAbi
     mapping:
@@ -876,51 +876,8 @@ templates:
           handler: handleWithdraw
       file: ./src/lp-types/hypervisor-compatible.ts
   - kind: ethereum/contract
-    name: BalancerVaultAbi
-    network: berachain
-    source:
-      abi: BalancerVaultAbi
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - BalancerWeightedPoolAbi
-        - Token
-      abis:
-        - name: BalancerVaultAbi
-          file: ./abis/lp-types/BalancerVault.json
-      eventHandlers:
-        - event: AuthorizerChanged(indexed address)
-          handler: handleAuthorizerChanged
-        - event: ExternalBalanceTransfer(indexed address,indexed address,address,uint256)
-          handler: handleExternalBalanceTransfer
-        - event: FlashLoan(indexed address,indexed address,uint256,uint256)
-          handler: handleFlashLoan
-        - event: InternalBalanceChanged(indexed address,indexed address,int256)
-          handler: handleInternalBalanceChanged
-        - event: PausedStateChanged(bool)
-          handler: handlePausedStateChanged
-        - event: PoolBalanceChanged(indexed bytes32,indexed
-            address,address[],int256[],uint256[])
-          handler: handlePoolBalanceChanged
-        - event: PoolBalanceManaged(indexed bytes32,indexed address,indexed
-            address,int256,int256)
-          handler: handlePoolBalanceManaged
-        - event: PoolRegistered(indexed bytes32,indexed address,uint8)
-          handler: handlePoolRegistered
-        - event: RelayerApprovalChanged(indexed address,indexed address,bool)
-          handler: handleRelayerApprovalChanged
-        - event: Swap(indexed bytes32,indexed address,indexed address,uint256,uint256)
-          handler: handleSwap
-        - event: TokensDeregistered(indexed bytes32,address[])
-          handler: handleTokensDeregistered
-        - event: TokensRegistered(indexed bytes32,address[],address[])
-          handler: handleTokensRegistered
-      file: ./src/balancer-vault.ts
-  - kind: ethereum/contract
     name: BalancerWeightedPoolAbi
-    network: berachain
+    network: sonic
     source:
       abi: BalancerWeightedPoolAbi
     mapping:
@@ -947,7 +904,7 @@ templates:
       file: ./src/lp-types/balancer-weighted-pool-compatible.ts
   - kind: ethereum
     name: AuctioneerAbi
-    network: berachain
+    network: sonic
     source:
       abi: AuctioneerAbi
     mapping:
@@ -964,19 +921,3 @@ templates:
         - name: AuctioneerAbi
           file: ./abis/Auctioneer.json
       file: ./src/auctioneer-common.ts
-  - kind: ethereum
-    name: AggregatorAbi
-    network: berachain
-    source:
-      abi: AggregatorAbi
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.6
-      language: wasm/assemblyscript
-      entities:
-        - AuthorityUpdated
-        - OwnerUpdated
-      abis:
-        - name: AggregatorAbi
-          file: ./abis/Aggregator.json
-      file: ./src/aggregator-common.ts
