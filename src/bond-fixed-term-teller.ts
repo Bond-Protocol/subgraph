@@ -5,7 +5,7 @@ import {
   ERC1155BondTokenCreated,
   OwnerUpdated,
   TransferBatch,
-  TransferSingle
+  TransferSingle,
 } from "../generated/BondFixedTermTellerAbi/BondFixedTermTellerAbi";
 import { BondPurchase, OwnerBalance } from "../generated/schema";
 import { BigInt, dataSource } from "@graphprotocol/graph-ts";

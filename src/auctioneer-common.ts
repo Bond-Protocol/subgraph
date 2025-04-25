@@ -1,15 +1,32 @@
-import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {Market, MarketOwnerCount, Tune} from "../generated/schema";
-import {loadOrAddERC20Token} from "./erc20";
+import {
+  Address,
+  BigDecimal,
+  BigInt,
+  dataSource,
+} from "@graphprotocol/graph-ts";
+import { Market, MarketOwnerCount, Tune } from "../generated/schema";
+import { loadOrAddERC20Token } from "./erc20";
 import {
   isBalancerWeightedPoolCompatible,
-  loadOrAddBalancerWeightedPoolCompatiblePool
+  loadOrAddBalancerWeightedPoolCompatiblePool,
 } from "./lp-types/balancer-weighted-pool-compatible";
-import {isUniV2Compatible, loadOrAddUniV2CompatiblePair} from "./lp-types/uni-v2-compatible";
-import {CHAIN_IDS} from "./chain-ids";
-import {isDodoLpCompatible, loadOrAddDodoLpCompatiblePair} from "./lp-types/dodo-compatible";
-import {isGUniPoolCompatible, loadOrAddGUniPoolCompatiblePair} from "./lp-types/g-uni-compatible";
-import {isHypervisorCompatible, loadOrAddHypervisorCompatiblePair} from "./lp-types/hypervisor-compatible";
+import {
+  isUniV2Compatible,
+  loadOrAddUniV2CompatiblePair,
+} from "./lp-types/uni-v2-compatible";
+import { CHAIN_IDS } from "./chain-ids";
+import {
+  isDodoLpCompatible,
+  loadOrAddDodoLpCompatiblePair,
+} from "./lp-types/dodo-compatible";
+import {
+  isGUniPoolCompatible,
+  loadOrAddGUniPoolCompatiblePair,
+} from "./lp-types/g-uni-compatible";
+import {
+  isHypervisorCompatible,
+  loadOrAddHypervisorCompatiblePair,
+} from "./lp-types/hypervisor-compatible";
 
 export function createMarket(
   id: BigInt,
@@ -31,7 +48,7 @@ export function createMarket(
   isInstantSwap: boolean,
   scale: BigInt | null,
   minPrice: BigInt | null,
-  price: BigInt | null,
+  price: BigInt | null
 ): Market {
   let payoutToken = loadOrAddERC20Token(payoutTokenAddress, true, false);
   let quoteToken = loadOrAddERC20Token(quoteTokenAddress, false, true);
@@ -54,7 +71,6 @@ export function createMarket(
   let market = Market.load(id.toString());
 
   if (!market) {
-
     market = new Market(id.toString());
     market.id = chainId + "_" + auctioneerName + "_" + id.toString();
     market.name = auctioneerName;
@@ -101,11 +117,13 @@ export function createMarket(
   return market;
 }
 
-export function closeMarket(
-  id: BigInt,
-  auctioneerName: string,
-): void {
-  const marketId = CHAIN_IDS.get(dataSource.network()).toString() + "_" + auctioneerName + "_" + id.toString();
+export function closeMarket(id: BigInt, auctioneerName: string): void {
+  const marketId =
+    CHAIN_IDS.get(dataSource.network()).toString() +
+    "_" +
+    auctioneerName +
+    "_" +
+    id.toString();
   const market = Market.load(marketId);
 
   if (!market) return;

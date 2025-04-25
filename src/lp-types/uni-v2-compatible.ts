@@ -1,7 +1,7 @@
-import {Address} from "@graphprotocol/graph-ts";
-import {UniV2Abi} from "../../generated/templates/UniV2Abi/UniV2Abi";
-import {Pair, Token} from "../../generated/schema";
-import {addPair} from "./pair-common";
+import { Address } from "@graphprotocol/graph-ts";
+import { UniV2Abi } from "../../generated/templates/UniV2Abi/UniV2Abi";
+import { Pair, Token } from "../../generated/schema";
+import { addPair } from "./pair-common";
 
 export function isUniV2Compatible(address: Address): boolean {
   let contract = UniV2Abi.bind(address);

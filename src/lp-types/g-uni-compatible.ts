@@ -1,7 +1,7 @@
-import {Address} from "@graphprotocol/graph-ts";
-import {Pair, Token} from "../../generated/schema";
-import {GUniPoolAbi} from "../../generated/templates/GUniPoolAbi/GUniPoolAbi";
-import {addPair} from "./pair-common";
+import { Address } from "@graphprotocol/graph-ts";
+import { Pair, Token } from "../../generated/schema";
+import { GUniPoolAbi } from "../../generated/templates/GUniPoolAbi/GUniPoolAbi";
+import { addPair } from "./pair-common";
 
 export function isGUniPoolCompatible(address: Address): boolean {
   let contract = GUniPoolAbi.bind(address);
@@ -13,7 +13,9 @@ export function loadOrAddGUniPoolCompatiblePair(parentToken: Token): Pair {
   let pair = new Pair(parentToken.address);
 
   if (!pair) {
-    let pairContract = GUniPoolAbi.bind(Address.fromString(parentToken.address));
+    let pairContract = GUniPoolAbi.bind(
+      Address.fromString(parentToken.address)
+    );
     return addPair(
       parentToken,
       pairContract.token0(),

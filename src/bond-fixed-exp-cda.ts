@@ -3,21 +3,17 @@ import {
   BondFixedExpCDAAbi,
   MarketClosed,
   MarketCreated,
-  Tuned
+  Tuned,
 } from "../generated/BondFixedExpCDAAbi/BondFixedExpCDAAbi";
-import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
+import { closeMarket, createMarket, onTuned } from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedExpCDA";
 const AUCTION_TYPE = "dynamic";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleMarketClosed(event: MarketClosed): void {
-  closeMarket(
-    event.params.id,
-    AUCTIONEER_NAME
-  );
+  closeMarket(event.params.id, AUCTIONEER_NAME);
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
@@ -46,7 +42,7 @@ export function handleMarketCreated(event: MarketCreated): void {
     contract.isInstantSwap(event.params.id),
     contract.marketScale(event.params.id),
     markets.getMinPrice(),
-    null,
+    null
   );
 }
 

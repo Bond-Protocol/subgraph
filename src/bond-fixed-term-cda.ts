@@ -3,21 +3,17 @@ import {
   BondFixedTermCDAAbi,
   MarketClosed,
   MarketCreated,
-  Tuned
-} from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi"
-import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
+  Tuned,
+} from "../generated/BondFixedTermCDAAbi/BondFixedTermCDAAbi";
+import { closeMarket, createMarket, onTuned } from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedTermCDA";
 const AUCTION_TYPE = "dynamic";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleMarketClosed(event: MarketClosed): void {
-  closeMarket(
-    event.params.id,
-    AUCTIONEER_NAME
-  );
+  closeMarket(event.params.id, AUCTIONEER_NAME);
 }
 
 export function handleMarketCreated(event: MarketCreated): void {

@@ -2,25 +2,22 @@ import {
   AuthorityUpdated,
   BondFixedTermFPAAbi,
   MarketClosed,
-  MarketCreated
+  MarketCreated,
 } from "../generated/BondFixedTermFPAAbi/BondFixedTermFPAAbi";
-import {closeMarket, createMarket} from "./auctioneer-common";
+import { closeMarket, createMarket } from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedTermFPA";
 const AUCTION_TYPE = "static";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleMarketClosed(event: MarketClosed): void {
-  closeMarket(
-    event.params.id,
-    AUCTIONEER_NAME
-  );
+  closeMarket(event.params.id, AUCTIONEER_NAME);
 }
 
 export function handleMarketCreated(event: MarketCreated): void {
-  const contract = BondFixedTermFPAAbi.bind(event.address);const markets = contract.markets(event.params.id);
+  const contract = BondFixedTermFPAAbi.bind(event.address);
+  const markets = contract.markets(event.params.id);
 
   const terms = contract.terms(event.params.id);
 

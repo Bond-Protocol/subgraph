@@ -3,21 +3,17 @@ import {
   BondFixedTermOSDAAbi,
   MarketClosed,
   MarketCreated,
-  Tuned
-} from "../generated/BondFixedTermOSDAAbi/BondFixedTermOSDAAbi"
-import {closeMarket, createMarket, onTuned} from "./auctioneer-common";
+  Tuned,
+} from "../generated/BondFixedTermOSDAAbi/BondFixedTermOSDAAbi";
+import { closeMarket, createMarket, onTuned } from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedTermOSDA";
 const AUCTION_TYPE = "oracle-dynamic";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleMarketClosed(event: MarketClosed): void {
-  closeMarket(
-    event.params.id,
-    AUCTIONEER_NAME
-  );
+  closeMarket(event.params.id, AUCTIONEER_NAME);
 }
 
 export function handleMarketCreated(event: MarketCreated): void {

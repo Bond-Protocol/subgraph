@@ -1,7 +1,7 @@
-import {Address} from "@graphprotocol/graph-ts";
-import {Pair, Token} from "../../generated/schema";
-import {DodoLpAbi} from "../../generated/templates/DodoLpAbi/DodoLpAbi";
-import {addPair} from "./pair-common";
+import { Address } from "@graphprotocol/graph-ts";
+import { Pair, Token } from "../../generated/schema";
+import { DodoLpAbi } from "../../generated/templates/DodoLpAbi/DodoLpAbi";
+import { addPair } from "./pair-common";
 
 export function isDodoLpCompatible(address: Address): boolean {
   let contract = DodoLpAbi.bind(address);

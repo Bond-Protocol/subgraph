@@ -2,21 +2,17 @@ import {
   AuthorityUpdated,
   BondFixedTermOFDAAbi,
   MarketClosed,
-  MarketCreated
+  MarketCreated,
 } from "../generated/BondFixedTermOFDAAbi/BondFixedTermOFDAAbi";
-import {closeMarket, createMarket} from "./auctioneer-common";
+import { closeMarket, createMarket } from "./auctioneer-common";
 
 const AUCTIONEER_NAME = "BondFixedTermOFDA";
 const AUCTION_TYPE = "oracle-static";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleMarketClosed(event: MarketClosed): void {
-  closeMarket(
-    event.params.id,
-    AUCTIONEER_NAME
-  );
+  closeMarket(event.params.id, AUCTIONEER_NAME);
 }
 
 export function handleMarketCreated(event: MarketCreated): void {

@@ -1,8 +1,8 @@
-import {Address} from "@graphprotocol/graph-ts";
-import {BalancerVaultAbi} from "../../generated/templates/BalancerVaultAbi/BalancerVaultAbi";
-import {loadOrAddERC20Token} from "../erc20";
-import {BalancerWeightedPool, Token} from "../../generated/schema";
-import {BalancerWeightedPoolAbi} from "../../generated/templates/BalancerWeightedPoolAbi/BalancerWeightedPoolAbi";
+import { Address } from "@graphprotocol/graph-ts";
+import { BalancerVaultAbi } from "../../generated/templates/BalancerVaultAbi/BalancerVaultAbi";
+import { loadOrAddERC20Token } from "../erc20";
+import { BalancerWeightedPool, Token } from "../../generated/schema";
+import { BalancerWeightedPoolAbi } from "../../generated/templates/BalancerWeightedPoolAbi/BalancerWeightedPoolAbi";
 
 export function isBalancerWeightedPoolCompatible(address: Address): boolean {
   let contract = BalancerWeightedPoolAbi.bind(address);
@@ -10,13 +10,17 @@ export function isBalancerWeightedPoolCompatible(address: Address): boolean {
   return res.reverted === false;
 }
 
-export function loadOrAddBalancerWeightedPoolCompatiblePool(parentToken: Token): BalancerWeightedPool {
+export function loadOrAddBalancerWeightedPoolCompatiblePool(
+  parentToken: Token
+): BalancerWeightedPool {
   let balancerWeightedPool = BalancerWeightedPool.load(parentToken.id);
 
   if (!balancerWeightedPool) {
     balancerWeightedPool = new BalancerWeightedPool(parentToken.id);
 
-    let poolContract = BalancerWeightedPoolAbi.bind(Address.fromString(parentToken.address));
+    let poolContract = BalancerWeightedPoolAbi.bind(
+      Address.fromString(parentToken.address)
+    );
     let vaultAddress = poolContract.getVault();
     let poolId = poolContract.getPoolId();
 
@@ -31,7 +35,9 @@ export function loadOrAddBalancerWeightedPoolCompatiblePool(parentToken: Token):
 
     parentToken.typeName = "BalancerWeightedPoolCompatible";
     balancerWeightedPool.poolId = poolId.toHexString().toLowerCase();
-    balancerWeightedPool.vaultAddress = vaultAddress.toHexString().toLowerCase();
+    balancerWeightedPool.vaultAddress = vaultAddress
+      .toHexString()
+      .toLowerCase();
     balancerWeightedPool.constituentTokens = constituentTokens;
     balancerWeightedPool.save();
 

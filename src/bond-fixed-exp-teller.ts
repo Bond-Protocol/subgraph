@@ -3,12 +3,11 @@ import {
   Bonded,
   ERC20BondTokenCreated,
   OwnerUpdated,
-} from "../generated/BondFixedExpTellerAbi/BondFixedExpTellerAbi"
-import {ERC20Abi} from "../generated/templates/ERC20Abi/ERC20Abi";
-import {createBondPurchase, createBondToken} from "./teller-common";
+} from "../generated/BondFixedExpTellerAbi/BondFixedExpTellerAbi";
+import { ERC20Abi } from "../generated/templates/ERC20Abi/ERC20Abi";
+import { createBondPurchase, createBondToken } from "./teller-common";
 
-export function handleAuthorityUpdated(event: AuthorityUpdated): void {
-}
+export function handleAuthorityUpdated(event: AuthorityUpdated): void {}
 
 export function handleBonded(event: Bonded): void {
   createBondPurchase(
@@ -22,7 +21,9 @@ export function handleBonded(event: Bonded): void {
   );
 }
 
-export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void {
+export function handleERC20BondTokenCreated(
+  event: ERC20BondTokenCreated
+): void {
   const bondTokenContract = ERC20Abi.bind(event.params.bondToken);
 
   createBondToken(
@@ -36,5 +37,4 @@ export function handleERC20BondTokenCreated(event: ERC20BondTokenCreated): void 
   );
 }
 
-export function handleOwnerUpdated(event: OwnerUpdated): void {
-}
+export function handleOwnerUpdated(event: OwnerUpdated): void {}

@@ -1,6 +1,6 @@
-import {Pair, Token} from "../../generated/schema";
-import {Address} from "@graphprotocol/graph-ts";
-import {loadOrAddERC20Token} from "../erc20";
+import { Pair, Token } from "../../generated/schema";
+import { Address } from "@graphprotocol/graph-ts";
+import { loadOrAddERC20Token } from "../erc20";
 
 export function addPair(
   parentToken: Token,

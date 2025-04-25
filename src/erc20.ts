@@ -1,11 +1,21 @@
-import {Address, BigDecimal, BigInt, dataSource} from "@graphprotocol/graph-ts";
-import {Token} from "../generated/schema";
-import {ERC20Abi} from "../generated/templates/ERC20Abi/ERC20Abi";
-import {CHAIN_IDS} from "./chain-ids";
+import {
+  Address,
+  BigDecimal,
+  BigInt,
+  dataSource,
+} from "@graphprotocol/graph-ts";
+import { Token } from "../generated/schema";
+import { ERC20Abi } from "../generated/templates/ERC20Abi/ERC20Abi";
+import { CHAIN_IDS } from "./chain-ids";
 
-export function loadOrAddERC20Token(address: Address, saveAsPayout: boolean, saveAsQuote: boolean): Token {
+export function loadOrAddERC20Token(
+  address: Address,
+  saveAsPayout: boolean,
+  saveAsQuote: boolean
+): Token {
   const addressAsString = address.toHexString().toLowerCase();
-  const tokenId = CHAIN_IDS.get(dataSource.network()).toString() + "_" + addressAsString;
+  const tokenId =
+    CHAIN_IDS.get(dataSource.network()).toString() + "_" + addressAsString;
 
   const tokenContract = ERC20Abi.bind(address);
   let token = Token.load(tokenId);
